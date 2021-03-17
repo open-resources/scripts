@@ -9,9 +9,8 @@
 "tag3": "Example Tag 3"
 
 +++ {"section": "question_vars"}
-# Here we are using numpy as np:
-a = np.random.randint(1,10)
-b = np.random.randint(1,10)
+a = numpy.random.randint(1,10)
+b = numpy.random.randint(1,10)
 
 
 +++ {"section": "question_text"}
