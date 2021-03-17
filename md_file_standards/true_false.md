@@ -14,7 +14,7 @@ b = numpy.random.randint(1,10)
 c = numpy.random.randint(1,10)
 
 +++ {"section": "question_text"}
-Consider two numbers $a and $b.
+Consider two numbers $a$ and $b$.
 Is the sum of $a + b$ less than $c$?
 
 +++ {"section": "question_files"}
