@@ -1,3 +1,23 @@
+### metadata
+  title: example_mc
+  topic: examples
+  q_type: multiple_choice
+  tags: [example_q, testing]
+  
+### question
+  A cyclist travels at (v) m/s for [t] seconds.
+  How far does the cyclist travel?
+  
+### parameters
+  v = 1,
+  t = 1
+  
+### solution
+  - 0
+  - 2
+  - *1*
+  - 3
+
 +++ {"ftype": "question"}
 +++ {"qtype": "multiplechoice"}
 
