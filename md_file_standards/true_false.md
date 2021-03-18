@@ -1,3 +1,17 @@
+### metadata
+  title: example_tf
+  topic: examples
+  q_type: true_false
+  tags: [example_q, testing]
+  
+### question
+  Answers is true
+  
+### solution
+  true
+
+
+
 +++ {"ftype": "question"}
 +++ {"qtype": "truefalse"}
 
