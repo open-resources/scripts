@@ -1,3 +1,12 @@
+---
+dasda
+---
+asda
+---sdasd---
+--asd
+
+
+
 +++ {"ftype": "question"}
 +++ {"qtype": "numerical"}
 
