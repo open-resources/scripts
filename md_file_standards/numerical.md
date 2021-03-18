@@ -1,10 +1,14 @@
 ### metadata
-{ title: example_numeric
+  title: example_numeric
   topic: examples
   q_type: numeric
   tags: [example_q, testing]
   
-
+### question
+  A cyclist travels at [v] m/s for [t] seconds.
+  How far does the cyclist travel?
+### solution
+  d = v * t
 
 
 +++ {"ftype": "question"}
