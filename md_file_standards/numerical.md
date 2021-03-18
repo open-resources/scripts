@@ -9,11 +9,10 @@
   How far does the cyclist travel?
   
 ### parameters
-  v = [1, 10)
+  v = [1, 10),
   t = [6, 7]
+  
 ### solution
-  1 <= v < 10
-  0 < t <
   d = v * t
   
 
