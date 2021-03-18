@@ -1,4 +1,4 @@
-# metadata #
+### metadata
 { title: example_numeric
   topic: examples
   q_type: numeric
