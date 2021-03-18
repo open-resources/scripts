@@ -1,8 +1,8 @@
 ### metadata
-  title: example_mc
-  topic: examples
-  q_type: multiple_choice
-  tags: [example_q, testing]
+  title: example_mc,
+  topic: examples,
+  q_type: multiple_choice,
+  tags: [example_q, testing],
   
 ### question
   A cyclist travels at (v) m/s for [t] seconds.
