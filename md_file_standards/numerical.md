@@ -5,11 +5,17 @@
   tags: [example_q, testing]
   
 ### question
-  A cyclist travels at [v] m/s for [t] seconds.
+  A cyclist travels at (v) m/s for [t] seconds.
   How far does the cyclist travel?
+  
+### parameters
+  v = [1, 10)
+  t = [6, 7]
 ### solution
+  1 <= v < 10
+  0 < t <
   d = v * t
-
+  
 
 +++ {"ftype": "question"}
 +++ {"qtype": "numerical"}
