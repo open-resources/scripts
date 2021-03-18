@@ -15,7 +15,7 @@
 ### solution
   - 0
   - 2
-  -**1**
+  - **1**
   - 3
 
 +++ {"ftype": "question"}
