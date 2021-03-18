@@ -1,9 +1,9 @@
----
-dasda
----
-asda
----sdasd---
---asd
+# metadata #
+{ title: example_numeric
+  topic: examples
+  q_type: numeric
+  tags: [example_q, testing]
+  
 
 
 
