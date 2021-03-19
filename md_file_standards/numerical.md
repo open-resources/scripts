@@ -2,7 +2,6 @@
   title: example_numeric
   topic: examples
   q_type: numeric
-  sig_figs: 5
   tags: [example_q, testing]
   
 ### question
@@ -15,6 +14,8 @@
   
 ### solution
   d = v * t
+  sig_figs: 5
+  units: m
   
 
 +++ {"ftype": "question"}
