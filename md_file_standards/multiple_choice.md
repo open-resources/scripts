@@ -1,7 +1,7 @@
 ### metadata
   title: example_mc  
   topic: examples   
-  q_type: multiple_choice  
+  q_type: mc  
   tags: example_q, testing
   
 ### question
