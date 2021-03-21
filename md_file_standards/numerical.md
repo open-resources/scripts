@@ -11,7 +11,7 @@
   How far does the cyclist travel?
   
 ### parameters
-  v = random.randint(0, 10)
+  v = random.randint(0, 10)  
   t = 6
 
 ### solution
