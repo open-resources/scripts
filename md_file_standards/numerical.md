@@ -17,4 +17,4 @@
 ### solution
   d = v * t
   
-### eof
+###
