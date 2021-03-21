@@ -20,7 +20,6 @@ if q_type == 'numeric':
     ans_name = re.search("(.*?)=", solution).group(1).strip()
 elif q_type == 'mc':
     ans_choices = solution.strip().splitlines()
-print(ans_choices)
 
 
 def html_ans(qtype):
