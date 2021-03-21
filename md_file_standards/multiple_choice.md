@@ -9,7 +9,7 @@
   How far does the cyclist travel?
   
 ### parameters
-  v = random.randint(2, 7) 
+  v = random.randint(2, 7)  
   t = 7
   
 ### solution
