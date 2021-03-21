@@ -2,52 +2,19 @@
   title: example_numeric
   topic: examples
   q_type: numeric
-  tags: [example_q, testing]
-  
-### question
-  A cyclist travels at (v) m/s for [t] seconds.
-  How far does the cyclist travel?
-  
-### parameters
-  v = [1, 10),
-  t = [6, 7]
-  
-### solution
-  d = v * t
+  tags: example_q, testing
   sig_figs: 5
   units: m
   
+### question
+  A cyclist travels at [v] m/s for [t] seconds.
+  How far does the cyclist travel?
+  
+### parameters
+  v = random.randint(0, 10)
+  t = 6
 
-+++ {"ftype": "question"}
-+++ {"qtype": "numerical"}
-
-+++ {"section": "metadata"}
-"title": "Example Title"
-"topic": "Example Topic"
-"tag1": "Example Tag 1"
-"tag2": "Example Tag 2"
-"tag3": "Example Tag 3"
-
-+++ {"section": "question_vars"}
-a = numpy.random.randint(1,10)
-b = numpy.random.randint(1,10)
-
-
-+++ {"section": "question_text"}
-Consider two numbers $a and $b.
-What is the sum $c = a + b$?
-
-+++ {"section": "question_files"}
-sample_question_image.png
-
-+++ {"section": "question_logic"}
-c = a + b
-c_high = c
-c_low = c
-
-+++ { "section" : "answer"}
-"answer": "c"
-"answer_range_high": "c"
-"answer_range_low": "c"
-
-+++ {"section" : "end"}
+### solution
+  d = v * t
+  
+### eof
