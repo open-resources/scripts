@@ -1,10 +1,10 @@
 ### metadata
-  title: example_numeric
-  topic: examples
-  q_type: numeric
-  tags: example_q, testing
-  sig_figs: 5
-  units: m
+  title: example_numeric  
+  topic: examples  
+  q_type: numeric  
+  tags: example_q, testing  
+  sig_figs: 5  
+  units: m  
   
 ### question
   A cyclist travels at [v] m/s for [t] seconds.
