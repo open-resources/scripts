@@ -1,15 +1,15 @@
 ### metadata
-  title: example_mc,
-  topic: examples,
-  q_type: multiple_choice,
-  tags: [example_q, testing],
+  title: example_mc  
+  topic: examples   
+  q_type: multiple_choice  
+  tags: example_q, testing
   
 ### question
-  A cyclist travels at (v) m/s for [t] seconds.
+  A cyclist travels at [v] m/s for [t] seconds.
   How far does the cyclist travel?
   
 ### parameters
-  v = 1,
+  v = 1  
   t = 1
   
 ### solution
