@@ -2,8 +2,6 @@ import uuid
 import re
 import os
 
-username = os.getlogin()
-
 with open("stem.md", 'r') as infile:
     raw = infile.read()
 
