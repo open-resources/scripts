@@ -1,6 +1,5 @@
 import uuid
 import re
-import os
 
 with open("stem.md", 'r') as infile:
     raw = infile.read()
@@ -34,7 +33,8 @@ with open("info.json", 'w', newline='') as info:
     }""")
 
 with open("server.py", 'w', newline='') as server:
-    server.write("import random\n\n\ndef generate(data):\n")
+    server.write("import random\n\n\n")
+    server.write("def generate(data):\n")
     for param in params:
         if "=" in param:
             server.write("    " + param.strip() + "\n")
