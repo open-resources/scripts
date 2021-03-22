@@ -1,4 +1,3 @@
-import ctypes
 import uuid
 import re
 import os
@@ -7,44 +6,62 @@ current_dir = os.path.dirname(__file__)
 source_dir = current_dir + "/md_files"
 try:
     os.mkdir(source_dir)
-    ctypes.windll.user32.MessageBoxW(0, u"Place question files in md_files folder ", u"Markdown_to_PL.py", 0)
-    quit()
+    input("------------------------------------------\n"
+          "Place question files in 'md_files' folder.\n"
+          "Press enter to continue\n"
+          "------------------------------------------")
 except FileExistsError:
     pass
 
 # -----Process questions (loop)
 _, _, filenames = next(os.walk(source_dir))
 if not filenames:
-    ctypes.windll.user32.MessageBoxW(0, u"No questions in source folder", u"Markdown_to_PL.py", 0)
+    input("----------------------------\n"
+          "Question source folder empty\n"
+          "----------------------------")
+
 for question_stem in filenames:
     with open(source_dir + "/" + question_stem, 'r') as infile:
         raw = infile.read()
-
     try:
         metadata = re.search("### metadata(.*?)###", raw, flags=re.DOTALL).group(1)
     except AttributeError:
-        ctypes.windll.user32.MessageBoxW(0, u"Missing metadata", u"Markdown_to_PL.py", 0)
+        input(question_stem + " is missing its metadata section!")
         quit()
     try:
         question_txt = re.search("### question(.*?)###", raw, flags=re.DOTALL).group(1)
     except AttributeError:
-        ctypes.windll.user32.MessageBoxW(0, u"Missing question text", u"Markdown_to_PL.py", 0)
+        input(question_stem + " is missing its question text section!")
         quit()
     try:
         parameters = re.search("### parameters(.*?)###", raw, flags=re.DOTALL).group(1)
     except AttributeError:
-        ctypes.windll.user32.MessageBoxW(0, u"Missing parameters", u"Markdown_to_PL.py", 0)
+        input(question_stem + " is missing its parameter section!")
         quit()
     try:
         solution = re.search("### solution(.*?)###", raw, flags=re.DOTALL).group(1)
     except AttributeError:
-        ctypes.windll.user32.MessageBoxW(0, u"Missing solution", u"Markdown_to_PL.py", 0)
+        input(question_stem + " is missing its solution section!")
         quit()
-
-    title = re.search("title:(.*)", metadata).group(1).strip()
-    topic = re.search("topic:(.*)", metadata).group(1).strip()
-    tags = re.search("tags:(.*)", metadata).group(1).strip().split(',')
-    q_type = re.search("q_type:(.*)", metadata).group(1).strip()
+    try:
+        title = re.search("title:(.*)", metadata).group(1).strip()
+    except AttributeError:
+        input(question_stem + " needs a title")
+        quit()
+    try:
+        topic = re.search("topic:(.*)", metadata).group(1).strip()
+    except AttributeError:
+        input(question_stem + " needs a topic")
+        quit()
+    try:
+        tags = re.search("tags:(.*)", metadata).group(1).strip().split(',')
+    except AttributeError:
+        pass
+    try:
+        q_type = re.search("q_type:(.*)", metadata).group(1).strip()
+    except AttributeError:
+        input(question_stem + "needs a question type")
+        quit()
     params = parameters.splitlines()
 
     try:
