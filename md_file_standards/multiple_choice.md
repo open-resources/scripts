@@ -13,8 +13,8 @@
   t = 7
   
 ### solution
-  -v+t  
-  -v/t  
-  -**v*t**  
-  -v-t
+  - v+t  
+  - v/t  
+  - **v*t**  
+  - v-t
 ###
