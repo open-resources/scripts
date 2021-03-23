@@ -103,7 +103,8 @@ for question_stem in filenames:
             for choice in ans_choices:
                 choice_name = chr(ord(choice_name) + 1)
                 ans_string += "\n    data['correct_answers']['" + choice_name + "'] = " \
-                              + choice.strip()[1:].replace('**', '')
+                              + choice.strip()[2:].replace('**', '')
+            ans_string += '\n'
         return ans_string
 
 
