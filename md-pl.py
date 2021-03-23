@@ -13,73 +13,66 @@ try:
 except FileExistsError:
     pass
 
-# -----Process questions (loop)
+# -----Process questions
 _, _, filenames = next(os.walk(source_dir))
 if not filenames:
     input("----------------------------\n"
           "Question source folder empty\n"
           "----------------------------")
 
+# Loop start
 for question_stem in filenames:
     with open(source_dir + "/" + question_stem, 'r') as infile:
         raw = infile.read()
+
+
+    def section_content(section_name):
+        regex = "### " + section_name + "(.*?)###"
+        return re.search(regex, raw, flags=re.DOTALL).group(1).strip()
+
+
+    sections = ['metadata', 'question', 'parameters', 'solution']
+    section_body = {}
     try:
-        metadata = re.search("### metadata(.*?)###", raw, flags=re.DOTALL).group(1)
+        for section in sections:
+            section_body[section] = section_content(section)
     except AttributeError:
-        input(question_stem + " is missing its metadata section!")
-        quit()
+        print(question_stem + " is missing its " + section + " section!")
+        continue
+
+
+    def find_tag(tag_name):
+        regex = tag_name + ":(.*)"
+        return re.search(regex, section_body['metadata']).group(1).strip()
+
+
+    tags = ['title', 'topic', 'tags', 'q_type']
+    tag_contents = {}
     try:
-        question_txt = re.search("### question(.*?)###", raw, flags=re.DOTALL).group(1)
+        for tag in tags:
+            tag_contents[tag] = find_tag(tag)
     except AttributeError:
-        input(question_stem + " is missing its question text section!")
-        quit()
-    try:
-        parameters = re.search("### parameters(.*?)###", raw, flags=re.DOTALL).group(1)
-    except AttributeError:
-        input(question_stem + " is missing its parameter section!")
-        quit()
-    try:
-        solution = re.search("### solution(.*?)###", raw, flags=re.DOTALL).group(1)
-    except AttributeError:
-        input(question_stem + " is missing its solution section!")
-        quit()
-    try:
-        title = re.search("title:(.*)", metadata).group(1).strip()
-    except AttributeError:
-        input(question_stem + " needs a title")
-        quit()
-    try:
-        topic = re.search("topic:(.*)", metadata).group(1).strip()
-    except AttributeError:
-        input(question_stem + " needs a topic")
-        quit()
-    try:
-        tags = re.search("tags:(.*)", metadata).group(1).strip().split(',')
-    except AttributeError:
-        pass
-    try:
-        q_type = re.search("q_type:(.*)", metadata).group(1).strip()
-    except AttributeError:
-        input(question_stem + "needs a question type")
-        quit()
-    params = parameters.splitlines()
+        print(question_stem + " needs a " + tag)
+        continue
+
+    params = section_body['parameters'].splitlines()
 
     try:
         os.mkdir(current_dir + "/converted_q's")
     except FileExistsError:
         pass
 
-    output_dir = current_dir + "/converted_q's/" + title
+    output_dir = current_dir + "/converted_q's/" + tag_contents['title']
     try:
         os.mkdir(output_dir)
     except FileExistsError:
         pass
 
-    if q_type == 'numeric':
-        sig_figs = re.search("sig_figs:(.*)", metadata).group(1).strip()
-        ans_name = re.search("(.*?)=", solution).group(1).strip()
-    elif q_type == 'mc':
-        ans_choices = solution.strip().splitlines()
+    if tag_contents['q_type'] == 'numeric':
+        sig_figs = re.search("sig_figs:(.*)", section_body['metadata']).group(1).strip()
+        ans_name = re.search("(.*?)=", section_body['solution']).group(1).strip()
+    elif tag_contents['q_type'] == 'mc':
+        ans_choices = section_body['solution'].splitlines()
 
 
     def html_ans(qtype):
@@ -102,9 +95,10 @@ for question_stem in filenames:
     def server_ans(qtype):
         ans_string = ''
         if qtype == 'numeric':
-            ans_string = "    " + solution.strip() + "\n    data['correct_answers']['" + ans_name + "'] = " \
+            ans_string = "    " + section_body[
+                'solution'].strip() + "\n    data['correct_answers']['" + ans_name + "'] = " \
                          + ans_name + "\n"
-        elif q_type == 'mc':
+        elif tag_contents['q_type'] == 'mc':
             choice_name = '`'
             for choice in ans_choices:
                 choice_name = chr(ord(choice_name) + 1)
@@ -117,8 +111,8 @@ for question_stem in filenames:
     with open(output_dir + "/info.json", 'w', newline='') as info:
         info.write("""{
             "uuid": \"""" + str(uuid.uuid4()) + """\",
-            "title": \"""" + title + """",
-            "topic": \"""" + topic + """",
+            "title": \"""" + tag_contents['title'] + """",
+            "topic": \"""" + tag_contents['topic'] + """",
             "tags":  """ + str(tags).replace("\'", "\"") + """,
             "type": "v3"
         }""")
@@ -130,12 +124,15 @@ for question_stem in filenames:
             if "=" in param:
                 server.write("    " + param.strip() + "\n")
                 var_name = re.search("(.*?)=", param).group(1).strip()
-                question_txt = question_txt.replace("[" + var_name + "]", "{{params." + var_name + "}}")
+                section_body['question'] = section_body['question'].replace("[" + var_name + "]",
+                                                                            "{{params." + var_name + "}}")
                 server.write("    data['params']['" + var_name + "'] = " + var_name + "\n")
-        server.write(server_ans(q_type))
+        server.write(server_ans(tag_contents['q_type']))
 
     with open(output_dir + "/question.html", 'w', newline='') as question:
         question.write("""<pl-question-panel>
-        <p>""" + question_txt.strip() + """</p>
+        <p>""" + section_body['question'] + """</p>
     </pl-question-panel>""")
-        question.write(html_ans(q_type))
+        question.write(html_ans(tag_contents['q_type']))
+
+input('Press Enter to finish')
