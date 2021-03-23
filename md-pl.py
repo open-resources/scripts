@@ -19,6 +19,7 @@ if not filenames:
     input("----------------------------\n"
           "Question source folder empty\n"
           "----------------------------")
+    quit()
 
 # Loop start
 for question_stem in filenames:
@@ -46,16 +47,20 @@ for question_stem in filenames:
         return re.search(regex, section_body['metadata']).group(1).strip()
 
 
-    tags = ['title', 'topic', 'tags', 'q_type']
+    data_tags = ['title', 'topic', 'tags', 'q_type', 'imports']
     tag_contents = {}
     try:
-        for tag in tags:
-            tag_contents[tag] = find_tag(tag)
+        for data_tag in data_tags:
+            tag_content = find_tag(data_tag)
+            if ',' in tag_content:
+                tag_contents[data_tag] = [tag.strip() for tag in tag_content.split(',')]
+            else:
+                tag_contents[data_tag] = tag_content
     except AttributeError:
-        print(question_stem + " needs a " + tag)
+        print(question_stem + " needs a(n) " + data_tag + " tag")
         continue
 
-    params = section_body['parameters'].splitlines()
+    params = [line.strip() for line in section_body['parameters'].splitlines()]
 
     try:
         os.mkdir(current_dir + "/converted_q's")
@@ -95,9 +100,8 @@ for question_stem in filenames:
     def server_ans(qtype):
         ans_string = ''
         if qtype == 'numeric':
-            ans_string = "    " + section_body[
-                'solution'].strip() + "\n    data['correct_answers']['" + ans_name + "'] = " \
-                         + ans_name + "\n"
+            ans_string = "    " + section_body['solution'].strip() + "\n    data['correct_answers']['" + ans_name +\
+                         "'] = " + ans_name + "\n"
         elif tag_contents['q_type'] == 'mc':
             choice_name = '`'
             for choice in ans_choices:
@@ -114,16 +118,20 @@ for question_stem in filenames:
             "uuid": \"""" + str(uuid.uuid4()) + """\",
             "title": \"""" + tag_contents['title'] + """",
             "topic": \"""" + tag_contents['topic'] + """",
-            "tags":  """ + str(tags).replace("\'", "\"") + """,
+            "tags":  """ + str(tag_contents['tags']).replace("\'", "\"") + """,
             "type": "v3"
         }""")
 
     with open(output_dir + "/server.py", 'w', newline='') as server:
-        server.write("import random\n\n\n")
-        server.write("def generate(data):\n")
+        if isinstance(tag_contents['imports'], dict):
+            for module in tag_contents['imports']:
+                server.write("import " + module + "\n")
+        else:
+            server.write("import " + tag_contents['imports'] + "\n")
+        server.write("\n\ndef generate(data):\n")
         for param in params:
             if "=" in param:
-                server.write("    " + param.strip() + "\n")
+                server.write("    " + param + "\n")
                 var_name = re.search("(.*?)=", param).group(1).strip()
                 section_body['question'] = section_body['question'].replace("[" + var_name + "]",
                                                                             "{{params." + var_name + "}}")
