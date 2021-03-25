@@ -3,10 +3,10 @@ import re
 import os
 
 current_dir = os.path.dirname(__file__)
-qtxt_sre_dir = current_dir + "/md_files"
+qtxt_src_dir = current_dir + "/md_files"
 img_src_dir = current_dir + "/images"
 try:
-    os.mkdir(qtxt_sre_dir)
+    os.mkdir(qtxt_src_dir)
     input("------------------------------------------\n"
           "Place question files in 'md_files' folder.\n"
           "Press enter to continue\n"
@@ -23,7 +23,7 @@ except FileExistsError:
     pass
 
 # -----Process questions
-_, _, filenames = next(os.walk(qtxt_sre_dir))
+_, _, filenames = next(os.walk(qtxt_src_dir))
 if not filenames:
     input("----------------------------\n"
           "Question source folder empty\n"
@@ -32,7 +32,7 @@ if not filenames:
 
 # Loop start
 for question_stem in filenames:
-    with open(qtxt_sre_dir + "/" + question_stem, 'r') as infile:
+    with open(qtxt_src_dir + "/" + question_stem, 'r') as infile:
         raw = infile.read()
 
 
