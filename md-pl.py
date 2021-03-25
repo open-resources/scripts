@@ -3,18 +3,27 @@ import re
 import os
 
 current_dir = os.path.dirname(__file__)
-source_dir = current_dir + "/md_files"
+qtxt_sre_dir = current_dir + "/md_files"
+img_src_dir = current_dir + "/images"
 try:
-    os.mkdir(source_dir)
+    os.mkdir(qtxt_sre_dir)
     input("------------------------------------------\n"
           "Place question files in 'md_files' folder.\n"
           "Press enter to continue\n"
           "------------------------------------------")
 except FileExistsError:
     pass
+try:
+    os.mkdir(img_src_dir)
+    input("------------------------------------------\n"
+          "Place image files in 'images' folder.\n"
+          "Press enter to continue\n"
+          "------------------------------------------")
+except FileExistsError:
+    pass
 
 # -----Process questions
-_, _, filenames = next(os.walk(source_dir))
+_, _, filenames = next(os.walk(qtxt_sre_dir))
 if not filenames:
     input("----------------------------\n"
           "Question source folder empty\n"
@@ -23,7 +32,7 @@ if not filenames:
 
 # Loop start
 for question_stem in filenames:
-    with open(source_dir + "/" + question_stem, 'r') as infile:
+    with open(qtxt_sre_dir + "/" + question_stem, 'r') as infile:
         raw = infile.read()
 
 
@@ -32,14 +41,22 @@ for question_stem in filenames:
         return re.search(regex, raw, flags=re.DOTALL).group(1).strip()
 
 
-    sections = ['metadata', 'question', 'parameters', 'solution']
+    sections = ['metadata', 'question', 'images', 'parameters', 'solution']
+    required_sections = ['metadata', 'question', 'parameters', 'solution']
     section_body = {}
-    try:
-        for section in sections:
+    missing_section = False
+    for section in sections:
+        try:
             section_body[section] = section_content(section)
-    except AttributeError:
-        print(question_stem + " is missing its " + section + " section!")
+        except AttributeError:
+            if section in required_sections:
+                print(question_stem + " is missing its " + section + " section!")
+                missing_section = True
+                break
+    if missing_section:
         continue
+    present_sections = [section for section in section_body]
+    params = [line.strip() for line in section_body['parameters'].splitlines()]
 
 
     def find_tag(tag_name):
@@ -47,20 +64,25 @@ for question_stem in filenames:
         return re.search(regex, section_body['metadata']).group(1).strip()
 
 
-    data_tags = ['title', 'topic', 'tags', 'q_type', 'imports']
+    data_tags = ['title', 'topic', 'tags', 'q_type', 'imports', 'optional_tag']
+    required_tags = ['title', 'topic', 'tags', 'q_type']
     tag_contents = {}
-    try:
-        for data_tag in data_tags:
+    missing_tag = False
+    for data_tag in data_tags:
+        try:
             tag_content = find_tag(data_tag)
             if ',' in tag_content:
                 tag_contents[data_tag] = [tag.strip() for tag in tag_content.split(',')]
             else:
                 tag_contents[data_tag] = tag_content
-    except AttributeError:
-        print(question_stem + " needs a(n) " + data_tag + " tag")
+        except AttributeError:
+            if data_tag in required_tags:
+                print(question_stem + " needs a(n) " + data_tag + " tag")
+                missing_tag = True
+                break
+    if missing_tag:
         continue
-
-    params = [line.strip() for line in section_body['parameters'].splitlines()]
+    present_tags = [tag for tag in tag_contents]
 
     try:
         os.mkdir(current_dir + "/converted_q's")
@@ -100,7 +122,7 @@ for question_stem in filenames:
     def server_ans(qtype):
         ans_string = ''
         if qtype == 'numeric':
-            ans_string = "    " + section_body['solution'].strip() + "\n    data['correct_answers']['" + ans_name +\
+            ans_string = "    " + section_body['solution'].strip() + "\n    data['correct_answers']['" + ans_name + \
                          "'] = " + ans_name + "\n"
         elif tag_contents['q_type'] == 'mc':
             choice_name = '`'
@@ -123,11 +145,13 @@ for question_stem in filenames:
         }""")
 
     with open(output_dir + "/server.py", 'w', newline='') as server:
-        if isinstance(tag_contents['imports'], dict):
-            for module in tag_contents['imports']:
-                server.write("import " + module + "\n")
-        else:
-            server.write("import " + tag_contents['imports'] + "\n")
+        if 'imports' in present_tags:
+            if isinstance(tag_contents['imports'], dict):
+                for module in tag_contents['imports']:
+                    server.write("import " + module + "\n")
+            else:
+                server.write("import " + tag_contents['imports'] + "\n")
+
         server.write("\n\ndef generate(data):\n")
         for param in params:
             if "=" in param:
