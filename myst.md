@@ -7,10 +7,10 @@ difficulty: hard
 learning_objective: TA.7987.343
 v = random.randint(2, 7)  
 t = 7
-ans1 = $v*t$
-ans2 = $0.5*v*t$
-ans3 = $0.5*v*t^2$
-ans4 = $2*v*t$
+ans1 = $$v*t$$
+ans2 = $$0.5*v*t$$
+ans3 = $$0.5*v*t^2$$
+ans4 = $$2*v*t$$
 ---
 
 # Question Text
