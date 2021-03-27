@@ -5,12 +5,16 @@ type: mcq
 tags: example_q, testing
 difficulty: hard
 learning_objective: TA.7987.343
-v: random.randint(2, 7)  
-t: 7
-ans1: v*t
-ans2: 0.5*v*t
-ans3: 0.5*v*t^2
-ans4: 2*v*t
+
+sphinx:
+  config:
+    myst_substitutions:
+      v: random.randint(2, 7)  
+      t: 7
+      ans1: 5
+      ans2: 0.5*v*t
+      ans3: 0.5*v*t^2
+      ans4: 2*v*t
 ---
 
 # Question Text
