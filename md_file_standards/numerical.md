@@ -19,6 +19,7 @@
   vars = [v,t]
   d = v * t
   ans = [d]
+  ans_units = [m]
   
 ### notes
   This section is ignored by the file conversion system. It can be used to place any info a question creator might want to place here, such as future updates or notes for future question editors. 
