@@ -15,7 +15,7 @@ How do we make a question pool in PL?
 
 -MK/GB Populate some metadata using csv . Select questions/difficulty/learning outcome in x framework then able to just export. Portable
 
--FM Dynamic Image randomization such as Train with carts and string randomization /n
+-FM Dynamic Image randomization such as Train with carts and string randomization 
 -MK/GB How do we make a question pool in PL? 
 
 ## OER Scripts Meeting March 25
