@@ -5,6 +5,7 @@
   tags: example_q, testing  
   sig_figs: 5  
   units: m  
+  image: sample_question_image.png
   
 ### question
   A cyclist travels at [v] m/s for [t] seconds.
