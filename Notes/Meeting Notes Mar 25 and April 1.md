@@ -1,4 +1,4 @@
-## OER Scripts Meeting April 1
+# OER Scripts Meeting April 1
 Present: MK, GB, FM
 
 Do we need a dedicated imports section? Or OK to place at the top of the ### solution section?
@@ -10,7 +10,7 @@ How do we bill our time?
 How do we make a question pool in PL? 
 -TBD
 
-# Action Items
+## Action Items
 -MK/GB Have a metadata list/dict/json format rather than a section
 
 -MK/GB Populate some metadata using csv . Select questions/difficulty/learning outcome in x framework then able to just export. Portable
@@ -18,7 +18,7 @@ How do we make a question pool in PL?
 -FM Dynamic Image randomization such as Train with carts and string randomization 
 -MK/GB How do we make a question pool in PL? 
 
-## OER Scripts Meeting March 25
+# OER Scripts Meeting March 25
 Present: MK, GB
 
 Notes:
@@ -35,6 +35,6 @@ Move solution to calc section, solution is just variable name
 
 We will split up coding tasks once the code is big enough to split into different files. 
 
-# Tasks for next week:
+## Tasks for next week:
 MK to re-edit md files for a new structure, and add a comments/documentation section. 
 GB to keep building out code.
