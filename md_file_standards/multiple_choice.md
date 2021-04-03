@@ -5,7 +5,6 @@
   tags: example_q, testing
   image: sample_question_image.png
 
-  
 ### question
   A cyclist travels at [v] m/s for [t] seconds.
   How far does the cyclist travel?
