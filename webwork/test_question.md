@@ -1,14 +1,13 @@
 ---
-title: College Physics
+title: Kinematics - Time, Velocity, and Speed
 author: Urone et. al
 date: January 2018
 editor: Wynne Reichheld, April 30, 2018
 source: https://github.com/openwebwork/webwork-open-problem-library
 type: ''
 tags:
-- Mechanics
-- Kinematics
-- Time, Velocity, and Speed
+- speed
+- displacement
 outcomes:
 - TBD
 assets:

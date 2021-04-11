@@ -10,10 +10,11 @@ file_contents = file.read()
 # declare variables
 
 metadata = "## "
-title_src = "TitleText1"
+chapter_src = "DBchapter"
+section_src = "DBsection"
 author_src = "AuthorText1"
 editor_src = "Editor"
-db_src = "DB"
+keywords_src = "KEYWORDS"
 date_src = "Date"
 
 title = author = editor = date = source = problem_type = outcomes = assets = server = ""
@@ -22,24 +23,24 @@ tags = []
 # get metadata from file
 
 for item in file_contents.split("\n"):
-    if metadata + title_src in item:
+    if metadata + chapter_src in item:
         title = item[item.find("(") + 1:item.find(")")].replace("'", "")
+    if metadata + section_src in item:
+        title += " - " + item[item.find("(") + 1:item.find(")")].replace("'", "")
     if metadata + author_src in item:
         author = item[item.find("(") + 1:item.find(")")].replace("'", "")
     if metadata + editor_src in item:
         editor = item[item.find("(") + 1:item.find(")")].replace("'", "")
-    if metadata + db_src in item:
-        tags.append(item[item.find("(") + 1:item.find(")")].replace("'", ""))
+    if keywords_src in item:
+        tags = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
     if metadata + date_src in item:
         date = item[item.find("(") + 1:item.find(")")].replace("'", "")
-
 
 # get problem text from file
 problem_text = "Problem Text TBD\n"
 
 # get answer from file
 answer_section = "Solution Text TBD"
-
 
 # Preparing the YAML dictionary
 
