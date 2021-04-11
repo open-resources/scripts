@@ -6,13 +6,15 @@ path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_
 
 file = open(path, 'r')
 file_contents = file.read()
-title, author, source, problem_type, tags, outcomes, assets, server = "", "", "", "", "", "", "", ""
+title = author = editor = source = problem_type = tags = outcomes = assets = server = ""
 
 for item in file_contents.split("\n"):
     if "## TitleText1" in item:
         title = item[item.find("(") + 1:item.find(")")].replace("'", "")
     if "## AuthorText1" in item:
         author = item[item.find("(") + 1:item.find(")")].replace("'", "")
+    if "## Editor" in item:
+        editor = item[item.find("(") + 1:item.find(")")].replace("'", "")
 
 # problem text
 problem_text = "Problem Text TBD\n"
@@ -38,6 +40,7 @@ yaml_dict = {}
 
 yaml_dict['title'] = title
 yaml_dict['author'] = author
+yaml_dict['editor'] = editor
 yaml_dict['source'] = source
 yaml_dict['type'] = problem_type
 yaml_dict['tags'] = ['TBD']
