@@ -18,4 +18,4 @@ assets:
 ## Question Text
 
 Problem Text TBD
-Solution Text TBD
+A1 = 34.6893711
