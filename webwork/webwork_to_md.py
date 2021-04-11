@@ -3,7 +3,7 @@ import yaml
 import re
 
 # open file
-problem_file_name = 'NU_U17-2-03-005.pg'  # short answer
+problem_file_name = 'NU_U17-2-03-010.pg'  # short answer
 path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name
 file = open(path, 'r')
 file_contents = file.read()
@@ -42,10 +42,9 @@ problem_text = "Problem Text TBD\n"
 start_of_answer_src = "showHint"
 end_of_answer_src = "BEGIN_TEXT"
 
-answer_full = re.search(
-    rf'^\${start_of_answer_src}[\s\S]+^{end_of_answer_src}', file_contents, re.M | re.S).group().replace("$", "")
+answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
 answer_section = re.sub(
-    rf"{start_of_answer_src} =\d+;", '', answer_full).replace(end_of_answer_src, '').replace(';', '').strip()
+    rf"{start_of_answer_src} =\d+;", '', answer_with_hint).replace(end_of_answer_src, '').replace(';', '').replace("$", "").strip()
 if "random" in answer_section:
     answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
 
