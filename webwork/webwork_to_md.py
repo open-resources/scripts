@@ -3,7 +3,7 @@ import yaml
 import re
 
 # open file
-problem_file_name = 'NU_U17-2-03-010.pg'  # short answer
+problem_file_name = 'NU_U17-2-07-012.pg'  # short answer
 path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name
 file = open(path, 'r')
 file_contents = file.read()
@@ -37,14 +37,33 @@ for item in file_contents.split("\n"):
 
 # get problem text from file
 problem_text = "Problem Text TBD\n"
+start_of_problem_src = "BEGIN_TEXT"
+end_of_problem_src = "BEGIN_HINT"
+
+problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(end_of_problem_src)]
+problem_header = problem_full \
+    .replace(' \\', '') \
+    .replace('\\', '') \
+    .replace('/', '') \
+    .replace('<strong>', '') \
+    .replace('$', '') \
+    .replace('{', '') \
+    .replace('}', '') \
+    .replace('PAR', '') \
+    .replace('textrm', '') \
+    .strip()
+print(problem_header[problem_header.index("hint.") + 6:problem_header.index("a)")].replace('(', ' ').replace(')', ''
+                                                                                                                  ''))
 
 # get answer from file
 start_of_answer_src = "showHint"
 end_of_answer_src = "BEGIN_TEXT"
 
 answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
-answer_section = re.sub(
-    rf"{start_of_answer_src} =\d+;", '', answer_with_hint).replace(end_of_answer_src, '').replace(';', '').replace("$", "").strip()
+answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint)\
+    .replace(end_of_answer_src, '')\
+    .replace(';', '')\
+    .replace('$', '').strip()
 if "random" in answer_section:
     answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
 

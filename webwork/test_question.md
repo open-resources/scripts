@@ -1,14 +1,15 @@
 ---
-title: Kinematics - Time, Velocity, and Speed
+title: Kinematics - Falling Objects
 author: Urone et. al
-date: January 2018
-editor: Wynne Reichheld, April 30, 2018
+date: March 2018
+editor: Wynne Reichheld, 22 June 2018
 source: https://github.com/openwebwork/webwork-open-problem-library
 type: ''
 tags:
-- speed
+- gravity
+- acceleration
 - velocity
-- displacement
+- distance
 outcomes:
 - TBD
 assets:
@@ -20,15 +21,8 @@ assets:
 
 Problem Text TBD
 from random import randrange
-d1 = randrange(12,17,0.1)
-d2 = randrange(2,4,0.1)
-d3 = randrange(17,25,0.1)
-t1 = randrange(2,3,0.1)
-t2 = randrange(1,2,0.1)
-t3 = randrange(5,6,0.1)
+d = randrange(50,100,0.1)
 
-A1 = (d1)/(t1)
-A2 = -(d2)/(t2)
-A3 = (d3)/(t3)
-
-A4 = (d1-d2+d3)/(t1+t2+t3)
+A1 = 4.9
+A2 = sqrt((2)*(9.8)*(d))
+A3 = (d)-(1/2)*(9.8)*(((sqrt((2)*(d)/(9.8)))-1)**(2))
