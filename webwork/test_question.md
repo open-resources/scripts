@@ -19,10 +19,8 @@ assets:
 
 ## Question Text
 
-Problem Text TBD
-from random import randrange
-d = randrange(50,100,0.1)
-
-A1 = 4.9
-A2 = sqrt((2)*(9.8)*(d))
-A3 = (d)-(1/2)*(9.8)*(((sqrt((2)*(d)/(9.8)))-1)**(2))
+A kangaroo can jump over an object(2.50,(m) high.
+a) Calculate its vertical speed when it leaves the ground.
+b) How long is it in the air?
+A1 = 7
+A2 = 5/7
