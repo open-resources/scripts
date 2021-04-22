@@ -1,9 +1,10 @@
+import os
 from pathlib import Path
 import yaml
 import re
 
 # open file
-problem_file_name = 'NU_U17-2-07-012.pg'  # short answer
+problem_file_name = 'NU_U17-2-07-010.pg'  # short answer
 path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name
 file = open(path, 'r')
 file_contents = file.read()
@@ -36,11 +37,11 @@ for item in file_contents.split("\n"):
         date = item[item.find("(") + 1:item.find(")")].replace("'", "")
 
 # get problem text from file
-problem_text = "Problem Text TBD\n"
 start_of_problem_src = "BEGIN_TEXT"
-end_of_problem_src = "BEGIN_HINT"
+end_of_problem_src = "END_TEXT"
+begin_hint_src = "BEGIN_HINT"
 
-problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(end_of_problem_src)]
+problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
 problem_header = problem_full \
     .replace(' \\', '') \
     .replace('\\', '') \
@@ -52,8 +53,17 @@ problem_header = problem_full \
     .replace('PAR', '') \
     .replace('textrm', '') \
     .strip()
-print(problem_header[problem_header.index("hint.") + 6:problem_header.index("a)")].replace('(', ' ').replace(')', ''
-                                                                                                                  ''))
+# find all problem text between
+problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
+
+# remove ans_rule line from problem
+problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
+# remove ANS line from problem
+problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
+# remove empty lines from problem
+problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
+# remove hint lin from beginning of problem
+problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.")+6:]
 
 # get answer from file
 start_of_answer_src = "showHint"
@@ -97,6 +107,7 @@ yaml_dict['assets'] = ['TBD']
 
 print(yaml.safe_dump(yaml_dict, sort_keys=False))
 print(answer_section)
+print(problem_text)
 
 start = "# {{ vars.title }}\n\n## Question Text\n\n"
 
@@ -105,4 +116,5 @@ Path("test_question.md").write_text('---\n' + \
                                     '---\n' + \
                                     start + \
                                     problem_text + \
+                                    '\n' + \
                                     answer_section)
