@@ -48,8 +48,8 @@ server: |
 What is 2m + 2m?
 
 ### Answer Section
-type: numeric
-answer: ans1a
+type: numeric  
+answer: ans1a  
 units: m
 
 ## Multiple-choice follow-up
@@ -59,8 +59,8 @@ How far does {{vars.name}} travel in {{params.t}} seconds, assuming they continu
 
 
 ### Answer Section
-type: multiple-choice
-choices: ans1, ans2, ans3, ans4
-answer: ans1
+type: multiple-choice  
+choices: ans1, ans2, ans3, ans4  
+answer: ans1  
 units: m/s
 
