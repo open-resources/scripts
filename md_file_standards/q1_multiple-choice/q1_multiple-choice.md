@@ -4,6 +4,8 @@ type: multiple-choice
 author: Firas Moosvi
 template_version: 0.1
 source: original
+pl-options:
+  allow-blank: true
 tags:
 - kinematics
 - test
