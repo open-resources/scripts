@@ -53,10 +53,27 @@ server: |
 {{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
-## Answer Section
+## Part A
+
+Here is any instructions specific for this part
+
+### Answer Section
 
 - {{ params.ans1}} {{ vars.units}} 
 - {{ params.ans2}} {{ vars.units}} 
 - {{ params.ans3}} {{ vars.units}} 
 - {{ params.ans4}} {{ vars.units}} 
 - {{ params.ans5}} {{ vars.units}} 
+
+## Part B
+
+More instructions
+
+### Answer Section
+
+- {{ params.ans1}} {{ vars.units}} 
+- {{ params.ans2}} {{ vars.units}} 
+- {{ params.ans3}} {{ vars.units}} 
+- {{ params.ans4}} {{ vars.units}} 
+- {{ params.ans5}} {{ vars.units}} 
+
