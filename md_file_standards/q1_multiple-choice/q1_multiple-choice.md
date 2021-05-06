@@ -42,27 +42,41 @@ server: |
     data["answers"]["ans3"] = v/t
     data["answers"]["ans4"] = v-t
     data["answers"]["ans5"] = 1.3*(v-t)
----
-## Numeric Question
 
-What is 2m + 2m?
+part2:
+  type: multiple-choice  
+  choices: ans1, ans2, ans3, ans4  
+  answer: ans1  
+  units: m/s
+---
+
+<!-- Titlte -->
+
+## Part 1
 
 ### Answer Section
-type: numeric  
-answer: ans1a  
-units: m
+part1:
+  type: numeric  
+  answer: ans1a  
+  units: m
+<!-- multiple choice -->
 
----
+## Part 2
+
+<!-- numeric -->
+What is 2m + 2m?
+### Answer Choice
+
+This will get removed in Graham's script (if this is a numeric input)
+
+
+
 ## Multiple-choice follow-up
 
 {{vars.name}} is traveling on {{vars.vehicle}} at {{params.v}} {{vars.units}}.
 How far does {{vars.name}} travel in {{params.t}} seconds, assuming they continue at the same velocity?
 
 
-### Answer Section
-type: multiple-choice  
-choices: ans1, ans2, ans3, ans4  
-answer: ans1  
-units: m/s
 
----
+
+
