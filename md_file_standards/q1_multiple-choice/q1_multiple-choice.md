@@ -51,7 +51,7 @@ What is 2m + 2m?
 type: numeric  
 answer: ans1a  
 units: m
-
+---
 ## Multiple-choice follow-up
 
 {{vars.name}} is traveling on {{vars.vehicle}} at {{params.v}} {{vars.units}}.
@@ -64,3 +64,4 @@ choices: ans1, ans2, ans3, ans4
 answer: ans1  
 units: m/s
 
+---
