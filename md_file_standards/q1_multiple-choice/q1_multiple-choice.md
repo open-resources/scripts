@@ -2,10 +2,9 @@
 title: Distance travelled
 topic: Kinematics
 author: Firas Moosvi
-template_version: 0.1
+template_version: 0.2
 source: original
-pl-options:
-  allow-blank: true
+
 tags:
 - Firas Moosvi
 - test
@@ -35,47 +34,40 @@ server: |
     data["params"]["t"] = t
 
     # define possible answers
-    data["answers"]["ans1a"] = 4
+    data["correct_answers"]["ans1a"] = 4
+    data["correct_answers"]["ans1"] = v*t
+    data["correct_answers"]["ans2"] = v+t
+    data["correct_answers"]["ans3"] = v/t
+    data["correct_answers"]["ans4"] = v-t
+    data["correct_answers"]["ans5"] = 1.3*(v-t)
     
-    data["answers"]["ans1"] = v*t
-    data["answers"]["ans2"] = v+t
-    data["answers"]["ans3"] = v/t
-    data["answers"]["ans4"] = v-t
-    data["answers"]["ans5"] = 1.3*(v-t)
-
+ # Part 1
+    data["part1"]["title"]  = "Friction"
+    
+part1:
+ type: multiple-choice  
+ choices: ans1, ans2, ans3, ans4  
+ answer: ans1  
+ units: m/s
+ pl-options:
+   allow-blank: true
 part2:
+  pl-options:
+  allow-blank: true
   type: multiple-choice  
   choices: ans1, ans2, ans3, ans4  
-  answer: ans1  
+  answer: ans1a  
   units: m/s
-...
+---
 
 <!-- Titlte -->
 
-## Part 1
-  question text
----
-### Answer Section
-part1:
-  type: numeric  
-  answer: ans1a  
-  units: m
-<!-- multiple choice -->
-... 
-## Part 2
+## Friction
 
-<!-- numeric -->
-What is 2m + 2m?
-### Answer Choice
-
-This will get removed in Graham's script (if this is a numeric input)
+a friction question
 
 
 
-## Multiple-choice follow-up
-
-{{vars.name}} is traveling on {{vars.vehicle}} at {{params.v}} {{vars.units}}.
-How far does {{vars.name}} travel in {{params.t}} seconds, assuming they continue at the same velocity?
 
 
 
