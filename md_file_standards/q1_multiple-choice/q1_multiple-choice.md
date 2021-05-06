@@ -48,19 +48,20 @@ part2:
   choices: ans1, ans2, ans3, ans4  
   answer: ans1  
   units: m/s
----
+...
 
 <!-- Titlte -->
 
 ## Part 1
-
+  question text
+---
 ### Answer Section
 part1:
   type: numeric  
   answer: ans1a  
   units: m
 <!-- multiple choice -->
-
+... 
 ## Part 2
 
 <!-- numeric -->
