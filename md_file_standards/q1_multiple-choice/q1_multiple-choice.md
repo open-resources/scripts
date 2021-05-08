@@ -4,7 +4,6 @@ topic: Kinematics
 author: Firas Moosvi
 template_version: 0.2
 source: original
-
 tags:
 - Firas Moosvi
 - test
@@ -41,7 +40,7 @@ server: |
     data["correct_answers"]["ans4"] = v-t
     data["correct_answers"]["ans5"] = 1.3*(v-t)
     
- # Part 1
+    # Part 1
     data["part1"]["title"]  = "Friction"
     
 part1:
@@ -60,16 +59,41 @@ part2:
   units: m/s
 ---
 
-<!-- Titlte -->
+# {{ vars.title }}
 
-## Friction
+## Question Text
 
-a friction question
+{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
+How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
+## Part A
 
+Here is any instructions specific for this part
 
+### Answer Section
 
+- {{ params.ans1}} {{ vars.units}} 
+- {{ params.ans2}} {{ vars.units}} 
+- {{ params.ans3}} {{ vars.units}} 
+- {{ params.ans4}} {{ vars.units}} 
+- {{ params.ans5}} {{ vars.units}} 
 
+## Part B
 
+More instructions
 
+### Answer Section
 
+- {{ params.ans1}} {{ vars.units}} 
+- {{ params.ans2}} {{ vars.units}} 
+- {{ params.ans3}} {{ vars.units}} 
+- {{ params.ans4}} {{ vars.units}} 
+- {{ params.ans5}} {{ vars.units}} 
+
+## Rubric
+
+This should be hidden from students until after the deadline.
+
+## Solution
+
+This should never be revealed to students.
