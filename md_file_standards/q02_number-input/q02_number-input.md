@@ -34,8 +34,8 @@ server: |
     data["params"]["v"] = v
     data["params"]["t"] = t
 
-    # define correct answer
-    data["correct_answers"] = v*t
+    # define correct answers
+    data["correct_answers"]["part1"] = v*t
 part1:
  type: pl-number-input
  units: m/s
