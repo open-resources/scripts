@@ -1,23 +1,20 @@
 ---
 title: Distance travelled
-type: number-input
+topic: kinematics
 author: Firas Moosvi
 source: original
-tags:
-- kinematics
-- test
+template_version: 0.2
 outcomes:
 - LO.kinematics.2305
 - LO.kinematics.2304
+tags:
+- quiz
+- homework
 assets:
 server: |
     import random
     import pandas as pd
 
-    # define the data dictionary
-    data = {"params":{},
-            "vars":{}}
-    
     # define or load names/items/objects
     names = pd.read_csv("data/names.csv")["Names"].tolist()
     manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
@@ -37,9 +34,13 @@ server: |
     data["params"]["v"] = v
     data["params"]["t"] = t
 
-    # define possible answers
-    data["params"]["ans1"] = v*t
-    data["params"]["correct_answer"] = "ans1"
+    # define correct answer
+    data["correct_answers"] = v*t
+part1:
+ type: pl-number-input
+ units: m/s
+ pl-options:
+   allow-blank: true
 ---
 # {{ vars.title }}
 
