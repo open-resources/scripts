@@ -34,26 +34,32 @@ server: |
     data["params"]["t"] = t
 
     # define possible answers
-    data["params"]["ans1"] = 42
-    data["params"]["ans2"] = v*t
-    data["params"]["ans3"] = v+t
-    data["params"]["ans4"] = v/t
-    data["params"]["ans5"] = v-t
-    data["params"]["ans6"] = 1.3*(v-t)
+    data["params"]["part1"]["ans1"] = 42
+    data["params"]["part1"]["ans2"] = v*t
+    data["params"]["part1"]["ans3"] = v+t
+    data["params"]["part1"]["ans4"] = v/t
+    data["params"]["part1"]["ans5"] = v-t
+    data["params"]["part1"]["ans6"] = 1.3*(v-t)
+    
+    # define possible answers
+    data["params"]["part2"]["ans1"] = 42
+    data["params"]["part2"]["ans2"] = v*t
+    data["params"]["part2"]["ans3"] = v+t
+    data["params"]["part2"]["ans4"] = v/t
+    data["params"]["part2"]["ans5"] = v-t
+    data["params"]["part2"]["ans6"] = 1.3*(v-t)
     
     # define correct answers
-    data["correct_answers"]["part1"] = data["params"]["ans1"] 
-    data["correct_answers"]["part2"] = data["params"]["ans2"]
+    data["correct_answers"]["part1"] = data["params"]["part1"]["ans1"] 
+    data["correct_answers"]["part2"] = data["params"]["part2"]["ans2"]
     
 part1:
  type: multiple-choice  
- choices: ans1, ans2, ans3, ans4  
  units: m/s
  pl-options:
    allow-blank: true
 part2:
   type: multiple-choice
-  choices: ans1, ans2, ans3, ans4
   units: m/s
   pl-options:
     allow-blank: true
@@ -68,12 +74,12 @@ How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they con
 
 ### Answer Section
 
-- {{ params.ans1}} {{ vars.units}} 
-- {{ params.ans2}} {{ vars.units}} 
-- {{ params.ans3}} {{ vars.units}} 
-- {{ params.ans4}} {{ vars.units}} 
-- {{ params.ans5}} {{ vars.units}} 
-- {{ params.ans6}} {{ vars.units}} 
+- {{ params.part1.ans1}} {{ vars.units}} 
+- {{ params.part1.ans2}} {{ vars.units}} 
+- {{ params.part1.ans3}} {{ vars.units}} 
+- {{ params.part1.ans4}} {{ vars.units}} 
+- {{ params.part1.ans5}} {{ vars.units}} 
+- {{ params.part1.ans6}} {{ vars.units}} 
 
 
 ## Part B
@@ -82,12 +88,12 @@ More instructions
 
 ### Answer Section
 
-- {{ params.ans1}} {{ vars.units}} 
-- {{ params.ans2}} {{ vars.units}} 
-- {{ params.ans3}} {{ vars.units}} 
-- {{ params.ans4}} {{ vars.units}} 
-- {{ params.ans5}} {{ vars.units}} 
-- {{ params.ans6}} {{ vars.units}} 
+- {{ params.part2.ans1}} {{ vars.units}} 
+- {{ params.part2.ans2}} {{ vars.units}} 
+- {{ params.part2.ans3}} {{ vars.units}} 
+- {{ params.part2.ans4}} {{ vars.units}} 
+- {{ params.part2.ans5}} {{ vars.units}} 
+- {{ params.part2.ans6}} {{ vars.units}} 
 
 ## Rubric
 
