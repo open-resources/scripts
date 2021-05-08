@@ -61,14 +61,10 @@ part2:
 
 # {{ vars.title }}
 
-## Question Text
+## Part A
 
 {{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
-
-## Part A
-
-Here is any instructions specific for this part
 
 ### Answer Section
 
@@ -97,3 +93,4 @@ This should be hidden from students until after the deadline.
 ## Solution
 
 This should never be revealed to students.
+
