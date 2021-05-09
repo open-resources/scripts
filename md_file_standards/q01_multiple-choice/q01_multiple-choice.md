@@ -42,12 +42,9 @@ server: |
     data["params"]["part1"]["ans6"] = 1.3*(v-t)
     
     # define correct answers
-    data["correct_answers"]["part1"] = data["params"]["part1"]["ans1"] 
-    data["correct_answers"]["part2"] = data["params"]["part2"]["ans2"]
-    
+    data["correct_answers"]["part1"] = data["params"]["part1"]["ans1"]    
 part1:
  type: multiple-choice  
- units: m/s
  pl-options:
    allow-blank: true
 ---

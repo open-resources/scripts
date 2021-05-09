@@ -45,22 +45,28 @@ server: |
     if select == "vectors":
         for i in range(num_vectors):
             choice = ans_choices.pop(0)
-            data["params"][choice] = vectors.pop()
-            data["params"]["correct_answer"].append(choice)
+            data["params"]["part1"][choice] = vectors.pop()
+            data["correct_answer"]["part1"].append(choice)
             
         for i in range(num_scalars):
             choice = ans_choices.pop(0)
-            data["params"][choice] = scalars.pop()
+            data["params"]["part1"][choice] = scalars.pop()
             
     elif select == "scalars":
         for i in range(num_scalars):
             choice = ans_choices.pop(0)
-            data["params"][choice] = vectors.pop()
-            data["params"]["correct_answer"].append(choice)
+            data["params"]["part1"][choice] = vectors.pop()
+            data["correct_answer"]["part1"].append(choice)
             
         for i in range(num_vectors):
             choice = ans_choices.pop(0)
-            data["params"][choice] = vectors.pop()
+            data["params"]["part1"][choice] = vectors.pop()
+part1:
+ type: checkbox
+ pl-options:
+   allow-blank: true
+   partial-credit: true
+   partial-credit-method: EDC
 ---
 # {{ vars.title }}
 

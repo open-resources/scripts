@@ -44,7 +44,6 @@ server: |
     data["params"]["part1"]["correct_answer"] = data["params"]["part1"]["ans1"]
 part1:
  type: dropdown
- units: m/s
  pl-options:
    allow-blank: true
 ---
@@ -57,11 +56,11 @@ How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they con
 
 ## Answer Section
 
-- {{ params.ans1}} {{ vars.units}} 
-- {{ params.ans2}} {{ vars.units}} 
-- {{ params.ans3}} {{ vars.units}} 
-- {{ params.ans4}} {{ vars.units}} 
-- {{ params.ans5}} {{ vars.units}} 
+- {{ params.part1.ans1}} {{ vars.units}} 
+- {{ params.part1.ans2}} {{ vars.units}} 
+- {{ params.part1.ans3}} {{ vars.units}} 
+- {{ params.part1.ans4}} {{ vars.units}} 
+- {{ params.part1.ans5}} {{ vars.units}} 
 
 ## Rubric
 
