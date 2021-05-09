@@ -34,6 +34,14 @@ server: |
     data["params"]["v"] = v
     data["params"]["t"] = t
 
+    # define possible answers
+    data["params"]["part2"]["ans1"] = 42
+    data["params"]["part2"]["ans2"] = v*t
+    data["params"]["part2"]["ans3"] = v+t
+    data["params"]["part2"]["ans4"] = v/t
+    data["params"]["part2"]["ans5"] = v-t
+    data["params"]["part2"]["ans6"] = 1.3*(v-t)
+
     # define correct answers
     data["correct_answers"]["part1"] = v*t
 part1:
@@ -42,17 +50,36 @@ part1:
  label: d
  pl-options:
    allow-blank: true
+part2:
+ type: multiple-choice  
+ units: m/s
+ pl-options:
+   allow-blank: true
 ---
 # {{ vars.title }}
 
-## Question Text
+## Part 1
 
 {{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
-## Answer Section
+### Answer Section
 
 Please enter in a numeric value in {{ vars.units }} to {{ vars.digits_after_decimal }} decimal places.
+
+## Part 2
+
+{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
+How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
+
+### Answer Section
+
+- {{ params.part2.ans1}} {{ vars.units}} 
+- {{ params.part2.ans2}} {{ vars.units}} 
+- {{ params.part2.ans3}} {{ vars.units}} 
+- {{ params.part2.ans4}} {{ vars.units}} 
+- {{ params.part2.ans5}} {{ vars.units}} 
+- {{ params.part2.ans6}} {{ vars.units}} 
 
 ## Rubric
 

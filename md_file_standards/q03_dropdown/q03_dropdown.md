@@ -1,22 +1,18 @@
 ---
 title: Distance travelled
-type: dropdown
 author: Firas Moosvi
 source: original
-tags:
-- kinematics
-- test
+template_version: 0.2
 outcomes:
 - LO.kinematics.2305
 - LO.kinematics.2304
+tags:
+- quiz
+- homework
 assets:
 server: |
     import random
     import pandas as pd
-
-    # define the data dictionary
-    data = {"params":{},
-            "vars":{}}
     
     # define or load names/items/objects
     names = pd.read_csv("data/names.csv")["Names"].tolist()
@@ -38,12 +34,19 @@ server: |
     data["params"]["t"] = t
 
     # define possible answers
-    data["params"]["ans1"] = v*t
-    data["params"]["ans2"] = v+t
-    data["params"]["ans3"] = v/t
-    data["params"]["ans4"] = v-t
-    data["params"]["ans5"] = 1.3*(v-t)
-    data["params"]["correct_answer"] = "ans1"
+    data["params"]["part1"]["ans1"] = v*t
+    data["params"]["part1"]["ans2"] = v+t
+    data["params"]["part1"]["ans3"] = v/t
+    data["params"]["part1"]["ans4"] = v-t
+    data["params"]["part1"]["ans5"] = 1.3*(v-t)
+    
+    # define correct answers
+    data["params"]["part1"]["correct_answer"] = data["params"]["part1"]["ans1"]
+part1:
+ type: dropdown
+ units: m/s
+ pl-options:
+   allow-blank: true
 ---
 # {{ vars.title }}
 
@@ -59,3 +62,15 @@ How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they con
 - {{ params.ans3}} {{ vars.units}} 
 - {{ params.ans4}} {{ vars.units}} 
 - {{ params.ans5}} {{ vars.units}} 
+
+## Rubric
+
+This should be hidden from students until after the deadline.
+
+## Solution
+
+This should never be revealed to students.
+
+## Comments
+
+These are random comments associated with this question.
