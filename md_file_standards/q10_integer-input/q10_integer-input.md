@@ -24,7 +24,7 @@ server: |
     data["vars"]["vehicle"] = random.choice(manual_vehicles)
     data["vars"]["title"] = "Distance travelled"
     data["vars"]["units"] = "m/s"
-    data["vars"]["digits_after_decimal"] = 2
+    data["vars"]["digits_after_decimal"] = 0
 
     # define bounds of the variables
     n = random.randint(2,100)
@@ -49,7 +49,7 @@ part1:
 
 ## Answer Section
 
-Please enter an integer value in {{ vars.units }} to {{ vars.digits_after_decimal }} decimal places.
+Please enter an integer value in {{ vars.units }}.
 
 ## Rubric
 
