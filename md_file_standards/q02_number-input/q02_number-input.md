@@ -50,7 +50,7 @@ part1:
 {{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
-## Answer Section
+### Answer Section
 
 Please enter in a numeric value in {{ vars.units }} to {{ vars.digits_after_decimal }} decimal places.
 
