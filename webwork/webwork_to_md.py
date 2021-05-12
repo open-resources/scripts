@@ -4,8 +4,8 @@ import yaml
 import re
 
 # open file
-problem_file_name = 'NU_U17-2-07-010.pg'  # short answer
-path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name
+problem_file_name = 'NU_U17-2-07-010'  # short answer
+path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name + '.pg'
 file = open(path, 'r')
 file_contents = file.read()
 
@@ -111,7 +111,7 @@ print(problem_text)
 
 start = "# {{ vars.title }}\n\n## Question Text\n\n"
 
-Path("test_question.md").write_text('---\n' + \
+Path(problem_file_name + ".md").write_text('---\n' + \
                                     yaml.safe_dump(yaml_dict, sort_keys=False) + \
                                     '---\n' + \
                                     start + \
