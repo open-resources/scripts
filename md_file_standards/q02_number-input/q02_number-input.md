@@ -20,11 +20,10 @@ server: |
     manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
 
     # store phrases etc
-    data["vars"]["name"] = random.choice(names)
-    data["vars"]["vehicle"] = random.choice(manual_vehicles)
-    data["vars"]["title"] = "Distance travelled"
-    data["vars"]["units"] = "m/s"
-    data["vars"]["digits_after_decimal"] = 2
+    data["params"]["vars"]["name"] = random.choice(names)
+    data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+    data["params"]["vars"]["title"] = "Distance travelled"
+    data["params"]["vars"]["units"] = "m/s"
 
     # define bounds of the variables
     v = random.randint(2,7)
@@ -38,10 +37,14 @@ server: |
     data["correct_answers"]["part1"] = v*t
 part1:
  type: number-input
+ answer: part1
  units: m/s
- label: d
  pl-options:
-   allow-blank: true
+   - allow-blank: true
+   - label: d
+   - suffix: m
+   - comparison: sigfig
+   - digits: 2
 ---
 # {{ vars.title }}
 
