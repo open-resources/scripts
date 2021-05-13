@@ -10,7 +10,8 @@ import re
 # file_contents = file.read()
 
 # loop through every file in the dir
-file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
+# file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
+file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
 counter = 0
 for root, dir, files in os.walk(file_path):
     for file in files:
@@ -98,13 +99,16 @@ for root, dir, files in os.walk(file_path):
             start_of_answer_src = "showHint"
             end_of_answer_src = "BEGIN_TEXT"
 
-            answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
-            answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint) \
-                .replace(end_of_answer_src, '') \
-                .replace(';', '') \
-                .replace('$', '').strip()
-            if "random" in answer_section:
-                answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
+            answer_section = ""
+
+            if start_of_answer_src in file_contents:
+                answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
+                answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint) \
+                    .replace(end_of_answer_src, '') \
+                    .replace(';', '') \
+                    .replace('$', '').strip()
+                if "random" in answer_section:
+                    answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
 
             # Preparing the YAML dictionary
 
@@ -139,7 +143,8 @@ for root, dir, files in os.walk(file_path):
             # print(problem_text)
 
 
-            Path("Kinematics/" + filename + ".md").write_text('---\n' + \
+            # Path("Kinematics/" + filename + ".md").write_text('---\n' + \
+            Path(filename + ".md").write_text('---\n' + \
                                                               yaml.safe_dump(yaml_dict, sort_keys=False) + \
                                                               '---\n\n' + \
                                                               '## Question Section ' + \
