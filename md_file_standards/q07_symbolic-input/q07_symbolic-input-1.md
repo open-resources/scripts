@@ -1,7 +1,7 @@
 ---
 title: Symbolic Input
 topic: example
-author: MIchael Kudla
+author: Michael Kudla
 source: original
 template_version: 0.1
 outcomes:
