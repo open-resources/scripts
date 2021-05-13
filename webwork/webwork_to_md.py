@@ -53,8 +53,15 @@ for root, dir, files in os.walk(file_path):
             start_of_problem_src = "BEGIN_TEXT"
             end_of_problem_src = "END_TEXT"
             begin_hint_src = "BEGIN_HINT"
+            ans_rule_src = "ans_rule"
+            ans_src = "ANS"
+            hint_src = "hint"
 
-            problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
+            if begin_hint_src in file_contents:
+                problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
+            else:
+                problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(end_of_problem_src)]
+            # print(file_contents)
             problem_header = problem_full \
                 .replace(' \\', '') \
                 .replace('\\', '') \
@@ -69,23 +76,32 @@ for root, dir, files in os.walk(file_path):
             # find all problem text between
             problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
 
-            # remove ans_rule line from problem
-            problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
-            # remove ANS line from problem
-            problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
-            # remove empty lines from problem
-            problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
-            # remove hint lin from beginning of problem
-            problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.")+6:]
+            if ans_rule_src in problem_multi_para:
+                # remove ans_rule line from problem
+                problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
 
+            if ans_src in problem_multi_para:
+                # remove ANS line from problem
+                problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
+                # remove empty lines from problem
+                problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
+            else:
+                # remove empty lines from problem
+                problem_no_empty_lines = os.linesep.join([s for s in problem_multi_para.splitlines() if s])
+
+            if hint_src in problem_multi_para:
+                # remove hint lin from beginning of problem
+                problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.")+6:]
+            else:
+                problem_text = problem_no_empty_lines
             # get answer from file
             start_of_answer_src = "showHint"
             end_of_answer_src = "BEGIN_TEXT"
 
             answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
-            answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint)\
-                .replace(end_of_answer_src, '')\
-                .replace(';', '')\
+            answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint) \
+                .replace(end_of_answer_src, '') \
+                .replace(';', '') \
                 .replace('$', '').strip()
             if "random" in answer_section:
                 answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
@@ -122,12 +138,14 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-            start = "# {{ vars.title }}\n\n## Question Text\n\n"
 
             Path("Kinematics/" + filename + ".md").write_text('---\n' + \
-                                                yaml.safe_dump(yaml_dict, sort_keys=False) + \
-                                                '---\n' + \
-                                                start + \
-                                                problem_text + \
-                                                '\n' + \
-                                                answer_section)
+                                                              yaml.safe_dump(yaml_dict, sort_keys=False) + \
+                                                              '---\n\n' + \
+                                                              '## Question Section ' + \
+                                                              '\n\n' + \
+                                                              problem_text + \
+                                                              '\n\n' + \
+                                                              '## Answer Section' + \
+                                                              '\n\n' + \
+                                                              answer_section)
