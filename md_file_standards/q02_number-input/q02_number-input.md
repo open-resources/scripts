@@ -38,7 +38,6 @@ server: |
 part1:
  type: number-input
  answer: part1
- units: m/s
  pl-options:
    - allow-blank: true
    - label: d
