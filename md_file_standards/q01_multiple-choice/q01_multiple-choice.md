@@ -44,7 +44,8 @@ server: |
     # define correct answers
     data["correct_answers"]["part1"] = data["params"]["part1"]["ans1"]    
 part1:
- type: multiple-choice  
+ type: multiple-choice 
+ answer: ans2
  pl-options:
    allow-blank: true
 ---
