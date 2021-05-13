@@ -37,13 +37,13 @@ server: |
     data["correct_answers"]["part1"] = v*t
 part1:
  type: number-input
- answer: part1
+ correct_answers: part1
  pl-options:
-   - allow-blank: true
-   - label: d
-   - suffix: m
-   - comparison: sigfig
-   - digits: 2
+   allow-blank: true
+   label: d
+   suffix: m
+   comparison: sigfig
+   digits: 2
 ---
 # {{ vars.title }}
 
