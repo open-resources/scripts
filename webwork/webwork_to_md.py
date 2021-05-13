@@ -3,17 +3,11 @@ from pathlib import Path
 import yaml
 import re
 
-# open single file
-# problem_file_name = 'NU_U17-2-07-010'
-# path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/' + problem_file_name + '.pg'
-# file = open(path, 'r')
-# file_contents = file.read()
-
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
 
-# TODO: remove file path for math problems before merging PR -> 
+# TODO: remove file path for math problems before merging PR ->
 # file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
 counter = 0
 for root, dir, files in os.walk(file_path):
@@ -113,7 +107,8 @@ for root, dir, files in os.walk(file_path):
             end_of_answer_src = "BEGIN_TEXT"
 
             if start_of_answer_src in file_contents:
-                answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
+                answer_with_hint = file_contents[file_contents.index(start_of_answer_src)
+                                                 :file_contents.index(end_of_answer_src)]
                 answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint) \
                     .replace(end_of_answer_src, '') \
                     .replace(';', '') \
