@@ -10,8 +10,11 @@ import re
 # file_contents = file.read()
 
 # loop through every file in the dir
-# file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
-file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
+# TODO: change this file path to get files directly from github to ensure they're up-to-date
+file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
+
+# TODO: remove file path for math problems before merging PR -> 
+# file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
 counter = 0
 for root, dir, files in os.walk(file_path):
     for file in files:
@@ -57,11 +60,14 @@ for root, dir, files in os.walk(file_path):
             ans_rule_src = "ans_rule"
             ans_src = "ANS"
             hint_src = "hint"
+            image_src = "image"
 
             if begin_hint_src in file_contents:
-                problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
+                problem_full = file_contents[
+                               file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
             else:
-                problem_full = file_contents[file_contents.index(start_of_problem_src):file_contents.index(end_of_problem_src)]
+                problem_full = file_contents[
+                               file_contents.index(start_of_problem_src):file_contents.index(end_of_problem_src)]
             # print(file_contents)
             problem_header = problem_full \
                 .replace(' \\', '') \
@@ -76,6 +82,12 @@ for root, dir, files in os.walk(file_path):
                 .strip()
             # find all problem text between
             problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
+
+            # TODO: Clean up and optimize the if / else statements
+
+            # TODO: Handle images within questions
+            if image_src in problem_multi_para:
+                print(filename + " contains images")
 
             if ans_rule_src in problem_multi_para:
                 # remove ans_rule line from problem
@@ -92,14 +104,13 @@ for root, dir, files in os.walk(file_path):
 
             if hint_src in problem_multi_para:
                 # remove hint lin from beginning of problem
-                problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.")+6:]
+                problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.") + 6:]
             else:
                 problem_text = problem_no_empty_lines
+
             # get answer from file
             start_of_answer_src = "showHint"
             end_of_answer_src = "BEGIN_TEXT"
-
-            answer_section = ""
 
             if start_of_answer_src in file_contents:
                 answer_with_hint = file_contents[file_contents.index(start_of_answer_src):file_contents.index(end_of_answer_src)]
@@ -109,6 +120,9 @@ for root, dir, files in os.walk(file_path):
                     .replace('$', '').strip()
                 if "random" in answer_section:
                     answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
+            else:
+                # TODO: handle answer section without hint
+                answer_section = ""
 
             # Preparing the YAML dictionary
 
@@ -142,9 +156,7 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-
-            # Path("Kinematics/" + filename + ".md").write_text('---\n' + \
-            Path(filename + ".md").write_text('---\n' + \
+            Path("Kinematics/" + filename + ".md").write_text('---\n' + \
                                                               yaml.safe_dump(yaml_dict, sort_keys=False) + \
                                                               '---\n\n' + \
                                                               '## Question Section ' + \
