@@ -33,8 +33,7 @@ server: |
 part1:
  type: symbolic-input
  units: 
- variables: mu_s, g , theta
- label: 
+ label: $F_r =$
  pl-options:
    allow-blank: true
 ---
@@ -51,7 +50,8 @@ If the {{ params.vars.vehicle }} starts moving, what is the maximum acceleration
 Note that it may not be necessary to use every variable. For $\mu_s$, enter "mu_s", for $\mu_k$, enter "mu_k", for $g$, enter "g", and for $\theta$, enter "theta".
 
 ### Answer Section
-F_r =
+
+{{ substitutions.part1.label }}
 
 ## Rubric
 
