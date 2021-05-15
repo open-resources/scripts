@@ -14,10 +14,6 @@ server: |
     import random
     import pandas as pd
 
-    # define the data dictionary
-    data = {"params":{"correct_answer":[]},
-            "vars":{}}
-
     # define or load names/items/objects
     names = pd.read_csv("data/names.csv")["Names"].tolist()
 
