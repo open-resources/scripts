@@ -25,7 +25,7 @@ server: |
     
 part1:
  type: symbolic-input
- label: $F_r$
+ label: $F_r = $
  pl-options:
    allow-blank: false
 ---
