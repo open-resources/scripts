@@ -37,7 +37,7 @@ Write the centripetal force $F_r$ in terms of the mass $m$, velocity $v$, and ra
 
 ## Answer Section
 
-F_r =
+{{ substitutions.part1.label }}
 
 ## Rubric
 
