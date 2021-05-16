@@ -31,6 +31,8 @@ server: |
     num_vectors = total_choices - num_scalars
     select = random.choice(["vectors","scalars"])
 
+    data["params"]["choice"] = select
+
     # Create ans_choices
     ans_choices = ["ans{0}".format(i+1) for i in range(total_choices)]
 
@@ -59,16 +61,16 @@ server: |
             data["params"]["part1"][choice] = vectors.pop()
 part1:
  type: checkbox
- pl-options:
+ pl-customizations:
    allow-blank: true
    partial-credit: true
    partial-credit-method: EDC
 ---
-# {{ vars.title }}
+# {{ params.vars.title }}
 
 ## Question Text
 
-{{ vars.name }} is given a list of physical quantities and has to identify all of the {{ params.select }}. Can you help?
+{{ params.vars.name }} is given a list of physical quantities and has to identify all of the {{ params.choice }}. Can you help?
 
 ## Answer Section
 
@@ -76,9 +78,9 @@ Select all the choices that apply.
 
 Note: You will be awarded full marks only if you select all the correct choices, and none of the incorrect choices. Choosing incorrect choices as well as not choosing correct choices will result in deductions.
 
-- {{ params.ans1}} 
-- {{ params.ans2}} 
-- {{ params.ans3}} 
-- {{ params.ans4}} 
-- {{ params.ans5}} 
-- {{ params.ans6}}
+- {{ params.part1.ans1}} 
+- {{ params.part1.ans2}} 
+- {{ params.part1.ans3}} 
+- {{ params.part1.ans4}} 
+- {{ params.part1.ans5}} 
+- {{ params.part1.ans6}}
