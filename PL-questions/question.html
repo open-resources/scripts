@@ -1,15 +1,15 @@
 <p><b>Part 1</b></p>
 <p style="margin-left: 15px">
 
-{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
-How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
+{{ params.vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+How far does {{ params.vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 </p>
 <pl-multiple-choice answers_name="part1">
-	<pl-answer correct="True">{{ params.part1.ans1}} {{ vars.units}}</pl-answer>
-	<pl-answer correct="False">{{ params.part1.ans2}} {{ vars.units}}</pl-answer>
-	<pl-answer correct="False">{{ params.part1.ans3}} {{ vars.units}}</pl-answer>
-	<pl-answer correct="False">{{ params.part1.ans4}} {{ vars.units}}</pl-answer>
-	<pl-answer correct="False">{{ params.part1.ans5}} {{ vars.units}}</pl-answer>
-	<pl-answer correct="False">{{ params.part1.ans6}} {{ vars.units}}</pl-answer>
+	<pl-answer correct="True">{{ params.part1.ans1}} {{ params.vars.units}}</pl-answer>
+	<pl-answer correct="False">{{ params.part1.ans2}} {{ params.vars.units}}</pl-answer>
+	<pl-answer correct="False">{{ params.part1.ans3}} {{ params.vars.units}}</pl-answer>
+	<pl-answer correct="False">{{ params.part1.ans4}} {{ params.vars.units}}</pl-answer>
+	<pl-answer correct="False">{{ params.part1.ans5}} {{ params.vars.units}}</pl-answer>
+	<pl-answer correct="False">{{ params.part1.ans6}} {{ params.vars.units}}</pl-answer>
 </pl-multiple-choice>

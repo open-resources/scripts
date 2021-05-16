@@ -7,10 +7,10 @@ def generate(data):
 	manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
 	
 	# store phrases etc
-	data["vars"]["name"] = random.choice(names)
-	data["vars"]["vehicle"] = random.choice(manual_vehicles)
-	data["vars"]["units"] = "m/s"
-	data["vars"]["digits_after_decimal"] = 2
+	data["params"]["vars"]["name"] = random.choice(names)
+	data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+	data["params"]["vars"]["units"] = "m/s"
+	data["params"]["vars"]["digits_after_decimal"] = 2
 	
 	# Randomize Variables
 	v = random.randint(2,7)

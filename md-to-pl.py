@@ -50,7 +50,7 @@ def main():
         part_name = 'part{0}'.format(i)
         q_txt, ans_section = parsed_q['body_parts'][part_name].split('### Answer Section')
         q_type = parsed_q['header'][part_name]['type']
-        pl_options = ''
+        pl_customizations = ''
 
         question_html += '<p><b>' + q_txt[2:q_txt.index('\n')].strip() + '</b></p>\n' +\
                     '<p style="margin-left: 15px">' + q_txt[q_txt.index('\n'):] + '</p>\n'
@@ -58,9 +58,9 @@ def main():
         answer = parsed_q['header'][part_name]['instructor_answers']
 
         if q_type in SINGLE:
-            question_html += '<pl-' + q_type + ' answers_name="' + answer + '"' + pl_options + '>\n'
+            question_html += '<pl-' + q_type + ' answers_name="' + answer + '"' + pl_customizations + '>\n'
         elif q_type in MULTIPLE:
-            question_html += '<pl-' + q_type + ' answers_name="' + part_name + '"' + pl_options + '>\n'
+            question_html += '<pl-' + q_type + ' answers_name="' + part_name + '"' + pl_customizations + '>\n'
             choices = [s.strip() for s in ans_section.split('-')]
             del choices[0]
 
