@@ -11,8 +11,8 @@ import docopt
 import os
 import uuid
 import json
-import md_parser
 import pathlib
+from problem_bank_scripts import problem_bank_scripts as pbs 
 
 def main():
 
@@ -30,7 +30,7 @@ def main():
     MULTIPLE = ['multiple-choice', 'checkbox']
 
     # Parse the MD file
-    parsed_q = md_parser.parse(input_file)
+    parsed_q = pbs.read_md_problem(input_file)
 
     # Create output dir if it doesn't exist
     pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
@@ -48,7 +48,7 @@ def main():
     question_html = ""
     for i in range(1, parsed_q['num_parts'] + 1):
         part_name = 'part{0}'.format(i)
-        q_txt, ans_section = parsed_q['body'][part_name].split('### Answer Section')
+        q_txt, ans_section = parsed_q['body_parts'][part_name].split('### Answer Section')
         q_type = parsed_q['header'][part_name]['type']
         pl_options = ''
 
@@ -71,7 +71,7 @@ def main():
                             str(any(ans in choice for ans in answer)) + '">' +\
                             choice + '</pl-answer>\n' 
         else:  # other element types, such as images, that require their own formatting
-            pass
+            raise NotImplementedError
         question_html += '</pl-' + q_type + '>\n'
 
         if i < parsed_q['num_parts']:
