@@ -70,16 +70,16 @@ for q_name in filenames:
             q_type = parsed_q['header'][part_name]['type']
             pl_options = ''
             # TODO: keyerror handling for wrong types
-            for key in parsed_q['header'][part_name]['pl-options']:
+            for key in parsed_q['header'][part_name]['pl-customizations']:
                 if key in ALLOWED_CUSTOMIZATIONS[q_type]:
-                    pl_options += ' ' + key + '="' + str(parsed_q['header'][part_name]['pl-options'][key]) + '"'
+                    pl_options += ' ' + key + '="' + str(parsed_q['header'][part_name]['pl-customizations'][key]) + '"'
                 else:
                     print('"' + key + '" was skipped as it is not a valid customization for ' + q_type + ' questions')
 
             question.write('<p><b>' + q_txt[2:q_txt.index('\n')].strip() + '</b></p>\n' +
                            '<p style="margin-left: 15px">' + q_txt[q_txt.index('\n'):] + '</p>\n')
 
-            answer = parsed_q['header'][part_name]['answer']
+            answer = parsed_q['header'][part_name]['instructor_answers']
             if q_type in SINGLE:
                 question.write('<pl-' + q_type + ' answers_name="' + answer + '"' + pl_options + '>\n')
             elif q_type in MULTIPLE:
