@@ -33,6 +33,13 @@ server: |
     data["params"]["v"] = v
     data["params"]["t"] = t
 
+    ## Part 1
+
+    # define correct answers
+    data["correct_answers"]["part1"] = v*t
+
+    ## Part 2
+
     # define possible answers
     data["params"]["part2"]["ans1"] = 42
     data["params"]["part2"]["ans2"] = v*t
@@ -42,10 +49,10 @@ server: |
     data["params"]["part2"]["ans6"] = 1.3*(v-t)
 
     # define correct answers
-    data["correct_answers"]["part1"] = v*t
+    data["correct_answers"]["part1"] = data["params"]["part2"]["ans2"]
 part1:
  type: number-input
- label: d
+ label: $d=$
   pl-customizations:
    allow-blank: true
 part2:
@@ -57,7 +64,7 @@ part2:
 
 ## Part 1
 
-{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+{{ vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 ### Answer Section
@@ -66,7 +73,7 @@ Please enter in a numeric value in {{ params.vars.units }}.
 
 ## Part 2
 
-{{ params.vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+{{ params.vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
 How far does {{ params.vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 ### Answer Section

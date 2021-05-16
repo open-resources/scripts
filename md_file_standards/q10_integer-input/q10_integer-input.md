@@ -40,7 +40,7 @@ part1:
  pl-options:
    allow-blank: true
 ---
-# {{ vars.title }}
+# {{ params.vars.title }}
 
 ## Question Text
 
