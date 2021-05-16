@@ -45,7 +45,7 @@ part1:
    comparison: sigfig
    digits: 2
 ---
-# {{ vars.title }}
+# {{ params.vars.title }}
 
 ## Question Text
 

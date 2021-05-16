@@ -51,7 +51,7 @@ part1:
    allow-blank: true
 ---
 
-# {{ vars.title }}
+# {{ params.vars.title }}
 
 ## Part 1
 
