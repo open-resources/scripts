@@ -1,60 +1,42 @@
+# Author: Graham Bovett and Firas Moosvi
+# Date: 2021-05-16
+
+"""Processes all questions.
+
+Usage: 
+    md-to-pl.py <input_file> <output_path>
+"""
+
+import docopt
 import os
 import uuid
 import json
 import md_parser
+import pathlib
 
-# TODO: validity checking for customizations
-ALLOWED_CUSTOMIZATIONS = {'multiple-choice': ['answers-name', 'weight', 'inline', 'number-answers', 'fixed-order',
-                                              'hide-letter-keys', 'all-of-the-above', 'none-of-the-above',
-                                              'external-json', 'external-json-correct-key',
-                                              'external-json-incorrect-key'],
-                          'checkbox': ['answers-name', 'weight', 'inline', 'number-answers', 'min-correct',
-                                       'max-correct', 'fixed-order', 'partial-credit', 'partial-credit-method',
-                                       'hide-help-text', 'detailed-help-text', 'hide-answer-panel', 'hide-letter-keys',
-                                       'hide-score-badge'],
-                          'number-input': ['answers-name', 'weight', 'correct-answer', 'label', 'suffix', 'display',
-                                           'comparison', 'rtol', 'atol', 'digits', 'allow-complex', 'allow-blank',
-                                           'blank-value', 'show-help-text', 'show-placeholder', 'size',
-                                           'show-correct-answer', 'allow-fractions']}
+def main():
 
-# TODO: add rest of types
-SINGLE = ['number-input']
-MULTIPLE = ['multiple-choice', 'checkbox']
-
-# Create input and output file directories if they DNE
-try:
-    os.mkdir("question_templates")
-    input("> Place MD question files in 'question_templates' folder.\n"
-          "> Press Enter to continue\n")
-except FileExistsError:
-    pass
-try:
-    os.mkdir("PL-questions")
-except FileExistsError:
-    pass
-
-# Check for question inputs
-_, _, filenames = next(os.walk("question_templates"))
-if not filenames:
-    input("> Question source folder empty\n"
-          "> Press Enter to quit\n")
-    quit()
-
-# Process questions
-for q_name in filenames:
-    parsed_q = md_parser.parse("question_templates/" + q_name)
-
-    # Create output dir
-    out_dir = 'PL-questions/' + parsed_q['header']['title']
+    args = docopt.docopt(__doc__)
     try:
-        os.mkdir(out_dir)
-    except FileExistsError:
-        pass
+        input_file = pathlib.Path(args['<input_file>'])
+    except:
+        print("File does not exist.")
+        raise
 
-    # Writing to files
-    # Creating info.json file
-    with open(out_dir + "/info.json", 'w') as info:
-        info.write("""{
+    output_path = pathlib.Path(args['<output_path>'])
+
+    # ## Types of questions
+    SINGLE = ['number-input']
+    MULTIPLE = ['multiple-choice', 'checkbox']
+
+    # Parse the MD file
+    parsed_q = md_parser.parse(input_file)
+
+    # Create output dir if it doesn't exist
+    pathlib.Path(output_path).mkdir(parents=True, exist_ok=True)
+
+    # Write info.json file
+    pathlib.Path(output_path / 'info.json').write_text("""{
             "uuid": \"""" + str(uuid.uuid4()) + """\",
             "title": \"""" + parsed_q['header']['title'] + """",
             "topic": \"""" + parsed_q['header']['topic'] + """",
@@ -62,48 +44,55 @@ for q_name in filenames:
             "type": "v3"
         }""")
 
-    # Creating question.html file
-    with open(out_dir + "/question.html", 'w') as question:
-        for i in range(1, parsed_q['num_parts'] + 1):
-            part_name = 'part{}'.format(i)
-            q_txt, ans_section = parsed_q['body'][part_name].split('### Answer Section')
-            q_type = parsed_q['header'][part_name]['type']
-            pl_options = ''
-            # TODO: keyerror handling for wrong types
-            for key in parsed_q['header'][part_name]['pl-customizations']:
-                if key in ALLOWED_CUSTOMIZATIONS[q_type]:
-                    pl_options += ' ' + key + '="' + str(parsed_q['header'][part_name]['pl-customizations'][key]) + '"'
-                else:
-                    print('"' + key + '" was skipped as it is not a valid customization for ' + q_type + ' questions')
+    # Write question.html file
+    question_html = ""
+    for i in range(1, parsed_q['num_parts'] + 1):
+        part_name = 'part{0}'.format(i)
+        q_txt, ans_section = parsed_q['body'][part_name].split('### Answer Section')
+        q_type = parsed_q['header'][part_name]['type']
+        pl_options = ''
 
-            question.write('<p><b>' + q_txt[2:q_txt.index('\n')].strip() + '</b></p>\n' +
-                           '<p style="margin-left: 15px">' + q_txt[q_txt.index('\n'):] + '</p>\n')
+        question_html += '<p><b>' + q_txt[2:q_txt.index('\n')].strip() + '</b></p>\n' +\
+                    '<p style="margin-left: 15px">' + q_txt[q_txt.index('\n'):] + '</p>\n'
 
-            answer = parsed_q['header'][part_name]['instructor_answers']
-            if q_type in SINGLE:
-                question.write('<pl-' + q_type + ' answers_name="' + answer + '"' + pl_options + '>\n')
-            elif q_type in MULTIPLE:
-                question.write('<pl-' + q_type + ' answers_name="' + part_name + '"' + pl_options + '>\n')
-                choices = [s.strip() for s in ans_section.split('-')]
-                del choices[0]
+        answer = parsed_q['header'][part_name]['instructor_answers']
 
-                if type(answer) != list:
-                    answer = [answer]
-                for choice in choices:
-                    question.write('\t<pl-answer correct="' +
-                                   str(any(ans in choice for ans in answer)) + '">' +
-                                   choice + '</pl-answer>\n')
-            else:  # other element types, such as images, that require their own formatting
-                pass
-            question.write('</pl-' + q_type + '>\n')
+        if q_type in SINGLE:
+            question_html += '<pl-' + q_type + ' answers_name="' + answer + '"' + pl_options + '>\n'
+        elif q_type in MULTIPLE:
+            question_html += '<pl-' + q_type + ' answers_name="' + part_name + '"' + pl_options + '>\n'
+            choices = [s.strip() for s in ans_section.split('-')]
+            del choices[0]
 
-            if i < parsed_q['num_parts']:
-                question.write('<hr/>\n')
+            if type(answer) != list:
+                answer = [answer]
+            for choice in choices:
+                question_html += '\t<pl-answer correct="' +\
+                            str(any(ans in choice for ans in answer)) + '">' +\
+                            choice + '</pl-answer>\n' 
+        else:  # other element types, such as images, that require their own formatting
+            pass
+        question_html += '</pl-' + q_type + '>\n'
 
-    # Creating server.py file
+        if i < parsed_q['num_parts']:
+            question_html +='<hr/>\n'
+
+    (output_path / "question.html").write_text(question_html)
+
+    # Write server.py file
+    server_py = ""
+
     server_info = parsed_q['header']['server']  # isolate server info
     eoi_index = server_info.index('\n', server_info.rindex("import"))
-    server_info = server_info[:eoi_index].strip() + "\n\n\ndef generate(data):\n\t" + \
-                  server_info[eoi_index:].strip().replace('\n', '\n\t') + "\n"  # add generate method
-    with open(out_dir + "/server.py", 'w') as server:
-        server.write(server_info)
+    server_py += server_info[:eoi_index].strip() + "\n\ndef generate(data):\n\t" + \
+                server_info[eoi_index:].strip().replace('\n', '\n\t') + "\n"  # add generate method
+
+    # TODO: add generate() to the YAML file ?
+
+    (output_path / "server.py").write_text(server_py)
+
+    # TODO: Find and move any image assets 
+
+if __name__ == '__main__':
+
+    main()

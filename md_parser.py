@@ -32,7 +32,6 @@ def dict_to_md(md_dict, remove_keys=[None, ]):
 
     return md_string
 
-
 # Main
 def parse(path):
     # Imports
