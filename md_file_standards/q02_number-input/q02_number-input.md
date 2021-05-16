@@ -38,9 +38,9 @@ server: |
 part1:
  type: number-input
  correct_answers: part1
- pl-options:
+ pl-customizations:
    allow-blank: true
-   label: d
+   label: $d= $
    suffix: m
    comparison: sigfig
    digits: 2

@@ -20,11 +20,10 @@ server: |
     manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
 
     # store phrases etc
-    data["vars"]["name"] = random.choice(names)
-    data["vars"]["vehicle"] = random.choice(manual_vehicles)
-    data["vars"]["title"] = "Distance travelled"
-    data["vars"]["units"] = "m/s"
-    data["vars"]["digits_after_decimal"] = 2
+    data["params"]["vars"]["name"] = random.choice(names)
+    data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+    data["params"]["vars"]["title"] = "Distance travelled"
+    data["params"]["vars"]["units"] = "m/s"
 
     # define bounds of the variables
     v = random.randint(2,7)
@@ -46,40 +45,38 @@ server: |
     data["correct_answers"]["part1"] = v*t
 part1:
  type: number-input
- units: m/s
  label: d
- pl-options:
+  pl-customizations:
    allow-blank: true
 part2:
  type: multiple-choice  
- units: m/s
- pl-options:
+  pl-customizations:
    allow-blank: true
 ---
-# {{ vars.title }}
+# {{ params.vars.title }}
 
 ## Part 1
 
-{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
+{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 ### Answer Section
 
-Please enter in a numeric value in {{ vars.units }} to {{ vars.digits_after_decimal }} decimal places.
+Please enter in a numeric value in {{ params.vars.units }}.
 
 ## Part 2
 
-{{ vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ vars.units }}.
-How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
+{{ params.vars.name }} is traveling on {{ vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+How far does {{ params.vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 ### Answer Section
 
-- {{ params.part2.ans1}} {{ vars.units}} 
-- {{ params.part2.ans2}} {{ vars.units}} 
-- {{ params.part2.ans3}} {{ vars.units}} 
-- {{ params.part2.ans4}} {{ vars.units}} 
-- {{ params.part2.ans5}} {{ vars.units}} 
-- {{ params.part2.ans6}} {{ vars.units}} 
+- {{ params.part2.ans1}} {{ params.vars.units}} 
+- {{ params.part2.ans2}} {{ params.vars.units}} 
+- {{ params.part2.ans3}} {{ params.vars.units}} 
+- {{ params.part2.ans4}} {{ params.vars.units}} 
+- {{ params.part2.ans5}} {{ params.vars.units}} 
+- {{ params.part2.ans6}} {{ params.vars.units}} 
 
 ## Rubric
 

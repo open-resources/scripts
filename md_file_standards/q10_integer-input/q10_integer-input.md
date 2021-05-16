@@ -20,11 +20,11 @@ server: |
     manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
 
     # store phrases etc
-    data["vars"]["name"] = random.choice(names)
-    data["vars"]["vehicle"] = random.choice(manual_vehicles)
-    data["vars"]["title"] = "Distance travelled"
-    data["vars"]["units"] = "m/s"
-    data["vars"]["digits_after_decimal"] = 0
+    data["params"]["vars"]["name"] = random.choice(names)
+    data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+    data["params"]["vars"]["title"] = "Distance travelled"
+    data["params"]["vars"]["units"] = "m/s"
+    data["params"]["vars"]["digits_after_decimal"] = 0
 
     # define bounds of the variables
     n = random.randint(2,100)
@@ -36,7 +36,6 @@ server: |
     data["correct_answers"]["part1"] = int(n*10)
 part1:
  type: number-input
- units: m/s
  label: d
  pl-options:
    allow-blank: true
@@ -45,11 +44,11 @@ part1:
 
 ## Question Text
 
-{{ vars.name }} is on a {{ vars.vehicle }} trying to calculate the result of 10 x {{ params.n }} {{ vars.units }}.
+{{ vars.name }} is on a {{ params.vars.vehicle }} trying to calculate the result of 10 x {{ params.n }} {{ params.vars.units }}.
 
 ## Answer Section
 
-Please enter an integer value in {{ vars.units }}.
+Please enter an integer value in {{ params.vars.units }}.
 
 ## Rubric
 

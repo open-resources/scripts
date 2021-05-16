@@ -45,7 +45,8 @@ server: |
     data["correct_answers"]["part1"] = data["params"]["part1"]["ans1"]    
 part1:
  type: multiple-choice 
- correct_answers: ans2
+ correct_answers: 
+    - ans1
  pl-customizations:
    allow-blank: true
 ---
