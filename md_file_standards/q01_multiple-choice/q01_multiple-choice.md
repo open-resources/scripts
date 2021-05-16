@@ -46,7 +46,7 @@ server: |
 part1:
  type: multiple-choice 
  correct_answers: ans2
- pl-options:
+ pl-customizations:
    allow-blank: true
 ---
 

@@ -59,7 +59,7 @@ server: |
             data["params"]["part1"][choice] = vectors.pop()
 part1:
  type: checkbox
- pl-options:
+ pl-customizations:
    allow-blank: true
    partial-credit: true
    partial-credit-method: EDC
