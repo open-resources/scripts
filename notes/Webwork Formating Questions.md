@@ -1,8 +1,7 @@
-Sample .pg File:
-https://github.com/open-resources/webwork-open-problem-library/blob/master/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/NU_U17-2-08-007.pg
-
 1. Is it possible to view this example question in WebWork? (ie. a screenshot would be useful)
 
+- Sample .pg File:
+https://github.com/open-resources/webwork-open-problem-library/blob/master/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/NU_U17-2-08-007.pg
 
 2. Is there any way we can figure out the problem type from the webwork syntax? i.e through the loaded Macros? Can we rely on all the loaded macros for each problem to be necessary (and sufficient) for the problem to render?
 
