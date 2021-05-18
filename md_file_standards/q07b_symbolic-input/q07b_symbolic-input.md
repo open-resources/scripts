@@ -3,39 +3,50 @@ title: Symbolic Input 2 - Trig
 topic: example
 author: Michael Kudla
 source: original
-template_version: 0.1
+template_version: 0.2
 outcomes:
+- LO.kinematics.2305
+- LO.kinematics.2304
 tags:
 - quiz
 - homework
 assets:
 server: |
-  import prairielearn as pl
-  import sympy as sp
+    import random    
+    import prairielearn as pl
+    import sympy
+    from collections import defaultdict
+    nested_dict = lambda: defaultdict(nested_dict)
 
-  # define or load names/items/objects
-  names = pd.read_csv("data/names.csv")["Names"].tolist()
-  vehicles = pd.read_csv("data/vehicles.csv")["Vehicles"].tolist()
+    # Start problem code
 
-  # store phrases etc
-  data["params"]["vars"]["name"] = random.choice(names)
-  data["params"]["vars"]["vehicle"] = random.choice(vehicles)
+    data2 = nested_dict()
 
-  # Declare math symbols to be used by sympy
-  mu_s, g , theta = sp.symbols('mu_s g theta')
+    # define or load names/items/objects
+    names = pd.read_csv("data/names.csv")["Names"].tolist()
+    vehicles = pd.read_csv("data/vehicles.csv")["Vehicles"].tolist()
 
-  # Describe the solution equation
-  amax = g*(mu_s*sp.cos(theta) - sp.sin(theta))
-  
-  # Answer to fill in the blank input -- must be stored as JSON.
-  data['correct_answers']['part1'] = pl.to_json(amax)
+    # store phrases etc
+    data2["params"]["vars"]["name"] = random.choice(names)
+    data2["params"]["vars"]["vehicle"] = random.choice(vehicles)
 
+    # Declare math symbols to be used by sympy
+    mu_s, g , theta = sp.symbols('mu_s g theta')
+
+    # Describe the solution equation
+    amax = g*(mu_s*sp.cos(theta) - sp.sin(theta))
+
+    # Answer to fill in the blank input -- must be stored as JSON.
+    data2['correct_answers']['part1_ans'] = pl.to_json(amax)
+    
+    # Update the data object with a new dict
+    data.update(data2)
 part1:
- type: symbolic-input
- units: 
- label: $F_r =$
- pl-options:
-   allow-blank: true
+  type: symbolic-input
+  label: $F_r =$
+  pl-options:
+    weight: 1
+    allow-blank: true
 ---
 # {{ vars.title }}
 

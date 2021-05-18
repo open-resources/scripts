@@ -25,8 +25,31 @@ def generate(data):
     data2["params"]["v"] = v
     data2["params"]["t"] = t
     
+    ## Part 1
+    
     # define correct answers
     data2["correct_answers"]["part1_ans"] = v*t
+    
+    ## Part 2
+    
+    # define possible answers
+    data2["params"]["part2"]["ans1"]["value"] = 42
+    data2["params"]["part2"]["ans1"]["correct"] = False
+    
+    data2["params"]["part2"]["ans2"]["value"] = v*t
+    data2["params"]["part2"]["ans2"]["correct"] = True
+    
+    data2["params"]["part2"]["ans3"]["value"] = v+t
+    data2["params"]["part2"]["ans3"]["correct"] = False
+    
+    data2["params"]["part2"]["ans4"]["value"] = v/t
+    data2["params"]["part2"]["ans4"]["correct"] = False
+    
+    data2["params"]["part2"]["ans5"]["value"] = v-t
+    data2["params"]["part2"]["ans5"]["correct"] = False
+    
+    data2["params"]["part2"]["ans6"]["value"] = 1.3*(v-t)
+    data2["params"]["part2"]["ans6"]["correct"] = False
     
     # Update the data object with a new dict
     data.update(data2)

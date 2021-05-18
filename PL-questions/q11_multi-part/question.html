@@ -1,0 +1,47 @@
+
+                <div class="card my-2">
+                	<div class="card-header">
+                	Part 1
+                </div>
+
+                <div class="card-body">
+
+
+
+                <pl-question-panel>
+	<p>{{ vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
+	</p>
+</pl-question-panel>
+
+<pl-number-input answers-name="part1_ans" allow-blank = "True" weight = "1" ></pl-number-input>
+</div>
+</div>
+
+
+                <div class="card my-2">
+                	<div class="card-header">
+                	Part 2
+                </div>
+
+                <div class="card-body">
+
+
+
+                <pl-question-panel>
+	<p>{{ params.vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+How far does {{ params.vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
+	</p>
+</pl-question-panel>
+
+<pl-multiple-choice answers-name="part2_ans" weight = "1" >
+	<pl-answer correct= {{ params.part2.ans1.correct }} > {{ params.part2.ans1.value }} {{ params.vars.units }} </pl-answer>
+	<pl-answer correct= {{ params.part2.ans2.correct }} > {{ params.part2.ans2.value }} {{ params.vars.units }} </pl-answer>
+	<pl-answer correct= {{ params.part2.ans3.correct }} > {{ params.part2.ans3.value }} {{ params.vars.units }} </pl-answer>
+	<pl-answer correct= {{ params.part2.ans4.correct }} > {{ params.part2.ans4.value }} {{ params.vars.units }} </pl-answer>
+	<pl-answer correct= {{ params.part2.ans5.correct }} > {{ params.part2.ans5.value }} {{ params.vars.units }} </pl-answer>
+	<pl-answer correct= {{ params.part2.ans6.correct }} > {{ params.part2.ans6.value }} {{ params.vars.units }} </pl-answer>
+</pl-multiple-choice>
+</div>
+</div>
+

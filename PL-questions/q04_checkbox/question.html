@@ -1,0 +1,13 @@
+<pl-question-panel>
+	<p>{{ params.vars.name }} is given a list of physical quantities and has to identify all of the {{ params.choice }}. Can you help?
+	</p>
+</pl-question-panel>
+
+<pl-checkbox answers-name="part1_ans" allow-blank = "True" partial-credit = "True" partial-credit-method = "EDC" >
+	<pl-answer correct= {{ params.part1.ans1.correct }} > {{ params.part1.ans1.value }}  </pl-answer>
+	<pl-answer correct= {{ params.part1.ans2.correct }} > {{ params.part1.ans2.value }}  </pl-answer>
+	<pl-answer correct= {{ params.part1.ans3.correct }} > {{ params.part1.ans3.value }}  </pl-answer>
+	<pl-answer correct= {{ params.part1.ans4.correct }} > {{ params.part1.ans4.value }}  </pl-answer>
+	<pl-answer correct= {{ params.part1.ans5.correct }} > {{ params.part1.ans5.value }}  </pl-answer>
+	<pl-answer correct= {{ params.part1.ans6.correct }} > {{ params.part1.ans6.value }}  </pl-answer>
+</pl-checkbox>

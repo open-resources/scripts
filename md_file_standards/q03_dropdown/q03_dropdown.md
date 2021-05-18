@@ -23,7 +23,6 @@ server: |
     data["vars"]["vehicle"] = random.choice(manual_vehicles)
     data["vars"]["title"] = "Distance travelled"
     data["vars"]["units"] = "m/s"
-    data["vars"]["digits_after_decimal"] = 2
 
     # define bounds of the variables
     v = random.randint(2,7)
@@ -43,9 +42,10 @@ server: |
     # define correct answers
     data["params"]["part1"]["correct_answer"] = data["params"]["part1"]["ans1"]
 part1:
- type: dropdown
- pl-options:
-   allow-blank: true
+  type: dropdown
+  pl-options:
+    weight: 1
+    allow-blank: true
 ---
 # {{ params.vars.title }}
 
