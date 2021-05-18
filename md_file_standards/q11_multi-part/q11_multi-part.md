@@ -1,5 +1,5 @@
 ---
-title: Distance travelled
+title: Multi-part Question
 topic: kinematics
 author: Firas Moosvi
 source: original
@@ -14,57 +14,75 @@ assets:
 server: |
     import random
     import pandas as pd
+    from collections import defaultdict
+    nested_dict = lambda: defaultdict(nested_dict)
 
+    # Start problem code
+
+    data2 = nested_dict()
+    
     # define or load names/items/objects
     names = pd.read_csv("data/names.csv")["Names"].tolist()
     manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
 
     # store phrases etc
-    data["params"]["vars"]["name"] = random.choice(names)
-    data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
-    data["params"]["vars"]["title"] = "Distance travelled"
-    data["params"]["vars"]["units"] = "m/s"
+    data2["params"]["vars"]["name"] = random.choice(names)
+    data2["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+    data2["params"]["vars"]["title"] = "Distance travelled"
+    data2["params"]["vars"]["units"] = "m/s"
 
     # define bounds of the variables
     v = random.randint(2,7)
     t = random.randint(5,10)
 
     # store the variables in the dictionary "params"
-    data["params"]["v"] = v
-    data["params"]["t"] = t
+    data2["params"]["v"] = v
+    data2["params"]["t"] = t
 
     ## Part 1
 
     # define correct answers
-    data["correct_answers"]["part1"] = v*t
+    data2["correct_answers"]["part1_ans"] = v*t
 
     ## Part 2
 
     # define possible answers
-    data["params"]["part2"]["ans1"] = 42
-    data["params"]["part2"]["ans2"] = v*t
-    data["params"]["part2"]["ans3"] = v+t
-    data["params"]["part2"]["ans4"] = v/t
-    data["params"]["part2"]["ans5"] = v-t
-    data["params"]["part2"]["ans6"] = 1.3*(v-t)
+    data2["params"]["part2"]["ans1"]["value"] = 42
+    data2["params"]["part2"]["ans1"]["correct"] = False
 
-    # define correct answers
-    data["correct_answers"]["part1"] = data["params"]["part2"]["ans2"]
+    data2["params"]["part2"]["ans2"]["value"] = v*t
+    data2["params"]["part2"]["ans2"]["correct"] = True
+
+    data2["params"]["part2"]["ans3"]["value"] = v+t
+    data2["params"]["part2"]["ans3"]["correct"] = False
+
+    data2["params"]["part2"]["ans4"]["value"] = v/t
+    data2["params"]["part2"]["ans4"]["correct"] = False
+
+    data2["params"]["part2"]["ans5"]["value"] = v-t
+    data2["params"]["part2"]["ans5"]["correct"] = False
+
+    data2["params"]["part2"]["ans6"]["value"] = 1.3*(v-t)
+    data2["params"]["part2"]["ans6"]["correct"] = False
+
+    # Update the data object with a new dict
+    data.update(data2)
 part1:
- type: number-input
- label: $d=$
+  type: number-input
+  label: $d=$
   pl-customizations:
-   allow-blank: true
+    allow-blank: true
+    weight: 1
 part2:
- type: multiple-choice  
+  type: multiple-choice  
   pl-customizations:
-   allow-blank: true
+    weight: 1
 ---
 # {{ params.vars.title }}
 
 ## Part 1
 
-{{ vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
+{{ params.vars.name }} is traveling on {{ params.vars.vehicle }} at {{ params.v }} {{ params.vars.units }}.
 How far does {{ vars.name }} travel in {{ params.t }} seconds, assuming they continue at the same velocity?
 
 ### Answer Section

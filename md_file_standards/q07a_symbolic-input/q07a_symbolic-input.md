@@ -29,13 +29,16 @@ server: |
     F = m*v**2/r
     
     # Answer to fill in the blank input stored as JSON.
-    data['correct_answers']['part1'] = pl.to_json(F)
+    data2['correct_answers']['part1_ans'] = pl.to_json(F)
     
+    # Update the data object with a new dict
+    data.update(data2)    
 part1:
- type: symbolic-input
- label: $F_r = $
- pl-customizations:
-   allow-blank: false
+  type: symbolic-input
+  label: $F_r = $
+  pl-customizations:
+    weight: 1
+    allow-blank: false
 ---
 # {{ vars.title }}
 

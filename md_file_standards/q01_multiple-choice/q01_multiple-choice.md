@@ -29,7 +29,6 @@ server: |
     data2["params"]["vars"]["name"] = random.choice(names)
     data2["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
     data2["params"]["vars"]["units"] = "m/s"
-    data2["params"]["vars"]["digits_after_decimal"] = 2
 
     # Randomize Variables
     v = random.randint(2,7)

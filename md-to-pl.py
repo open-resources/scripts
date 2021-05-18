@@ -179,11 +179,12 @@ def main():
 
     ##### Multi part
     else:
+        question_html = ""
         for pnum in range(1, parsed_q['num_parts'] + 1):
             part = 'part'+f'{pnum}'
             q_type = parsed_q['header'][part]['type']
 
-            question_html = f"""
+            question_html += f"""
                 <div class="card my-2">
                 \t<div class="card-header">
                 \t{parsed_q['body_parts_split'][part]['title']}

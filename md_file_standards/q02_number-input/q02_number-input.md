@@ -45,13 +45,14 @@ server: |
     # Update the data object with a new dict
     data.update(data2)
 part1:
- type: number-input
- pl-customizations:
-   allow-blank: true
-   label: $d= $
-   suffix: m
-   comparison: sigfig
-   digits: 2
+  type: number-input
+  pl-customizations:
+    weight: 1
+    allow-blank: true
+    label: $d= $
+    suffix: m
+    comparison: sigfig
+    digits: 2
 ---
 # {{ params.vars.title }}
 

@@ -14,39 +14,44 @@ assets:
 server: |
     import random
     import pandas as pd
+    from collections import defaultdict
+    nested_dict = lambda: defaultdict(nested_dict)
 
-    # define or load names/items/objects
-    names = pd.read_csv("data/names.csv")["Names"].tolist()
-    manual_vehicles = pd.read_csv("data/manual_vehicles.csv")["Manual Vehicles"].tolist()
+    # Start problem code
+
+    data2 = nested_dict()
 
     # store phrases etc
-    data["params"]["vars"]["name"] = random.choice(names)
-    data["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
-    data["params"]["vars"]["title"] = "Distance travelled"
-    data["params"]["vars"]["units"] = "m/s"
-    data["params"]["vars"]["digits_after_decimal"] = 0
+    data2["params"]["vars"]["name"] = random.choice(names)
+    data2["params"]["vars"]["vehicle"] = random.choice(manual_vehicles)
+    data2["params"]["vars"]["title"] = "Integer Math"
+    data2["params"]["vars"]["units"] = "m/s"
 
     # define bounds of the variables
     n = random.randint(2,100)
 
     # store the variables in the dictionary "params"
-    data["params"]["n"] = n
+    data2["params"]["n"] = n
 
     # define correct answers
-    data["correct_answers"]["part1"] = int(n*10)
+    data2["correct_answers"]["part1_ans"] = int(n*10)
+    
+    # Update the data object with a new dict
+    data.update(data2)
 part1:
- type: number-input
- label: d
- pl-options:
-   allow-blank: true
+  type: number-input
+  label: $d=$
+  pl-options:
+    weight: 1
+    allow-blank: true
 ---
 # {{ params.vars.title }}
 
 ## Question Text
 
-{{ vars.name }} is on a {{ params.vars.vehicle }} trying to calculate the result of 10 x {{ params.n }} {{ params.vars.units }}.
+{{ params.vars.name }} is on a {{ params.vars.vehicle }} trying to calculate the result of 10 x {{ params.n }} {{ params.vars.units }}.
 
-## Answer Section
+### Answer Section
 
 Please enter an integer value in {{ params.vars.units }}.
 

@@ -71,10 +71,11 @@ server: |
     # Update the data object with a new dict
     data.update(data2)
 part1:
- type: checkbox
- pl-customizations:
-   partial-credit: true
-   partial-credit-method: EDC
+  type: checkbox
+  pl-customizations:
+    weight: 1
+    partial-credit: true
+    partial-credit-method: EDC
 ---
 # {{ params.vars.title }}
 
