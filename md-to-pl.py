@@ -63,12 +63,31 @@ def process_multiple_choice(part_name,parsed_question, data_dict):
     pl_customizations = " ".join([f'{k} = "{v}"' for k,v in parsed_question['header'][part_name]['pl-customizations'].items()]) # PL-customizations
     html += f"""<pl-multiple-choice answers-name="{part_name}_ans" {pl_customizations} >\n"""
 
+    if data_dict['params'][f'vars']['units']:
+        units = f"|@ params.vars.units @|"
+    else:
+        units = ''
+
     for ans in data_dict['params'][f'{part_name}'].keys():
-        html += f"\t<pl-answer correct= |@ params.{part_name}.{ans}.correct @| > |@ params.{part_name}.{ans}.value @| |@ params.{part_name}.units @| </pl-answer>\n"
+        html += f"\t<pl-answer correct= |@ params.{part_name}.{ans}.correct @| > |@ params.{part_name}.{ans}.value @| {units} </pl-answer>\n"
 
     html += '</pl-multiple-choice>\n' 
 
     return replace_tags(html)
+
+def process_dropdown(part_name,parsed_question, data_dict):
+    """Processes markdown format dropdown questions and returns PL HTML
+
+    Args:
+        part_name (string): Name of the question part being processed (e.g., part1, part2, etc...)
+        parsed_question (dict): Dictionary of the MD-parsed question (output of `read_md_problem`)
+        data_dict (dict): Dictionary of the `data` dict created after running server.py using `exec()`
+
+    Returns:
+        html: A string of HTML that is part of the final PL question.html file.
+    """
+
+    raise NotImplementedError
 
 def process_number_input(part_name,parsed_question, data_dict):
     """Processes markdown format number-input questions and returns PL HTML
@@ -89,8 +108,20 @@ def process_number_input(part_name,parsed_question, data_dict):
 
     return replace_tags(html)
 
-def process_checkbox():
-    return 5
+def process_checkbox(part_name,parsed_question, data_dict):
+    """Processes markdown format checkbox (select all that apply) questions and returns PL HTML
+
+    Args:
+        part_name (string): Name of the question part being processed (e.g., part1, part2, etc...)
+        parsed_question (dict): Dictionary of the MD-parsed question (output of `read_md_problem`)
+        data_dict (dict): Dictionary of the `data` dict created after running server.py using `exec()`
+
+    Returns:
+        html: A string of HTML that is part of the final PL question.html file.
+    """
+    # start with the MCQ version and then...change things for checkbox questions
+    html = process_multiple_choice(part_name,parsed_question, data_dict).replace('-multiple-choice','-checkbox')
+    return html
 
 def process_symbolic_input():
     return 5
@@ -143,6 +174,8 @@ def main():
             question_html = process_multiple_choice('part1',parsed_q,data2)
         elif 'number-input' in q_type:
             question_html = process_number_input('part1',parsed_q,data2)
+        elif 'checkbox' in q_type:
+            question_html = process_checkbox('part1',parsed_q,data2)
 
     # elif 'checkbox' in q_type:
 
