@@ -58,15 +58,12 @@ server: |
     data2["params"]["part1"]["ans6"]["value"] = 1.3*(v-t)
     data2["params"]["part1"]["ans6"]["correct"] = False
     
-    # define correct answers
-    data2["correct_answers"]["part1"] = data2["params"]["part1"]["ans1"]["value"]
-
     # Update the data object with a new dict
     data.update(data2)
 part1:
- type: multiple-choice
- pl-customizations:
-   allow-blank: true
+  type: multiple-choice
+  pl-customizations:
+    weight: 1
 ---
 # {{ params.vars.title }}
 
