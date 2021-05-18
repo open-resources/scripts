@@ -147,10 +147,6 @@ def main():
         raise
 
     output_path = pathlib.Path(args['<output_path>']) / input_file.parts[-2]
-    
-    # ## Types of questions
-    SINGLE = ['number-input']
-    MULTIPLE = ['multiple-choice', 'checkbox']
 
     # Parse the MD file
     parsed_q = pbs.read_md_problem(input_file)
@@ -166,7 +162,7 @@ def main():
     # Write info.json file
     write_info_json(output_path, parsed_q)
 
-    ##### single part
+    ## Single part questions
 
     if parsed_q['num_parts'] == 1:
         q_type = parsed_q['header']['part1']['type']
@@ -177,15 +173,10 @@ def main():
         elif 'checkbox' in q_type:
             question_html = process_checkbox('part1',parsed_q,data2)
 
-    # elif 'checkbox' in q_type:
+        elif 'symbolic_input' in q_type:
+            # process_symbolic_input()
+            pass
 
-    #     # process_checkbox()
-    #     pass
-
-    # elif 'symbolic_input' in q_type:
-
-    #     # process_symbolic_input()
-    #     pass
     ##### Multi part
     else:
         for pnum in range(1, parsed_q['num_parts'] + 1):
@@ -200,50 +191,16 @@ def main():
                 <div class="card-body">\n\n\n
                 """
             if 'multiple-choice' in q_type:                
-                question_html += f"{process_multiple_choice(part,parsed_q,data2)}"
-                
+                question_html += f"{process_multiple_choice(part,parsed_q,data2)}"  
             elif 'number-input' in q_type:
                 question_html += f"{process_number_input(part,parsed_q,data2)}"
-
             elif 'checkbox' in q_type:
-                # process_checkbox()
-                pass
-                #question_html += f"{process_checkbox(part,parsed_q,data2)}"
-
+                question_html = process_checkbox('part1',parsed_q,data2)
             elif 'symbolic_input' in q_type:
                 # process_symbolic_input()
                 pass
 
             question_html += "</div>\n</div>\n\n"
-
-    # else:
-    #     for i in range(1, parsed_q['num_parts'] + 1):
-    #         part_name = f'part{i}' # Part Name
-    #         q_type = parsed_q['header'][part_name]['type'] # Question Type
-    #         pl_customizations = parsed_q['header'][part_name]['pl_customizations'] # PL-customizations
-
-    #         #q_txt, ans_section = parsed_q['body_parts'][part_name].split('### Answer Section')      
-
-    #         question_html += '<p><b>' + q_txt[2:q_txt.index('\n')].strip() + '</b></p>\n' +\
-    #                     '<p style="margin-left: 15px">' + q_txt[q_txt.index('\n'):] + '</p>\n'
-
-    #         #answer = parsed_q['header'][part_name]['instructor_answers']
-
-    #         if q_type in SINGLE:
-    #             question_html += '<pl-' + q_type + ' answers_name="' + answer + '"' + pl_customizations + '>\n'
-    #         elif q_type in MULTIPLE:
-    #             question_html += '<pl-' + q_type + ' answers_name="' + part_name + '"' + pl_customizations + '>\n'
-    #             for ans in data['params'][f'part{part_name}'].keys():
-    #                 question_html += f"\t<pl-answer correct= |@ params.{part_name}.{ans}.correct @| > |@ params.part{part_name}.{ans}.value @| |@ params.{part_name}.units @| </pl-answer>\n"
-                
-    #             question_html += '</pl-answer>\n'
-    #         else:  # other element types, such as images, that require their own formatting
-    #             raise NotImplementedError
-    #         question_html += '</pl-' + q_type + '>\n'
-
-    #         if i < parsed_q['num_parts']:
-    #             question_html +='<hr/>\n'
-
 
     # Write question.html file
 

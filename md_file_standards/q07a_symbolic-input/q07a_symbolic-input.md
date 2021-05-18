@@ -1,10 +1,12 @@
 ---
-title: Symbolic Input
-topic: example
+title: Centripetal Motion
+topic: centripetal motion
 author: Michael Kudla
 source: original
-template_version: 0.1
+template_version: 0.2
 outcomes:
+- LO.kinematics.2305
+- LO.kinematics.2304
 tags:
 - quiz
 - homework
@@ -13,7 +15,13 @@ server: |
     import random    
     import prairielearn as pl
     import sympy
-    
+    from collections import defaultdict
+    nested_dict = lambda: defaultdict(nested_dict)
+
+    # Start problem code
+
+    data2 = nested_dict()
+
     # Declare math symbols to be used by sympy
     m, v, r = sympy.symbols('m v r')
 
@@ -26,7 +34,7 @@ server: |
 part1:
  type: symbolic-input
  label: $F_r = $
- pl-options:
+ pl-customizations:
    allow-blank: false
 ---
 # {{ vars.title }}
