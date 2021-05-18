@@ -115,8 +115,8 @@ def main():
         print("File does not exist.")
         raise
 
-    output_path = pathlib.Path(args['<output_path>'])
-
+    output_path = pathlib.Path(args['<output_path>']) / input_file.parts[-2]
+    
     # ## Types of questions
     SINGLE = ['number-input']
     MULTIPLE = ['multiple-choice', 'checkbox']
