@@ -12,7 +12,8 @@ import os
 import uuid
 import json
 import pathlib
-from problem_bank_scripts.src import problem_bank_scripts as pbs 
+#from problem_bank_scripts.src 
+import problem_bank_scripts as pbs 
 
 def write_info_json(output_path, parsed_question):
     """
@@ -42,12 +43,12 @@ def write_server_py(output_path,parsed_question):
         raise
 
     func = func.replace('read_csv("','read_csv(data["options"]["client_files_course_path"]+"/')
-    func = func.replace('\n','\n\t')
+    func = func.replace('\n','\n    ')
 
     (output_path / "server.py").write_text(imp+'def generate(data):'+func)
 
 def process_multiple_choice(part_name,parsed_question, data_dict):
-    """
+    """Processes markdown format multiple-choice questions and returns PL HTML
     Args:
         output_path (Path): [description]
         parsed_question (dict): [description]
@@ -69,10 +70,26 @@ def process_multiple_choice(part_name,parsed_question, data_dict):
 
     return replace_tags(html)
 
-def process_checkbox():
-    return 5
+def process_number_input(part_name,parsed_question, data_dict):
+    """Processes markdown format number-input questions and returns PL HTML
 
-def process_number_input():
+    Args:
+        part_name (string): Name of the question part being processed (e.g., part1, part2, etc...)
+        parsed_question (dict): Dictionary of the MD-parsed question (output of `read_md_problem`)
+        data_dict (dict): Dictionary of the `data` dict created after running server.py using `exec()`
+
+    Returns:
+        html: A string of HTML that is part of the final PL question.html file.
+    """
+
+    html = f"""<pl-question-panel>\n\t<p>{parsed_question['body_parts_split'][part_name]['content']}\t</p>\n</pl-question-panel>\n\n"""
+    
+    pl_customizations = " ".join([f'{k} = "{v}"' for k,v in parsed_question['header'][part_name]['pl-customizations'].items()]) # PL-customizations
+    html += f"""<pl-number-input answers-name="{part_name}_ans" {pl_customizations} ></pl-number-input>\n"""
+
+    return replace_tags(html)
+
+def process_checkbox():
     return 5
 
 def process_symbolic_input():
@@ -124,10 +141,8 @@ def main():
         q_type = parsed_q['header']['part1']['type']
         if 'multiple-choice' in q_type:
             question_html = process_multiple_choice('part1',parsed_q,data2)
-    # elif 'number-input' in q_type:
-
-    #     # process_number_input()
-    #     pass
+        elif 'number-input' in q_type:
+            question_html = process_number_input('part1',parsed_q,data2)
 
     # elif 'checkbox' in q_type:
 
@@ -139,38 +154,34 @@ def main():
     #     # process_symbolic_input()
     #     pass
     ##### Multi part
+    else:
+        for pnum in range(1, parsed_q['num_parts'] + 1):
+            part = 'part'+f'{pnum}'
+            q_type = parsed_q['header'][part]['type']
 
-    for pnum in range(1, parsed_q['num_parts'] + 1):
-        part = 'part'+f'{pnum}'
-        q_type = parsed_q['header'][part]['type']
-
-        if 'multiple-choice' in q_type:
-
-            # Prepare question.html
             question_html = f"""
-            <div class="card my-2">
-            \t<div class="card-header">
-            \t{parsed_q['body_parts_split'][part]['title']}
-            </div>\n
-            <div class="card-body">\n\n\n
-            {process_multiple_choice(part,parsed_q,data2)}
-            </div>\n</div>\n\n
-            """
+                <div class="card my-2">
+                \t<div class="card-header">
+                \t{parsed_q['body_parts_split'][part]['title']}
+                </div>\n
+                <div class="card-body">\n\n\n
+                """
+            if 'multiple-choice' in q_type:                
+                question_html += f"{process_multiple_choice(part,parsed_q,data2)}"
+                
+            elif 'number-input' in q_type:
+                question_html += f"{process_number_input(part,parsed_q,data2)}"
 
-    #     elif 'number-input' in q_type:
+            elif 'checkbox' in q_type:
+                # process_checkbox()
+                pass
+                #question_html += f"{process_checkbox(part,parsed_q,data2)}"
 
-    #         # process_number_input()
-    #         pass
+            elif 'symbolic_input' in q_type:
+                # process_symbolic_input()
+                pass
 
-    #     elif 'checkbox' in q_type:
-
-    #         # process_checkbox()
-    #         pass
-
-    #     elif 'symbolic_input' in q_type:
-
-    #         # process_symbolic_input()
-    #         pass
+            question_html += "</div>\n</div>\n\n"
 
     # else:
     #     for i in range(1, parsed_q['num_parts'] + 1):
