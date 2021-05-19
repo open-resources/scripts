@@ -19,8 +19,8 @@ import problem_bank_scripts as pbs
 def write_info_json(output_path, parsed_question):
     """
     Args:
-        output_path ([type]): [description]
-        parsed_question ([type]): [description]
+        output_path (Path): [description]
+        parsed_question (dict]): [description]
     """
 
     pathlib.Path(output_path / 'info.json').write_text("""{
