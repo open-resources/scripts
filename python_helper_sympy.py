@@ -4,6 +4,47 @@ import sympy
 import ast
 import sys
 
+# Added to_json() from this file: https://github.com/PrairieLearn/PrairieLearn/blob/master/question-servers/freeformPythonLib/prairielearn.py
+def to_json(v):
+    """to_json(v)
+    If v has a standard type that cannot be json serialized, it is replaced with
+    a {'_type':..., '_value':...} pair that can be json serialized:
+        complex -> '_type': 'complex'
+        non-complex ndarray (assumes each element can be json serialized) -> '_type': 'ndarray'
+        complex ndarray -> '_type': 'complex_ndarray'
+        sympy.Expr (i.e., any scalar sympy expression) -> '_type': 'sympy'
+        sympy.Matrix -> '_type': 'sympy_matrix'
+    If v is an ndarray, this function preserves its dtype (by adding '_dtype' as
+    a third field in the dictionary).
+    This function does not try to preserve information like the assumptions on
+    variables in a sympy expression.
+    If v can be json serialized or does not have a standard type, then it is
+    returned without change.
+    """
+    if np.isscalar(v) and np.iscomplexobj(v):
+        return {'_type': 'complex', '_value': {'real': v.real, 'imag': v.imag}}
+    elif isinstance(v, np.ndarray):
+        if np.isrealobj(v):
+            return {'_type': 'ndarray', '_value': v.tolist(), '_dtype': str(v.dtype)}
+        elif np.iscomplexobj(v):
+            return {'_type': 'complex_ndarray', '_value': {'real': v.real.tolist(), 'imag': v.imag.tolist()}, '_dtype': str(v.dtype)}
+    elif isinstance(v, sympy.Expr):
+        return sympy_to_json(v)
+    elif isinstance(v, sympy.Matrix) or isinstance(v, sympy.ImmutableMatrix):
+        s = [str(a) for a in v.free_symbols]
+        num_rows, num_cols = v.shape
+        M = []
+        for i in range(0, num_rows):
+            row = []
+            for j in range(0, num_cols):
+                row.append(str(v[i, j]))
+            M.append(row)
+        return {'_type': 'sympy_matrix', '_value': M, '_variables': s, '_shape': [num_rows, num_cols]}
+    elif isinstance(v, pandas.DataFrame):
+        return {'_type': 'dataframe', '_value': {'index': list(v.index), 'columns': list(v.columns), 'data': v.values.tolist()}}
+    else:
+        return v
+
 # Create a new instance of this class to access the member dictionaries. This
 # is to avoid accidentally modifying these dictionaries.
 class _Constants:
