@@ -37,6 +37,7 @@ part1:
   type: symbolic-input
   label: $F_r = $
   pl-customizations:
+    variables: "m, v, r"
     weight: 1
     allow-blank: false
 ---
@@ -46,7 +47,7 @@ part1:
 
 Write the centripetal force $F_r$ in terms of the mass $m$, velocity $v$, and radius $r$.
 
-## Answer Section
+### Answer Section
 
 {{ substitutions.part1.label }}
 

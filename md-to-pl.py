@@ -12,6 +12,7 @@ import os
 import uuid
 import json
 import pathlib
+import prairielearn as pl
 #from problem_bank_scripts.src 
 import problem_bank_scripts as pbs 
 
@@ -58,7 +59,7 @@ def process_multiple_choice(part_name,parsed_question, data_dict):
         str: Multiple choice question is returned as a string with PL-compliant syntax.
     """
 
-    html = f"""<pl-question-panel>\n\t<p>{parsed_question['body_parts_split'][part_name]['content']}\t</p>\n</pl-question-panel>\n\n"""
+    html = f"""<pl-question-panel>\n\t<markdown>{parsed_question['body_parts_split'][part_name]['content']}\t</markdown>\n</pl-question-panel>\n\n"""
     
     pl_customizations = " ".join([f'{k} = "{v}"' for k,v in parsed_question['header'][part_name]['pl-customizations'].items()]) # PL-customizations
     html += f"""<pl-multiple-choice answers-name="{part_name}_ans" {pl_customizations} >\n"""
@@ -101,7 +102,7 @@ def process_number_input(part_name,parsed_question, data_dict):
         html: A string of HTML that is part of the final PL question.html file.
     """
 
-    html = f"""<pl-question-panel>\n\t<p>{parsed_question['body_parts_split'][part_name]['content']}\t</p>\n</pl-question-panel>\n\n"""
+    html = f"""<pl-question-panel>\n\t<markdown>{parsed_question['body_parts_split'][part_name]['content']}\t</markdown>\n</pl-question-panel>\n\n"""
     
     pl_customizations = " ".join([f'{k} = "{v}"' for k,v in parsed_question['header'][part_name]['pl-customizations'].items()]) # PL-customizations
     html += f"""<pl-number-input answers-name="{part_name}_ans" {pl_customizations} ></pl-number-input>\n"""
@@ -123,8 +124,24 @@ def process_checkbox(part_name,parsed_question, data_dict):
     html = process_multiple_choice(part_name,parsed_question, data_dict).replace('-multiple-choice','-checkbox')
     return html
 
-def process_symbolic_input():
-    return 5
+def process_symbolic_input(part_name,parsed_question, data_dict):
+    """Processes markdown format symbolic questions and returns PL HTML
+
+    Args:
+        part_name (string): Name of the question part being processed (e.g., part1, part2, etc...)
+        parsed_question (dict): Dictionary of the MD-parsed question (output of `read_md_problem`)
+        data_dict (dict): Dictionary of the `data` dict created after running server.py using `exec()`
+
+    Returns:
+        html: A string of HTML that is part of the final PL question.html file.
+    """
+
+    html = f"""<pl-question-panel>\n\t<markdown>{parsed_question['body_parts_split'][part_name]['content']}\t</markdown>\n</pl-question-panel>\n\n"""
+    
+    pl_customizations = " ".join([f'{k} = "{v}"' for k,v in parsed_question['header'][part_name]['pl-customizations'].items()]) # PL-customizations
+    html += f"""<pl-symbolic-input answers-name="{part_name}_ans" {pl_customizations} ></pl-symbolic-input>\n"""
+
+    return replace_tags(html).replace('\\\\','\\')
 
 def replace_tags(string):
     """Takes in a string with tags: |@ and @| and returns {{ and }} respectively. This is because Python strings can't have double curly braces.
@@ -172,10 +189,10 @@ def main():
             question_html = process_number_input('part1',parsed_q,data2)
         elif 'checkbox' in q_type:
             question_html = process_checkbox('part1',parsed_q,data2)
-
-        elif 'symbolic_input' in q_type:
-            # process_symbolic_input()
-            pass
+        elif 'symbolic-input' in q_type:
+            question_html = process_symbolic_input('part1',parsed_q,data2)
+        else:
+            raise NotImplementedError(f"This question type ({q_type}) is not yet implemented.")
 
     ##### Multi part
     else:
@@ -196,10 +213,11 @@ def main():
             elif 'number-input' in q_type:
                 question_html += f"{process_number_input(part,parsed_q,data2)}"
             elif 'checkbox' in q_type:
-                question_html = process_checkbox('part1',parsed_q,data2)
-            elif 'symbolic_input' in q_type:
-                # process_symbolic_input()
-                pass
+                question_html += process_checkbox(part,parsed_q,data2)
+            elif 'symbolic-input' in q_type:
+                question_html += process_symbolic_input(part,parsed_q,data2)
+            else:
+                raise NotImplementedError(f"This question type ({q_type}) is not yet implemented.")
 
             question_html += "</div>\n</div>\n\n"
 

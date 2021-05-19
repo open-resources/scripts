@@ -12,9 +12,10 @@ tags:
 - homework
 assets:
 server: |
-    import random    
+    import random
+    import pandas as pd
     import prairielearn as pl
-    import sympy
+    import sympy as sp
     from collections import defaultdict
     nested_dict = lambda: defaultdict(nested_dict)
 
@@ -44,7 +45,8 @@ server: |
 part1:
   type: symbolic-input
   label: $F_r =$
-  pl-options:
+  pl-customizations:
+    variables: "mu_s, g , theta"
     weight: 1
     allow-blank: true
 ---
