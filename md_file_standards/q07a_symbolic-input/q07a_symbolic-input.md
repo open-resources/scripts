@@ -47,6 +47,15 @@ part1:
 
 Write the centripetal force $F_r$ in terms of the mass $m$, velocity $v$, and radius $r$.
 
+Note that it may not be necessary to use every variable. Use the following table as a reference for each variable:
+
+| $\LaTeX$ | Use   |
+|----------|-------|
+| $m$  | m  |
+| $v$  | v  |
+| $r$  | r  |
+
+
 ### Answer Section
 
 {{ substitutions.part1.label }}
