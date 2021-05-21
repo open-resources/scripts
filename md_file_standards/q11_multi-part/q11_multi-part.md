@@ -3,11 +3,12 @@ title: Multi-part Question
 topic: kinematics
 author: Firas Moosvi
 source: original
-template_version: 0.2
+template_version: 0.3
 outcomes:
 - LO.kinematics.2305
 - LO.kinematics.2304
 tags:
+- super-randomizer
 - quiz
 - homework
 assets:

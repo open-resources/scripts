@@ -3,7 +3,7 @@ title: Integer Math
 topic: Math
 author: Firas Moosvi
 source: original
-template_version: 0.2
+template_version: 0.3
 outcomes:
 - LO.multiplication.2305
 - LO.multiplication.2304
