@@ -12,6 +12,8 @@ tags:
 - quiz
 - homework
 assets:
+- test1.png
+- test2.png
 server: |
     import random
     import pandas as pd

@@ -14,6 +14,7 @@ assets:
 server: |
     import random
     import pandas as pd
+    import problem_bank_scripts as pbs
     from collections import defaultdict
     nested_dict = lambda: defaultdict(nested_dict)
 
@@ -39,22 +40,22 @@ server: |
     data2["params"]["t"] = t
 
     # define possible answers
-    data2["params"]["part1"]["ans1"]["value"] = 42
+    data2["params"]["part1"]["ans1"]["value"] = pbs.rounded(42)
     data2["params"]["part1"]["ans1"]["correct"] = False
 
-    data2["params"]["part1"]["ans2"]["value"] = v*t
+    data2["params"]["part1"]["ans2"]["value"] = pbs.rounded(v*t)
     data2["params"]["part1"]["ans2"]["correct"] = True
 
-    data2["params"]["part1"]["ans3"]["value"] = v+t
+    data2["params"]["part1"]["ans3"]["value"] = pbs.rounded(v+t)
     data2["params"]["part1"]["ans3"]["correct"] = False
 
-    data2["params"]["part1"]["ans4"]["value"] = v/t
+    data2["params"]["part1"]["ans4"]["value"] = pbs.rounded(v/t)
     data2["params"]["part1"]["ans4"]["correct"] = False
 
-    data2["params"]["part1"]["ans5"]["value"] = v-t
+    data2["params"]["part1"]["ans5"]["value"] = pbs.rounded(v-t)
     data2["params"]["part1"]["ans5"]["correct"] = False
 
-    data2["params"]["part1"]["ans6"]["value"] = 1.3*(v-t)
+    data2["params"]["part1"]["ans6"]["value"] = pbs.rounded(1.3*(v-t))
     data2["params"]["part1"]["ans6"]["correct"] = False
     
     # Update the data object with a new dict
