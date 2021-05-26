@@ -101,7 +101,7 @@ for root, dir, files in os.walk(file_path):
 
             if hint_src in problem_multi_para:
                 # remove hint lin from beginning of problem
-                problem_text = problem_no_empty_lines[problem_no_empty_lines.index("hint.") + 6:]
+                problem_text = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
             else:
                 problem_text = problem_no_empty_lines
 
