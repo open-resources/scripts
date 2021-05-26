@@ -90,6 +90,8 @@ for root, dir, files in os.walk(file_path):
             # remove ans_rule line from problem
             if ans_rule_src in problem_multi_para:
                 problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
+            else:
+                problem_clean_up = ''
 
             # remove ANS line from problem
             if ans_src in problem_multi_para:
@@ -102,21 +104,21 @@ for root, dir, files in os.walk(file_path):
 
             # remove hint lin from beginning of problem
             if hint_src in problem_multi_para:
-                problem_texts = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
+                problem_no_hint = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
             else:
-                problem_texts = problem_no_empty_lines
+                problem_no_hint = problem_no_empty_lines
 
             # Remove image section from problem text
-            if "image" in problem_texts:
+            if "image" in problem_no_hint:
                 # Remove image - height
-                image_line_1 = re.sub(r"image\( .+", "", problem_texts).strip()
+                image_line_1 = re.sub(r"image\( .+", "", problem_no_hint).strip()
                 # Remove tex - *
                 image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
                 # Remove Figure *
                 image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
                 problem_text = image_line_3
             else:
-                problem_text = problem_texts
+                problem_text = problem_no_hint
 
             # get answer from file
             start_of_answer_src = "showHint"
