@@ -6,6 +6,7 @@ import re
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
+# file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/3.Two_Dimensional_Kinematics/Projectile_Motion/'
 
 # TODO: remove file path for math problems before merging PR ->
 # file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
@@ -31,7 +32,7 @@ for root, dir, files in os.walk(file_path):
             title = author = editor = date = source = problem_type = outcomes = server = ""
             tags = assets = []
 
-            # get metadata from file
+            # ------------------------ Preparing Metadata ------------------------ #
             for item in file_contents.split("\n"):
                 if metadata + chapter_src in item:
                     title = item[item.find("(") + 1:item.find(")")].replace("'", "")
@@ -46,7 +47,7 @@ for root, dir, files in os.walk(file_path):
                 if metadata + date_src in item:
                     date = item[item.find("(") + 1:item.find(")")].replace("'", "")
 
-            # get problem text from file
+            # ------------------------ Preparing Problem Text ------------------------ #
             start_of_problem_src = "BEGIN_TEXT"
             end_of_problem_src = "END_TEXT"
             begin_hint_src = "BEGIN_HINT"
@@ -73,6 +74,7 @@ for root, dir, files in os.walk(file_path):
                 .replace('PAR', '') \
                 .replace('textrm', '') \
                 .strip()
+
             # find all problem text between
             problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
 
@@ -120,7 +122,7 @@ for root, dir, files in os.walk(file_path):
             else:
                 problem_text = problem_no_hint
 
-            # get answer from file
+            # ------------------------ Preparing Answer Section ------------------------ #
             start_of_answer_src = "showHint"
             end_of_answer_src = "BEGIN_TEXT"
 
@@ -172,13 +174,13 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-            Path("Kinematics/" + filename + ".md").write_text('---\n'
-                                                              + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                              + '---\n\n'
-                                                              + '## Question Section '
-                                                              + '\n\n'
-                                                              + problem_text
-                                                              + '\n\n'
-                                                              + '## Answer Section'
-                                                              + '\n\n'
-                                                              + answer_section)
+            Path("2D_Kinematics/" + filename + ".md").write_text('---\n'
+                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
+                                                                 + '---\n\n'
+                                                                 + '## Question Section '
+                                                                 + '\n\n'
+                                                                 + problem_text
+                                                                 + '\n\n'
+                                                                 + '## Answer Section'
+                                                                 + '\n\n'
+                                                                 + answer_section)
