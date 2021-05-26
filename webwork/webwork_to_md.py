@@ -83,6 +83,14 @@ for root, dir, files in os.walk(file_path):
                 for image_src in problem_multi_para:
                     image_file = re.findall(' ".+?"', problem_multi_para.strip())
                     assets = [img.replace('"', '').strip() for img in image_file]
+                    # TODO: remove image tag line from question
+                    # # Remove image import from problem text
+                    # # Remove image - height
+                    # image_line_1 = re.sub(r"image\( .+", "", problem_multi_para).strip()
+                    # # Remove tex - *
+                    # image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
+                    # # Remove Figure *
+                    # image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
             else:
                 assets = ''
 
