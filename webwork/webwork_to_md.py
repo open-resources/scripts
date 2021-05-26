@@ -78,28 +78,21 @@ for root, dir, files in os.walk(file_path):
 
             # TODO: Clean up and optimize the if / else statements
 
+            # extract image file names from question and save in assets
             if image_src in problem_multi_para:
                 num_images = problem_multi_para.count("image")
                 for image_src in problem_multi_para:
                     image_file = re.findall(' ".+?"', problem_multi_para.strip())
                     assets = [img.replace('"', '').strip() for img in image_file]
-                    # TODO: remove image tag line from question
-                    # # Remove image import from problem text
-                    # # Remove image - height
-                    # image_line_1 = re.sub(r"image\( .+", "", problem_multi_para).strip()
-                    # # Remove tex - *
-                    # image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
-                    # # Remove Figure *
-                    # image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
             else:
                 assets = ''
 
+            # remove ans_rule line from problem
             if ans_rule_src in problem_multi_para:
-                # remove ans_rule line from problem
                 problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
 
+            # remove ANS line from problem
             if ans_src in problem_multi_para:
-                # remove ANS line from problem
                 problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
                 # remove empty lines from problem
                 problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
@@ -107,11 +100,23 @@ for root, dir, files in os.walk(file_path):
                 # remove empty lines from problem
                 problem_no_empty_lines = os.linesep.join([s for s in problem_multi_para.splitlines() if s])
 
+            # remove hint lin from beginning of problem
             if hint_src in problem_multi_para:
-                # remove hint lin from beginning of problem
-                problem_text = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
+                problem_texts = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
             else:
-                problem_text = problem_no_empty_lines
+                problem_texts = problem_no_empty_lines
+
+            # Remove image section from problem text
+            if "image" in problem_texts:
+                # Remove image - height
+                image_line_1 = re.sub(r"image\( .+", "", problem_texts).strip()
+                # Remove tex - *
+                image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
+                # Remove Figure *
+                image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
+                problem_text = image_line_3
+            else:
+                problem_text = problem_texts
 
             # get answer from file
             start_of_answer_src = "showHint"
@@ -164,13 +169,13 @@ for root, dir, files in os.walk(file_path):
                 print('#' + str(counter) + ' - ' + filename + "'s Assets: " + str(assets))
             # print(yaml.safe_dump(yaml_dict, sort_keys=False))
             # print(answer_section)
-            # print(problem_text)
+            print(problem_text)
 
             Path("Kinematics/" + filename + ".md").write_text('---\n' + \
                                                               yaml.safe_dump(yaml_dict, sort_keys=False) + \
                                                               '---\n\n' + \
                                                               '## Question Section ' + \
-                                                              '\n\n' + \
+                                                              '\n\n' +
                                                               problem_text + \
                                                               '\n\n' + \
                                                               '## Answer Section' + \
