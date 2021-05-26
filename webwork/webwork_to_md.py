@@ -15,7 +15,6 @@ for root, dir, files in os.walk(file_path):
         if file.endswith('.pg'):
             filename = file[1:file.find('.')]
             counter = counter + 1
-            print(filename + ' - ' + str(counter))
 
             question_file = open(file_path + file, 'r')
             file_contents = question_file.read()
@@ -29,8 +28,8 @@ for root, dir, files in os.walk(file_path):
             keywords_src = "KEYWORDS"
             date_src = "Date"
 
-            title = author = editor = date = source = problem_type = outcomes = assets = server = ""
-            tags = []
+            title = author = editor = date = source = problem_type = outcomes = server = ""
+            tags = assets = []
 
             # get metadata from file
             for item in file_contents.split("\n"):
@@ -79,9 +78,13 @@ for root, dir, files in os.walk(file_path):
 
             # TODO: Clean up and optimize the if / else statements
 
-            # TODO: Handle images within questions
             if image_src in problem_multi_para:
-                print(filename + " contains images")
+                num_images = problem_multi_para.count("image")
+                for image_src in problem_multi_para:
+                    image_file = re.findall(' ".+?"', problem_multi_para.strip())
+                    assets = [img.replace('"', '').strip() for img in image_file]
+            else:
+                assets = ''
 
             if ans_rule_src in problem_multi_para:
                 # remove ans_rule line from problem
@@ -144,9 +147,13 @@ for root, dir, files in os.walk(file_path):
             yaml_dict['type'] = problem_type
             yaml_dict['tags'] = tags
             yaml_dict['outcomes'] = ['TBD']
-            yaml_dict['assets'] = ['TBD']
+            yaml_dict['assets'] = assets
             # yaml_dict['server'] = full_python #'import random \\n b=u'
 
+            if not assets:
+                print('#' + str(counter) + ' - ' + filename)
+            else:
+                print('#' + str(counter) + ' - ' + filename + "'s Assets: " + str(assets))
             # print(yaml.safe_dump(yaml_dict, sort_keys=False))
             # print(answer_section)
             # print(problem_text)
