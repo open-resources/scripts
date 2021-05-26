@@ -135,8 +135,7 @@ for root, dir, files in os.walk(file_path):
                 # TODO: handle answer section without hint
                 answer_section = ""
 
-            # Preparing the YAML dictionary
-
+            # ------------------------ Preparing the YAML dictionary ------------------------ #
             # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
             yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -169,15 +168,15 @@ for root, dir, files in os.walk(file_path):
                 print('#' + str(counter) + ' - ' + filename + "'s Assets: " + str(assets))
             # print(yaml.safe_dump(yaml_dict, sort_keys=False))
             # print(answer_section)
-            print(problem_text)
+            # print(problem_text)
 
-            Path("Kinematics/" + filename + ".md").write_text('---\n' + \
-                                                              yaml.safe_dump(yaml_dict, sort_keys=False) + \
-                                                              '---\n\n' + \
-                                                              '## Question Section ' + \
-                                                              '\n\n' +
-                                                              problem_text + \
-                                                              '\n\n' + \
-                                                              '## Answer Section' + \
-                                                              '\n\n' + \
-                                                              answer_section)
+            Path("Kinematics/" + filename + ".md").write_text('---\n'
+                                                              + yaml.safe_dump(yaml_dict, sort_keys=False)
+                                                              + '---\n\n'
+                                                              + '## Question Section '
+                                                              + '\n\n'
+                                                              + problem_text
+                                                              + '\n\n'
+                                                              + '## Answer Section'
+                                                              + '\n\n'
+                                                              + answer_section)
