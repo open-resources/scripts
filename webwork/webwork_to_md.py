@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 import yaml
 import re
+from string import ascii_lowercase
+
 
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
@@ -117,10 +119,24 @@ for root, dir, files in os.walk(file_path):
                 # Remove tex - *
                 image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
                 # Remove Figure *
-                image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
-                problem_text = image_line_3
+                # TODO: can not remove all "figures" since some questions use the word "figure" in the actual question
+                # image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
+                problem_text = image_line_2
             else:
                 problem_text = problem_no_hint
+
+            parts_dirty = parts_clean = {}
+            section = {}
+            for alphabet in ascii_lowercase:
+                parts_dirty[alphabet] = re.search(rf"{alphabet}\) .*", problem_text)
+                problem_text = re.sub(rf"{alphabet}\) .*", '', problem_text)
+                if parts_dirty[alphabet]:
+                    section_header = parts_dirty[alphabet].group()[0].capitalize()
+                    parts_clean[alphabet] = re.sub(rf"{alphabet}\) ", "", parts_dirty[alphabet].group())
+                    parts_group = "## " + section_header + "\n" + parts_clean[alphabet] + "\n" + "### Answer Section"
+                    print(filename + " " + parts_group)
+
+
 
             # ------------------------ Preparing Answer Section ------------------------ #
             start_of_answer_src = "showHint"
@@ -174,12 +190,14 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-            Path("2D_Kinematics/" + filename + ".md").write_text('---\n'
+            Path("Kinematics/" + filename + ".md").write_text('---\n'
                                                                  + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                  + '---\n\n'
                                                                  + '## Question Section '
                                                                  + '\n\n'
                                                                  + problem_text
+                                                                 + '\n'
+                                                                 + parts_group
                                                                  + '\n\n'
                                                                  + '## Answer Section'
                                                                  + '\n\n'
