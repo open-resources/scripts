@@ -4,7 +4,6 @@ import yaml
 import re
 from string import ascii_lowercase
 
-
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
@@ -127,25 +126,32 @@ for root, dir, files in os.walk(file_path):
 
             parts_dirty = parts_clean = {}
             section = {}
-            for alphabet in ascii_lowercase:
+            # find multi-part questions and separate each section
+            for alphabet in ascii_lowercase[:11]:
                 parts_dirty[alphabet] = re.search(rf"{alphabet}\) .*", problem_text)
-                problem_text = re.sub(rf"{alphabet}\) .*", '', problem_text)
+                # problem_text = re.sub(rf"{alphabet}\) .*", '', problem_text)
                 if parts_dirty[alphabet]:
                     section_header = parts_dirty[alphabet].group()[0].capitalize()
                     parts_clean[alphabet] = re.sub(rf"{alphabet}\) ", "", parts_dirty[alphabet].group())
-                    parts_group = "## " + section_header + "\n" + parts_clean[alphabet] + "\n" + "### Answer Section"
-                    print(filename + " " + parts_group)
-
-
+                    section[alphabet] = "## " + section_header + "\n" \
+                                        + parts_clean[alphabet] + "\n" \
+                                        + "### Answer Section" + "\n"
+                    print(filename + " " + section[alphabet])
 
             # ------------------------ Preparing Answer Section ------------------------ #
             start_of_answer_src = "showHint"
             end_of_answer_src = "BEGIN_TEXT"
+            context_src = "Context"
 
             if start_of_answer_src in file_contents:
                 answer_with_hint = file_contents[file_contents.index(start_of_answer_src)
                                                  :file_contents.index(end_of_answer_src)]
-                answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_with_hint) \
+                # Remove "Context" from end of file
+                if context_src in answer_with_hint:
+                    answer_no_context = re.sub(rf"{context_src}.+", "", answer_with_hint)
+                else:
+                    answer_no_context = answer_with_hint
+                answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_no_context) \
                     .replace(end_of_answer_src, '') \
                     .replace(';', '') \
                     .replace('$', '').strip()
@@ -191,14 +197,14 @@ for root, dir, files in os.walk(file_path):
             # print(problem_text)
 
             Path("Kinematics/" + filename + ".md").write_text('---\n'
-                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                                 + '---\n\n'
-                                                                 + '## Question Section '
-                                                                 + '\n\n'
-                                                                 + problem_text
-                                                                 + '\n'
-                                                                 + parts_group
-                                                                 + '\n\n'
-                                                                 + '## Answer Section'
-                                                                 + '\n\n'
-                                                                 + answer_section)
+                                                              + yaml.safe_dump(yaml_dict, sort_keys=False)
+                                                              + '---\n\n'
+                                                              + '## Question Section '
+                                                              + '\n\n'
+                                                              + problem_text
+                                                              + '\n'
+                                                              + ''.join(f'{value}' for key, value in section.items())
+                                                              + '\n\n'
+                                                              + '## Answer Section'
+                                                              + '\n\n'
+                                                              + answer_section)
