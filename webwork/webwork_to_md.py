@@ -7,7 +7,7 @@ from string import ascii_lowercase
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 # file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
-file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/3.Two_Dimensional_Kinematics/003-005_ADDITIONOFVELOCITIES/'
+file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/4.Dynamics_Force_and_Newtons_Laws_of_Motion/Extended_Topic_The_Four_Basic_Forces_An_Introduction/'
 
 # TODO: remove file path for math problems before merging PR ->
 # file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
@@ -195,7 +195,7 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-            Path("2.2D_Kinematics/" + filename + ".md").write_text('---\n'
+            Path("3.Dynamics_Force/" + filename + ".md").write_text('---\n'
                                                               + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                               + '---\n\n'
                                                               + '## Question Section '
