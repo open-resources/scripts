@@ -195,7 +195,7 @@ for root, dir, files in os.walk(file_path):
             # print(answer_section)
             # print(problem_text)
 
-            Path("Kinematics/" + filename + ".md").write_text('---\n'
+            Path("1.Kinematics/" + filename + ".md").write_text('---\n'
                                                               + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                               + '---\n\n'
                                                               + '## Question Section '
