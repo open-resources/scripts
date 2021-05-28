@@ -7,7 +7,7 @@ from string import ascii_lowercase
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
-# file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/3.Two_Dimensional_Kinematics/Projectile_Motion/'
+# file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/3.Two_Dimensional_Kinematics/Vector_Addition_and_Subtraction_Graphical_Method/'
 
 # TODO: remove file path for math problems before merging PR ->
 # file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
@@ -73,6 +73,7 @@ for root, dir, files in os.walk(file_path):
                 .replace('{', '') \
                 .replace('}', '') \
                 .replace('PAR', '') \
+                .replace('BR', '') \
                 .replace('textrm', '') \
                 .strip()
 
@@ -129,14 +130,12 @@ for root, dir, files in os.walk(file_path):
             # find multi-part questions and separate each section
             for alphabet in ascii_lowercase[:11]:
                 parts_dirty[alphabet] = re.search(rf"{alphabet}\) .*", problem_text)
-                # problem_text = re.sub(rf"{alphabet}\) .*", '', problem_text)
                 if parts_dirty[alphabet]:
                     section_header = parts_dirty[alphabet].group()[0].capitalize()
                     parts_clean[alphabet] = re.sub(rf"{alphabet}\) ", "", parts_dirty[alphabet].group())
                     section[alphabet] = "## " + section_header + "\n" \
                                         + parts_clean[alphabet] + "\n" \
                                         + "### Answer Section" + "\n"
-                    print(filename + " " + section[alphabet])
 
             # ------------------------ Preparing Answer Section ------------------------ #
             start_of_answer_src = "showHint"
