@@ -7,7 +7,7 @@ from string import ascii_lowercase
 # loop through every file in the dir
 # TODO: change this file path to get files directly from github to ensure they're up-to-date
 # file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
-file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/4.Dynamics_Force_and_Newtons_Laws_of_Motion/Extended_Topic_The_Four_Basic_Forces_An_Introduction/'
+file_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics/'
 
 # TODO: remove file path for math problems before merging PR ->
 # file_path = '../../webwork-open-problem-library/OpenProblemLibrary/FortLewis/Calc3/12-1-Two-variable-functions/'
@@ -31,7 +31,7 @@ for root, dir, files in os.walk(file_path):
             date_src = "Date"
 
             title = author = editor = date = source = problem_type = outcomes = server = ""
-            tags = assets = []
+            tags = assets = altText = image_line = []
 
             # ------------------------ Preparing Metadata ------------------------ #
             for item in file_contents.split("\n"):
@@ -87,9 +87,15 @@ for root, dir, files in os.walk(file_path):
                 num_images = problem_multi_para.count("image")
                 for image_src in problem_multi_para:
                     image_file = re.findall(' ".+?"', problem_multi_para.strip())
-                    assets = [img.replace('"', '').strip() for img in image_file]
+                    image_alt_text = re.findall('=".+?"', problem_multi_para.strip())
+                    altText = [alt.replace('"', '').replace('=', '').strip() for alt in image_alt_text]
+                    assets = [img.strip() for img in image_file]
             else:
                 assets = ''
+
+            for image_alt, image_filename in zip(altText, assets):
+                if image_alt:
+                    image_line = "![" + image_alt + "](" + image_filename + ")"
 
             # remove ans_rule line from problem
             if ans_rule_src in problem_multi_para:
@@ -190,20 +196,24 @@ for root, dir, files in os.walk(file_path):
             if not assets:
                 print('#' + str(counter) + ' - ' + filename)
             else:
-                print('#' + str(counter) + ' - ' + filename + "'s Assets: " + str(assets))
+                print('#' + str(counter) + ' - ' + filename + "'s Assets: "
+                      + str(assets) + "\nAlt Text: " + str(image_line))
+
+            # print('#' + str(counter) + ' - ' + filename + "'s Images: " + str(image_line))
             # print(yaml.safe_dump(yaml_dict, sort_keys=False))
             # print(answer_section)
             # print(problem_text)
 
-            Path("3.Dynamics_Force/" + filename + ".md").write_text('---\n'
-                                                              + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                              + '---\n\n'
-                                                              + '## Question Section '
-                                                              + '\n\n'
-                                                              + problem_text
-                                                              + '\n'
-                                                              + ''.join(f'{value}' for key, value in section.items())
-                                                              + '\n\n'
-                                                              + '## Answer Section'
-                                                              + '\n\n'
-                                                              + answer_section)
+            Path("Test/" + filename + ".md").write_text('---\n'
+                                                        + yaml.safe_dump(yaml_dict, sort_keys=False)
+                                                        + '---\n\n'
+                                                        + '## Question Section '
+                                                        + str('\n\n' + image_line if assets else '')
+                                                        + '\n\n'
+                                                        + problem_text
+                                                        + '\n\n'
+                                                        + ''.join(f'{value}' for key, value in section.items())
+                                                        + '\n\n'
+                                                        + '## Answer Section'
+                                                        + '\n\n'
+                                                        + answer_section)
