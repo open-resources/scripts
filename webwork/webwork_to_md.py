@@ -4,33 +4,41 @@ import yaml
 import re
 from string import ascii_lowercase
 
+# TODO: unify variable names
+# TODO: optimize code to run faster
+# TODO: modularize code w/ functions and/or seprate python files
+# TODO: handle exception instead of passing them
+# TODO: handle answer section without hint
+
 # loop through every file in the dir
 root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
+root_dest_folder = 'Output/'
 
 counter = 0
 output = []
 source_files = []
 src_dirs = []
 
-
+# extract file structure from source directory (handles ALL sub-directories)
 for root, dirs, files in os.walk(root_path):
     for name in dirs:
         dest_folder = os.path.join(root, name).removeprefix(root_path)
-        src_dirs.append("tests/" + dest_folder)
+        src_dirs.append(root_dest_folder + dest_folder)
 
 for root, dirs, files in os.walk(root_path):
+    # create dest file structure based on source directory
     for dir_path in src_dirs:
-        test_dest_folder = dir_path
         Path(dir_path).mkdir(parents=True, exist_ok=True)
+    # iterate through each file
     for file in files:
         if file.endswith('.pg'):
             source_files.append(os.path.join(root, file))
-            # rootFolder = root.split('/')[-1]
             for source_filepath in source_files:
                 try:
                     filename = file[1:file.find('.')]
                     question_file = open(source_filepath, 'r')
                     file_contents = question_file.read()
+                    dest_file_path = root.removeprefix(root_path)
 
                     # declare variables
                     metadata = "## "
@@ -75,7 +83,7 @@ for root, dirs, files in os.walk(root_path):
                         problem_full = file_contents[
                                        file_contents.index(start_of_problem_src):file_contents.index(
                                            end_of_problem_src)]
-                    # print(file_contents)
+                        # print(file_contents)
                     problem_header = problem_full \
                         .replace(' \\', '') \
                         .replace('\\', '') \
@@ -91,9 +99,6 @@ for root, dirs, files in os.walk(root_path):
 
                     # find all problem text between
                     problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
-
-                    # TODO: Clean up and optimize the if / else statements
-
                     # extract image file names from question and save in assets
                     if image_src in problem_multi_para:
                         num_images = problem_multi_para.count("image")
@@ -205,26 +210,15 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict['assets'] = assets
                     # yaml_dict['server'] = full_python #'import random \\n b=u'
 
-                    # if not assets:
-                    #     print('#' + str(counter) + ' - ' + filename)
-                    # else:
-                    #     print('#' + str(counter) + ' - ' + filename + "'s Assets: "
-                    #           + str(assets) + "\nAlt Text: " + str(image_line))
-
                     counterString = '#' + str(counter) + ' - '
-                    currentFile = test_dest_folder + "/" + filename
+                    currentFile = root_dest_folder + dest_file_path + "/" + filename
 
                     if currentFile not in output:
                         counter = counter + 1
                         print(counterString + currentFile)
                         output.append(currentFile)
 
-                    # print('#' + str(counter) + ' - ' + filename + "'s Images: " + str(image_line))
-                    # print(yaml.safe_dump(yaml_dict, sort_keys=False))
-                    # print(answer_section)
-                    # print(problem_text)
-
-                    Path(test_dest_folder + "/" + filename + ".md").write_text('---\n'
+                    Path(root_dest_folder + dest_file_path + "/" + filename + ".md").write_text('---\n'
                                                         + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                         + '---\n\n'
                                                         + '## Question Section '
@@ -238,4 +232,5 @@ for root, dirs, files in os.walk(root_path):
                                                         + '\n\n'
                                                         + answer_section)
                 except Exception as e:
-                  raise e
+                    print(e)
+                    pass
