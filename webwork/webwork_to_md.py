@@ -10,14 +10,19 @@ root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Phy
 counter = 0
 output = []
 source_files = []
+src_dirs = []
+
 
 for root, dirs, files in os.walk(root_path):
+    for name in dirs:
+        dest_folder = os.path.join(root, name).removeprefix(root_path)
+        src_dirs.append("tests/" + dest_folder)
+
+for root, dirs, files in os.walk(root_path):
+    for dir_path in src_dirs:
+        test_dest_folder = dir_path
+        Path(dir_path).mkdir(parents=True, exist_ok=True)
     for file in files:
-        for name in dirs:
-            dest_folder = os.path.join(root, name).removeprefix(root_path)
-            test_dest_folder = "tests/" + dest_folder
-            print(test_dest_folder)
-            Path(test_dest_folder).mkdir(parents=True, exist_ok=True)
         if file.endswith('.pg'):
             source_files.append(os.path.join(root, file))
             # rootFolder = root.split('/')[-1]
