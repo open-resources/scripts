@@ -6,7 +6,7 @@ from string import ascii_lowercase
 
 # TODO: unify variable names
 # TODO: optimize code to run faster
-# TODO: modularize code w/ functions and/or seprate python files
+# TODO: modularize code w/ functions and/or separate python files
 # TODO: handle exception instead of passing them
 # TODO: handle answer section without hint
 
