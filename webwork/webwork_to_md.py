@@ -49,7 +49,7 @@ for root, dirs, files in os.walk(root_path):
                     keywords_src = "KEYWORDS"
                     date_src = "Date"
 
-                    title = author = editor = date = source = problem_type = outcomes = server = ""
+                    title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = server = ""
                     tags = assets = altText = image_line = []
 
                     # ------------------------ Preparing Metadata ------------------------ #
@@ -57,7 +57,7 @@ for root, dirs, files in os.walk(root_path):
                         if metadata + chapter_src in item:
                             title = item[item.find("(") + 1:item.find(")")].replace("'", "")
                         if metadata + section_src in item:
-                            title += " - " + item[item.find("(") + 1:item.find(")")].replace("'", "")
+                            topic = item[item.find("(") + 1:item.find(")")].replace("'", "")
                         if metadata + author_src in item:
                             author = item[item.find("(") + 1:item.find(")")].replace("'", "")
                         if metadata + editor_src in item:
@@ -200,11 +200,16 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict = {}
 
                     yaml_dict['title'] = title
+                    yaml_dict['topic'] = topic
                     yaml_dict['author'] = author
                     yaml_dict['date'] = date
                     yaml_dict['editor'] = editor
                     yaml_dict['source'] = source
+                    yaml_dict['template_version'] = '1.1'
                     yaml_dict['type'] = problem_type
+                    yaml_dict['difficulty'] = 'TBD'
+                    yaml_dict['randomization'] = 'TBD'
+                    yaml_dict['taxonomy'] = 'TBD'
                     yaml_dict['tags'] = tags
                     yaml_dict['outcomes'] = ['TBD']
                     yaml_dict['assets'] = assets
