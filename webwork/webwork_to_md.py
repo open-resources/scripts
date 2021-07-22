@@ -3,6 +3,7 @@ from pathlib import Path
 import yaml
 import re
 from string import ascii_lowercase
+import time
 
 # TODO: unify variable names
 # TODO: optimize code to run faster
@@ -11,20 +12,25 @@ from string import ascii_lowercase
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
-root_dest_folder = 'Output/'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/12.Fluid_Dynamics_and_Medical_Applications/'
+root_dest_folder = 'Output/test/'
 
+# variable declaration
 counter = 0
 output = []
 source_files = []
 src_dirs = []
-
+title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = server = ""
+tags = assets = altText = image_line = []
+total_start_time = time.process_time()
 # extract file structure from source directory (handles ALL sub-directories)
+# for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
     for name in dirs:
         dest_folder = os.path.join(root, name).removeprefix(root_path)
         src_dirs.append(root_dest_folder + dest_folder)
 
+# for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
     # create dest file structure based on source directory
     for dir_path in src_dirs:
@@ -48,9 +54,6 @@ for root, dirs, files in os.walk(root_path):
                     editor_src = "Editor"
                     keywords_src = "KEYWORDS"
                     date_src = "Date"
-
-                    title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = server = ""
-                    tags = assets = altText = image_line = []
 
                     # ------------------------ Preparing Metadata ------------------------ #
                     for item in file_contents.split("\n"):
@@ -215,7 +218,7 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict['assets'] = assets
                     # yaml_dict['server'] = full_python #'import random \\n b=u'
 
-                    counterString = '#' + str(counter) + ' - '
+                    counterString = '#' + str(counter+1) + ' - '
                     currentFile = root_dest_folder + dest_file_path + "/" + filename
 
                     if currentFile not in output:
@@ -239,3 +242,9 @@ for root, dirs, files in os.walk(root_path):
                 except Exception as e:
                     print(e)
                     pass
+
+# ------------------------ STATS ------------------------ #
+total_end_time = time.process_time()
+process_time_seconds = total_end_time - total_start_time
+print('total time:',  round(process_time_seconds/60, 2), 'minutes,', round(process_time_seconds, 2), 'seconds')
+print('avg time per each file:', round(process_time_seconds/counter, 2), 'seconds [', counter, '] files')
