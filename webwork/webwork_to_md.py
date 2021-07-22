@@ -205,11 +205,11 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict['date'] = date
                     yaml_dict['editor'] = editor
                     yaml_dict['source'] = source
-                    yaml_dict['template_version'] = '1.1'
+                    yaml_dict['template_version'] = 1.1
                     yaml_dict['type'] = problem_type
-                    yaml_dict['difficulty'] = 'TBD'
-                    yaml_dict['randomization'] = 'TBD'
-                    yaml_dict['taxonomy'] = 'TBD'
+                    yaml_dict['difficulty'] = ['TBD']
+                    yaml_dict['randomization'] = ['TBD']
+                    yaml_dict['taxonomy'] = ['TBD']
                     yaml_dict['tags'] = tags
                     yaml_dict['outcomes'] = ['TBD']
                     yaml_dict['assets'] = assets
