@@ -12,17 +12,60 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/12.Fluid_Dynamics_and_Medical_Applications/'
-root_dest_folder = 'Output/test/'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone'
+root_dest_folder = 'Output'
 
 # variable declaration
 counter = 0
 output = []
 source_files = []
 src_dirs = []
-title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = server = ""
+title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = ""
 tags = assets = altText = image_line = []
 total_start_time = time.process_time()
+
+# server variables
+server_imports = """
+    imports: |
+        import random
+        import problem_bank_helpers as pbh
+""".strip('\n')
+server_generate_names = "TBD"
+server_generate_phrases = "TBD"
+server_generate_random_var = "TBD"
+server_generate_dic = "TBD"
+server_generate_answers = "TBD"
+server_generate = f"""
+    generate: |
+        data2 = pbh.create_data2()
+
+        # define or load names/items/objects from server files
+        {server_generate_names}
+        # store phrases etc
+        {server_generate_phrases}
+        # Randomize Variables
+        {server_generate_random_var}
+        # store the variables in the dictionary "params"
+        {server_generate_dic}
+        # define possible answers
+        {server_generate_answers}
+        # Update the data object with a new dict
+        data.update(data2)
+"""
+server_prepare = """
+    prepare: |
+        pass
+""".strip('\n')
+server_parse = """
+    parse: |
+        pass
+"""
+server_grade = """
+    grade: |
+        pass
+""".strip('\n')
+server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
+
 # extract file structure from source directory (handles ALL sub-directories)
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -38,6 +81,7 @@ for root, dirs, files in os.walk(root_path):
     # iterate through each file
     for file in files:
         if file.endswith('.pg'):
+            file_start_time = time.process_time()
             source_files.append(os.path.join(root, file))
             for source_filepath in source_files:
                 try:
@@ -101,7 +145,8 @@ for root, dirs, files in os.walk(root_path):
                         .strip()
 
                     # find all problem text between
-                    problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src, "")
+                    problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src,
+                                                                                                "")
                     # extract image file names from question and save in assets
                     if image_src in problem_multi_para:
                         num_images = problem_multi_para.count("image")
@@ -181,7 +226,8 @@ for root, dirs, files in os.walk(root_path):
                             .replace(';', '') \
                             .replace('$', '').strip()
                         if "random" in answer_section:
-                            answer_section = "from random import randrange\n" + answer_section.replace('random', 'randrange')
+                            answer_section = "from random import randrange\n" + answer_section.replace('random',
+                                                                                                       'randrange')
                     else:
                         # TODO: handle answer section without hint
                         answer_section = ""
@@ -216,9 +262,11 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict['tags'] = tags
                     yaml_dict['outcomes'] = ['TBD']
                     yaml_dict['assets'] = assets
-                    # yaml_dict['server'] = full_python #'import random \\n b=u'
+                    yaml_dict['server'] = server
 
-                    counterString = '#' + str(counter+1) + ' - '
+                    end_file_time = time.process_time()
+                    file_process_time = end_file_time - file_start_time
+                    counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
                     currentFile = root_dest_folder + dest_file_path + "/" + filename
 
                     if currentFile not in output:
@@ -246,5 +294,5 @@ for root, dirs, files in os.walk(root_path):
 # ------------------------ STATS ------------------------ #
 total_end_time = time.process_time()
 process_time_seconds = total_end_time - total_start_time
-print('total time:',  round(process_time_seconds/60, 2), 'minutes,', round(process_time_seconds, 2), 'seconds')
-print('avg time per each file:', round(process_time_seconds/counter, 2), 'seconds [', counter, '] files')
+print('total time:', round(process_time_seconds / 60, 2), 'minutes,', round(process_time_seconds, 2), 'seconds')
+print('avg time per each file:', round(process_time_seconds / counter, 2), 'seconds [', counter, '] files')
