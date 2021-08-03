@@ -85,6 +85,7 @@ for root, dirs, files in os.walk(root_path):
             source_files.append(os.path.join(root, file))
             for source_filepath in source_files:
                 try:
+                    file_dir = source_filepath[source_filepath.find("Contrib"):]
                     filename = file[1:file.find('.')]
                     question_file = open(source_filepath, 'r')
                     file_contents = question_file.read()
@@ -245,7 +246,7 @@ for root, dirs, files in os.walk(root_path):
 
                     yaml.add_representer(str, repr_str, Dumper=yaml.SafeDumper)
 
-                    source = "https://github.com/openwebwork/webwork-open-problem-library"
+                    source = f"https://github.com/open-resources/webwork-open-problem-library/tree/master/{file_dir}"
                     yaml_dict = {}
 
                     yaml_dict['title'] = title
