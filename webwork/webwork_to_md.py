@@ -22,6 +22,7 @@ source_files = []
 src_dirs = []
 title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = ""
 tags = assets = altText = image_line = []
+question_type = []
 total_start_time = time.process_time()
 
 # server variables
@@ -171,6 +172,25 @@ for root, dirs, files in os.walk(root_path):
 
                     # remove ANS line from problem
                     if ans_src in problem_multi_para:
+                        # determine what type of question is based on the ANS(type)
+                        numerical_type = "num_cmp"
+                        functional_type = "fun_cmp"
+                        checkbox_type = "checkbox_cmp"
+                        text_type = "str_cmp"
+
+                        answer_types = re.findall(r"ANS(\(.+?[?<!)]\));", problem_clean_up)
+                        for answer_type in answer_types:
+                            if numerical_type in answer_type:
+                                question_type.append("Numerical")
+                            elif functional_type in answer_type:
+                                question_type.append("Functional")
+                            elif checkbox_type in answer_type:
+                                question_type.append("Checkbox")
+                            elif text_type in answer_type:
+                                question_type.append("Text")
+                            else:
+                                question_type.append("Unknown")
+
                         problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
                         # remove empty lines from problem
                         problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
@@ -264,7 +284,17 @@ for root, dirs, files in os.walk(root_path):
                     yaml_dict['outcomes'] = ['TBD']
                     yaml_dict['assets'] = assets
                     yaml_dict['server'] = server
-
+                    # iterate through # of sections and print question type based on each section
+                    try:
+                        for part_counter in range(0, len(section)):
+                            yaml_dict['part' + str(part_counter + 1 if part_counter < 2 else part_counter)] = ''.join(f"""
+type: {question_type[part_counter]}
+pl-customizations:
+    weight: 1
+""").strip('\n')
+                    except Exception as e:
+                        pass
+                    question_type = []
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
                     counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
