@@ -74,6 +74,21 @@ for root, dirs, files in os.walk(root_path):
         dest_folder = os.path.join(root, name).removeprefix(root_path)
         src_dirs.append(root_dest_folder + dest_folder)
 
+#TODO: clean up variables for function
+def split_file(file_content):
+    metadata_content = file_content[:file_content.find("DOCUMENT();")]
+    macros = file_content[file_content.find("DOCUMENT();"):file_content.find("TEXT(beginproblem());")]
+    question_variables = file_content[file_content.find("showHint"):file_content.find("BEGIN_TEXT")]
+    question_body = [file_content[file_content.find("BEGIN_TEXT"):file_content.find("END_TEXT")]]
+    question_ans = [re.findall(r"ANS(\(.+?[?<!)]\));", file_content)]
+    question_hint = [file_content[file_content.find("BEGIN_HINT"):file_content.find("END_HINT")]]
+    return_dict = {'metadata': metadata_content,
+                   'macros': macros,
+                   'question_variables': question_variables,
+                   'question_body': question_body,
+                   'question_ans': question_ans,
+                   'question_hint': question_hint}
+
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
     # create dest file structure based on source directory
@@ -91,7 +106,7 @@ for root, dirs, files in os.walk(root_path):
                     question_file = open(source_filepath, 'r')
                     file_contents = question_file.read()
                     dest_file_path = root.removeprefix(root_path)
-
+                    split_file(file_contents)
                     # declare variables
                     metadata = "## "
                     chapter_src = "DBchapter"
