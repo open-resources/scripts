@@ -95,12 +95,46 @@ def split_file(file_content):
     question_body = [file_content[file_content.find(problem_body_start_src):file_content.find(problem_body_end_src)]]
     question_ans = [re.findall(r"ANS(\(.+?[?<!)]\));", file_content)]
     question_hint = [file_content[file_content.find(hint_start_src):file_content.find(hint_end_src)]]
-    return_dict = {'metadata': metadata_content,
-                   'macros': macros,
-                   'question_variables': question_variables,
-                   'question_body': question_body,
-                   'question_ans': question_ans,
-                   'question_hint': question_hint}
+    return {'metadata': metadata_content,
+            'macros': macros,
+            'question_variables': question_variables,
+            'question_body': question_body,
+            'question_ans': question_ans,
+            'question_hint': question_hint}
+
+
+def metadata_extract(metadata_content):
+    metadata = "## "
+    chapter_src = "DBchapter"
+    section_src = "DBsection"
+    author_src = "AuthorText1"
+    editor_src = "Editor"
+    keywords_src = "KEYWORDS"
+    date_src = "Date"
+
+    title_ = topic_ = author_ = editor_ = tags_ = date_ = None
+
+    for item in metadata_content.split("\n"):
+        if metadata + chapter_src in item:
+            title_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+        if metadata + section_src in item:
+            topic_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+        if metadata + author_src in item:
+            author_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+        if metadata + editor_src in item:
+            editor_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+        if keywords_src in item:
+            tags_ = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
+        if metadata + date_src in item:
+            date_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+    return {
+        'title': title_,
+        'topic': topic_,
+        'author': author_,
+        'editor': editor_,
+        'tags': tags_,
+        'date': date_}
+
 
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -119,30 +153,10 @@ for root, dirs, files in os.walk(root_path):
                     question_file = open(source_filepath, 'r')
                     file_contents = question_file.read()
                     dest_file_path = root.removeprefix(root_path)
-                    split_file(file_contents)
-                    # declare variables
-                    metadata = "## "
-                    chapter_src = "DBchapter"
-                    section_src = "DBsection"
-                    author_src = "AuthorText1"
-                    editor_src = "Editor"
-                    keywords_src = "KEYWORDS"
-                    date_src = "Date"
 
-                    # ------------------------ Preparing Metadata ------------------------ #
-                    for item in file_contents.split("\n"):
-                        if metadata + chapter_src in item:
-                            title = item[item.find("(") + 1:item.find(")")].replace("'", "")
-                        if metadata + section_src in item:
-                            topic = item[item.find("(") + 1:item.find(")")].replace("'", "")
-                        if metadata + author_src in item:
-                            author = item[item.find("(") + 1:item.find(")")].replace("'", "")
-                        if metadata + editor_src in item:
-                            editor = item[item.find("(") + 1:item.find(")")].replace("'", "")
-                        if keywords_src in item:
-                            tags = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
-                        if metadata + date_src in item:
-                            date = item[item.find("(") + 1:item.find(")")].replace("'", "")
+                    split_file(file_contents)
+                    file_contents_dic = split_file(file_contents)
+                    metadata_dic = metadata_extract(file_contents_dic['metadata'])
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
