@@ -71,9 +71,9 @@ server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{ser
 metadata_end_src = "DOCUMENT();"
 marcos_end_src = "TEXT(beginproblem());"
 variables_start_src = "showHint"
-start_of_problem_src = "BEGIN_TEXT"
-end_of_problem_src = "END_TEXT"
-begin_hint_src = "BEGIN_HINT"
+problem_body_start_src = "BEGIN_TEXT"
+problem_body_end_src = "END_TEXT"
+hint_start_src = "BEGIN_HINT"
 hint_end_src = "END_HINT"
 ans_rule_src = "ans_rule"
 ans_src = "ANS"
@@ -91,10 +91,10 @@ for root, dirs, files in os.walk(root_path):
 def split_file(file_content):
     metadata_content = file_content[:file_content.find(metadata_end_src)]
     macros = file_content[file_content.find(metadata_end_src):file_content.find(marcos_end_src)]
-    question_variables = file_content[file_content.find(marcos_end_src):file_content.find(start_of_problem_src)]
-    question_body = [file_content[file_content.find(start_of_problem_src):file_content.find(end_of_problem_src)]]
+    question_variables = file_content[file_content.find(marcos_end_src):file_content.find(problem_body_start_src)]
+    question_body = [file_content[file_content.find(problem_body_start_src):file_content.find(problem_body_end_src)]]
     question_ans = [re.findall(r"ANS(\(.+?[?<!)]\));", file_content)]
-    question_hint = [file_content[file_content.find(begin_hint_src):file_content.find(hint_end_src)]]
+    question_hint = [file_content[file_content.find(hint_start_src):file_content.find(hint_end_src)]]
     return_dict = {'metadata': metadata_content,
                    'macros': macros,
                    'question_variables': question_variables,
@@ -146,13 +146,13 @@ for root, dirs, files in os.walk(root_path):
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
-                    if begin_hint_src in file_contents:
+                    if hint_start_src in file_contents:
                         problem_full = file_contents[
-                                       file_contents.index(start_of_problem_src):file_contents.index(begin_hint_src)]
+                                       file_contents.index(problem_body_start_src):file_contents.index(hint_start_src)]
                     else:
                         problem_full = file_contents[
-                                       file_contents.index(start_of_problem_src):file_contents.index(
-                                           end_of_problem_src)]
+                                       file_contents.index(problem_body_start_src):file_contents.index(
+                                           problem_body_end_src)]
                         # print(file_contents)
                     problem_header = problem_full \
                         .replace(' \\', '') \
@@ -168,7 +168,7 @@ for root, dirs, files in os.walk(root_path):
                         .strip()
 
                     # find all problem text between
-                    problem_multi_para = problem_header.replace(end_of_problem_src, "").replace(start_of_problem_src,
+                    problem_multi_para = problem_header.replace(problem_body_end_src, "").replace(problem_body_start_src,
                                                                                                 "")
                     # extract image file names from question and save in assets
                     if image_src in problem_multi_para:
