@@ -67,6 +67,19 @@ server_grade = """
 """.strip('\n')
 server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
 
+# Variable declaration for Webwork keywords
+metadata_end_src = "DOCUMENT();"
+marcos_end_src = "TEXT(beginproblem());"
+variables_start_src = "showHint"
+start_of_problem_src = "BEGIN_TEXT"
+end_of_problem_src = "END_TEXT"
+begin_hint_src = "BEGIN_HINT"
+hint_end_src = "END_HINT"
+ans_rule_src = "ans_rule"
+ans_src = "ANS"
+hint_src = "hint"
+image_src = "image"
+
 # extract file structure from source directory (handles ALL sub-directories)
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -74,14 +87,14 @@ for root, dirs, files in os.walk(root_path):
         dest_folder = os.path.join(root, name).removeprefix(root_path)
         src_dirs.append(root_dest_folder + dest_folder)
 
-#TODO: clean up variables for function
+
 def split_file(file_content):
-    metadata_content = file_content[:file_content.find("DOCUMENT();")]
-    macros = file_content[file_content.find("DOCUMENT();"):file_content.find("TEXT(beginproblem());")]
-    question_variables = file_content[file_content.find("showHint"):file_content.find("BEGIN_TEXT")]
-    question_body = [file_content[file_content.find("BEGIN_TEXT"):file_content.find("END_TEXT")]]
+    metadata_content = file_content[:file_content.find(metadata_end_src)]
+    macros = file_content[file_content.find(metadata_end_src):file_content.find(marcos_end_src)]
+    question_variables = file_content[file_content.find(marcos_end_src):file_content.find(start_of_problem_src)]
+    question_body = [file_content[file_content.find(start_of_problem_src):file_content.find(end_of_problem_src)]]
     question_ans = [re.findall(r"ANS(\(.+?[?<!)]\));", file_content)]
-    question_hint = [file_content[file_content.find("BEGIN_HINT"):file_content.find("END_HINT")]]
+    question_hint = [file_content[file_content.find(begin_hint_src):file_content.find(hint_end_src)]]
     return_dict = {'metadata': metadata_content,
                    'macros': macros,
                    'question_variables': question_variables,
@@ -132,13 +145,6 @@ for root, dirs, files in os.walk(root_path):
                             date = item[item.find("(") + 1:item.find(")")].replace("'", "")
 
                     # ------------------------ Preparing Problem Text ------------------------ #
-                    start_of_problem_src = "BEGIN_TEXT"
-                    end_of_problem_src = "END_TEXT"
-                    begin_hint_src = "BEGIN_HINT"
-                    ans_rule_src = "ans_rule"
-                    ans_src = "ANS"
-                    hint_src = "hint"
-                    image_src = "image"
 
                     if begin_hint_src in file_contents:
                         problem_full = file_contents[
