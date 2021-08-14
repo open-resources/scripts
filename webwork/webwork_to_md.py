@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from pprint import pprint
+
 import yaml
 import re
 from string import ascii_lowercase
@@ -12,8 +14,8 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone'
-root_dest_folder = 'Output'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/33.Particle_Physics'
+root_dest_folder = 'Output/hello'
 
 # variable declaration
 counter = 0
@@ -22,7 +24,6 @@ source_files = []
 src_dirs = []
 title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = ""
 tags = assets = altText = image_line = []
-question_type = []
 total_start_time = time.process_time()
 
 # server variables
@@ -93,7 +94,7 @@ def split_file(file_content):
     macros = file_content[file_content.find(metadata_end_src):file_content.find(marcos_end_src)]
     question_variables = file_content[file_content.find(marcos_end_src):file_content.find(problem_body_start_src)]
     question_body = [file_content[file_content.find(problem_body_start_src):file_content.find(problem_body_end_src)]]
-    question_ans = [re.findall(r"ANS(\(.+?[?<!)]\));", file_content)]
+    question_ans = re.findall(r"ANS(\(.+?[?<!)]\));", file_content)
     question_hint = [file_content[file_content.find(hint_start_src):file_content.find(hint_end_src)]]
     return {'metadata': metadata_content,
             'macros': macros,
@@ -127,14 +128,43 @@ def metadata_extract(metadata_content):
             tags_ = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
         if metadata + date_src in item:
             date_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
-    return {
-        'title': title_,
-        'topic': topic_,
-        'author': author_,
-        'editor': editor_,
-        'tags': tags_,
-        'date': date_}
+    return {'title': title_,
+            'topic': topic_,
+            'author': author_,
+            'editor': editor_,
+            'tags': tags_,
+            'date': date_}
 
+
+def determine_problem_type(question_ans):
+    # determine what type of question is based on the ANS(type)
+    numerical_type = "num_cmp"
+    functional_type = "fun_cmp"
+    checkbox_type = "checkbox_cmp"
+    text_type = "str_cmp"
+    answer_type_clean = []
+
+    # extracts answer variable from ANS(num_cmp("variable"))
+    answer_variable = re.findall(r'"\$([^"]*)"', str(question_ans))
+    # extracts problem type from ANS i.e num_cmp, fun_cmp etc.
+    answer_type_raw = re.findall(r'\((.*?)\(', str(question_ans))
+
+    # determine answer type based on the raw answer from question
+    for answer_type in answer_type_raw:
+        if numerical_type in answer_type:
+            answer_type_clean.append("Numerical")
+        elif functional_type in answer_type:
+            answer_type_clean.append("Functional")
+        elif checkbox_type in answer_type:
+            answer_type_clean.append("Checkbox")
+        elif text_type in answer_type:
+            answer_type_clean.append("Text")
+        else:
+            answer_type_clean.append("Unknown")
+    return{
+        'answer_variable': answer_variable,
+        'answer_type_clean': answer_type_clean,
+        'answer_type_raw': answer_type_raw}
 
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -156,7 +186,10 @@ for root, dirs, files in os.walk(root_path):
 
                     split_file(file_contents)
                     file_contents_dic = split_file(file_contents)
+                    # pprint(file_contents_dic['question_ans'])
                     metadata_dic = metadata_extract(file_contents_dic['metadata'])
+                    answer_type = determine_problem_type(file_contents_dic['question_ans'])
+                    pprint(answer_type)
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
@@ -207,24 +240,6 @@ for root, dirs, files in os.walk(root_path):
 
                     # remove ANS line from problem
                     if ans_src in problem_multi_para:
-                        # determine what type of question is based on the ANS(type)
-                        numerical_type = "num_cmp"
-                        functional_type = "fun_cmp"
-                        checkbox_type = "checkbox_cmp"
-                        text_type = "str_cmp"
-
-                        answer_types = re.findall(r"ANS(\(.+?[?<!)]\));", problem_clean_up)
-                        for answer_type in answer_types:
-                            if numerical_type in answer_type:
-                                question_type.append("Numerical")
-                            elif functional_type in answer_type:
-                                question_type.append("Functional")
-                            elif checkbox_type in answer_type:
-                                question_type.append("Checkbox")
-                            elif text_type in answer_type:
-                                question_type.append("Text")
-                            else:
-                                question_type.append("Unknown")
 
                         problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
                         # remove empty lines from problem
