@@ -14,7 +14,7 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/33.Particle_Physics'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics'
 root_dest_folder = 'Output/hello'
 
 # variable declaration
@@ -142,7 +142,7 @@ def determine_problem_type(question_ans):
     functional_type = "fun_cmp"
     checkbox_type = "checkbox_cmp"
     text_type = "str_cmp"
-    answer_type_clean = []
+    question_type = []
 
     # extracts answer variable from ANS(num_cmp("variable"))
     answer_variable = re.findall(r'"\$([^"]*)"', str(question_ans))
@@ -152,19 +152,102 @@ def determine_problem_type(question_ans):
     # determine answer type based on the raw answer from question
     for answer_type in answer_type_raw:
         if numerical_type in answer_type:
-            answer_type_clean.append("Numerical")
+            question_type.append("Numerical")
         elif functional_type in answer_type:
-            answer_type_clean.append("Functional")
+            question_type.append("Functional")
         elif checkbox_type in answer_type:
-            answer_type_clean.append("Checkbox")
+            question_type.append("Checkbox")
         elif text_type in answer_type:
-            answer_type_clean.append("Text")
+            question_type.append("Text")
         else:
-            answer_type_clean.append("Unknown")
+            question_type.append("Unknown")
     return{
         'answer_variable': answer_variable,
-        'answer_type_clean': answer_type_clean,
-        'answer_type_raw': answer_type_raw}
+        'answer_type_raw': answer_type_raw,
+        'question_type': question_type}
+
+
+def yaml_dump(directory_info, metadata, question_type, server, section, image_dic):
+    # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
+    yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
+
+
+    def repr_str(dumper, data):
+        if '\n' in data:
+            return dumper.represent_scalar(u'tag:yaml.org,2002:str', data, style='|')
+        return dumper.org_represent_str(data)
+
+
+    yaml.add_representer(str, repr_str, Dumper=yaml.SafeDumper)
+
+    source = f"https://github.com/open-resources/webwork-open-problem-library/tree/master/{directory_info['file_dir']}"
+    yaml_dict = {}
+
+    yaml_dict['title'] = metadata['title']
+    yaml_dict['topic'] = metadata['topic']
+    yaml_dict['author'] = metadata['author']
+    yaml_dict['date'] = metadata['date']
+    yaml_dict['editor'] = metadata['editor']
+    yaml_dict['tags'] = metadata['tags']
+    yaml_dict['source'] = source
+    yaml_dict['template_version'] = 1.1
+    # yaml_dict['type'] = question_type['question_type']
+    yaml_dict['difficulty'] = ['TBD']
+    yaml_dict['randomization'] = ['TBD']
+    yaml_dict['taxonomy'] = ['TBD']
+    yaml_dict['outcomes'] = ['TBD']
+    yaml_dict['assets'] = image_dic['image_name']
+    yaml_dict['server'] = server
+    # iterate through # of sections and print question type based on each section
+    try:
+        #TODO: revisit this section
+        for part_counter in range(0, len(section)):
+            # print(part_counter)
+            yaml_dict['part' + str(part_counter + 1 if part_counter < 2 else part_counter)] = ''.join(f"""
+type:
+    {question_type[part_counter]}
+pl-customizations:
+    weight: 1
+""").strip('\n')
+    except Exception as e:
+        pass
+        Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
+                                                                                + yaml.safe_dump(yaml_dict, sort_keys=False)
+                                                                                + '---\n\n'
+                                                                                + '## Question Section '
+                                                                                + '\n\n'
+                                                                                + ''.join(f'\n{image}' for image in image_dic['image_line_md'])
+                                                                                + '\n\n')
+                                                                                # + problem_text
+                                                                                # + '\n\n'
+                                                                                # + ''.join(f'{value}' for key, value in section.items())
+                                                                                # + '\n\n'
+                                                                                # + '## Answer Section'
+                                                                                # + '\n\n'
+                                                                                # + answer_section)
+
+
+def image_extract(question_content):
+    image_src = "image("
+    image_line = []
+    image_alt_text = []
+    image_name = []
+
+    for question_part in question_content:
+        if image_src in question_part:
+            image_name = re.findall(' "(.+?)"', str(question_content).strip())
+            image_alt_text = re.findall('="(.+?)"', str(question_content).strip())
+
+    for image_alt, image_filename in zip(image_alt_text, image_name):
+        if image_alt:
+            image_line.append('![' + image_alt.strip() + '](' + image_filename + ')')
+        else:
+            image_line.append('![](' + image_filename + ')')
+
+    return{'image_name': image_name,
+           'image_alt': image_alt_text,
+           'image_line_md': image_line}
+
 
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -188,8 +271,14 @@ for root, dirs, files in os.walk(root_path):
                     file_contents_dic = split_file(file_contents)
                     # pprint(file_contents_dic['question_ans'])
                     metadata_dic = metadata_extract(file_contents_dic['metadata'])
-                    answer_type = determine_problem_type(file_contents_dic['question_ans'])
-                    pprint(answer_type)
+                    question_type = determine_problem_type(file_contents_dic['question_ans'])
+                    dir_info = {
+                        'filename': filename,
+                        'file_dir': file_dir,
+                        'root_dest_folder': root_dest_folder,
+                        'dest_file_path': dest_file_path
+                    }
+                    image_dic = image_extract(file_contents_dic['question_body'])
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
@@ -217,20 +306,6 @@ for root, dirs, files in os.walk(root_path):
                     # find all problem text between
                     problem_multi_para = problem_header.replace(problem_body_end_src, "").replace(problem_body_start_src,
                                                                                                 "")
-                    # extract image file names from question and save in assets
-                    if image_src in problem_multi_para:
-                        num_images = problem_multi_para.count("image")
-                        for image_src in problem_multi_para:
-                            image_file = re.findall(' ".+?"', problem_multi_para.strip())
-                            image_alt_text = re.findall('=".+?"', problem_multi_para.strip())
-                            altText = [alt.replace('"', '').replace('=', '').strip() for alt in image_alt_text]
-                            assets = [img.strip() for img in image_file]
-                    else:
-                        assets = ''
-
-                    for image_alt, image_filename in zip(altText, assets):
-                        if image_alt:
-                            image_line = "![" + image_alt + "](" + image_filename + ")"
 
                     # remove ans_rule line from problem
                     if ans_rule_src in problem_multi_para:
@@ -303,48 +378,7 @@ for root, dirs, files in os.walk(root_path):
                         # TODO: handle answer section without hint
                         answer_section = ""
 
-                    # ------------------------ Preparing the YAML dictionary ------------------------ #
-                    # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
-                    yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
-
-
-                    def repr_str(dumper, data):
-                        if '\n' in data:
-                            return dumper.represent_scalar(u'tag:yaml.org,2002:str', data, style='|')
-                        return dumper.org_represent_str(data)
-
-
-                    yaml.add_representer(str, repr_str, Dumper=yaml.SafeDumper)
-
-                    source = f"https://github.com/open-resources/webwork-open-problem-library/tree/master/{file_dir}"
-                    yaml_dict = {}
-
-                    yaml_dict['title'] = title
-                    yaml_dict['topic'] = topic
-                    yaml_dict['author'] = author
-                    yaml_dict['date'] = date
-                    yaml_dict['editor'] = editor
-                    yaml_dict['source'] = source
-                    yaml_dict['template_version'] = 1.1
-                    yaml_dict['type'] = problem_type
-                    yaml_dict['difficulty'] = ['TBD']
-                    yaml_dict['randomization'] = ['TBD']
-                    yaml_dict['taxonomy'] = ['TBD']
-                    yaml_dict['tags'] = tags
-                    yaml_dict['outcomes'] = ['TBD']
-                    yaml_dict['assets'] = assets
-                    yaml_dict['server'] = server
-                    # iterate through # of sections and print question type based on each section
-                    try:
-                        for part_counter in range(0, len(section)):
-                            yaml_dict['part' + str(part_counter + 1 if part_counter < 2 else part_counter)] = ''.join(f"""
-type: {question_type[part_counter]}
-pl-customizations:
-    weight: 1
-""").strip('\n')
-                    except Exception as e:
-                        pass
-                    question_type = []
+                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
                     counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
@@ -355,19 +389,6 @@ pl-customizations:
                         print(counterString + currentFile)
                         output.append(currentFile)
 
-                    Path(root_dest_folder + dest_file_path + "/" + filename + ".md").write_text('---\n'
-                                                        + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                        + '---\n\n'
-                                                        + '## Question Section '
-                                                        + str('\n\n' + image_line if assets else '')
-                                                        + '\n\n'
-                                                        + problem_text
-                                                        + '\n\n'
-                                                        + ''.join(f'{value}' for key, value in section.items())
-                                                        + '\n\n'
-                                                        + '## Answer Section'
-                                                        + '\n\n'
-                                                        + answer_section)
                 except Exception as e:
                     print(e)
                     pass
