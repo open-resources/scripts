@@ -90,6 +90,8 @@ for root, dirs, files in os.walk(root_path):
 
 
 def split_file(file_content):
+    # TODO: once all functions are completed, convert global variables above into local variables
+    # split the file into bite-size pieces to increase speed and reduce bugs
     metadata_content = file_content[:file_content.find(metadata_end_src)]
     macros = file_content[file_content.find(metadata_end_src):file_content.find(marcos_end_src)]
     question_variables = file_content[file_content.find(marcos_end_src):file_content.find(problem_body_start_src)]
@@ -115,6 +117,7 @@ def metadata_extract(metadata_content):
 
     title_ = topic_ = author_ = editor_ = tags_ = date_ = None
 
+    # Look for keywords declared above and extract them from metadata content
     for item in metadata_content.split("\n"):
         if metadata + chapter_src in item:
             title_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
@@ -183,6 +186,7 @@ def yaml_dump(directory_info, metadata, question_type, server, section, image_di
     source = f"https://github.com/open-resources/webwork-open-problem-library/tree/master/{directory_info['file_dir']}"
     yaml_dict = {}
 
+    # populate yaml_dic with values from args
     yaml_dict['title'] = metadata['title']
     yaml_dict['topic'] = metadata['topic']
     yaml_dict['author'] = metadata['author']
@@ -211,6 +215,7 @@ pl-customizations:
 """).strip('\n')
     except Exception as e:
         pass
+        # create a new .md file using the file path and filename, write data into it
         Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
@@ -233,11 +238,15 @@ def image_extract(question_content):
     image_alt_text = []
     image_name = []
 
+    # iterate through each question part in the questions
     for question_part in question_content:
+        # determine if the question contains an image
         if image_src in question_part:
+            # extract image name and alt text using regex
             image_name = re.findall(' "(.+?)"', str(question_content).strip())
             image_alt_text = re.findall('="(.+?)"', str(question_content).strip())
 
+    # bundle up the image name and alt text to create a .md image line
     for image_alt, image_filename in zip(image_alt_text, image_name):
         if image_alt:
             image_line.append('![' + image_alt.strip() + '](' + image_filename + ')')
