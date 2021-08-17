@@ -28,9 +28,9 @@ total_start_time = time.process_time()
 
 # server variables
 server_imports = """
-    imports: |
-        import random
-        import problem_bank_helpers as pbh
+imports: |
+  import random
+  import problem_bank_helpers as pbh
 """.strip('\n')
 server_generate_names = "TBD"
 server_generate_phrases = "TBD"
@@ -38,33 +38,33 @@ server_generate_random_var = "TBD"
 server_generate_dic = "TBD"
 server_generate_answers = "TBD"
 server_generate = f"""
-    generate: |
-        data2 = pbh.create_data2()
+generate: |
+    data2 = pbh.create_data2()
 
-        # define or load names/items/objects from server files
-        {server_generate_names}
-        # store phrases etc
-        {server_generate_phrases}
-        # Randomize Variables
-        {server_generate_random_var}
-        # store the variables in the dictionary "params"
-        {server_generate_dic}
-        # define possible answers
-        {server_generate_answers}
-        # Update the data object with a new dict
-        data.update(data2)
+    # define or load names/items/objects from server files
+    {server_generate_names}
+    # store phrases etc
+    {server_generate_phrases}
+    # Randomize Variables
+    {server_generate_random_var}
+    # store the variables in the dictionary "params"
+    {server_generate_dic}
+    # define possible answers
+    {server_generate_answers}
+    # Update the data object with a new dict
+    data.update(data2)
 """
 server_prepare = """
-    prepare: |
-        pass
+prepare: |
+    pass
 """.strip('\n')
 server_parse = """
-    parse: |
-        pass
+parse: |
+    pass
 """
 server_grade = """
-    grade: |
-        pass
+grade: |
+    pass
 """.strip('\n')
 server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
 
