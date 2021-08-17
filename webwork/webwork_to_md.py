@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 from pprint import pprint
-
 import yaml
 import re
 from string import ascii_lowercase
@@ -164,7 +163,7 @@ def determine_problem_type(question_ans):
             question_type.append("Text")
         else:
             question_type.append("Unknown")
-    return{
+    return {
         'answer_variable': answer_variable,
         'answer_type_raw': answer_type_raw,
         'question_type': question_type}
@@ -174,12 +173,10 @@ def yaml_dump(directory_info, metadata, question_type, server, section, image_di
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
-
     def repr_str(dumper, data):
         if '\n' in data:
             return dumper.represent_scalar(u'tag:yaml.org,2002:str', data, style='|')
         return dumper.org_represent_str(data)
-
 
     yaml.add_representer(str, repr_str, Dumper=yaml.SafeDumper)
 
@@ -204,7 +201,7 @@ def yaml_dump(directory_info, metadata, question_type, server, section, image_di
     yaml_dict['server'] = server
     # iterate through # of sections and print question type based on each section
     try:
-        #TODO: revisit this section
+        # TODO: revisit this section
         for part_counter in range(0, len(section)):
             # print(part_counter)
             yaml_dict['part' + str(part_counter + 1 if part_counter < 2 else part_counter)] = ''.join(f"""
@@ -253,10 +250,18 @@ def image_extract(question_content):
         else:
             image_line.append('![](' + image_filename + ')')
 
-    return{'image_name': image_name,
-           'image_alt': image_alt_text,
-           'image_line_md': image_line}
+    return {'image_name': image_name,
+            'image_alt': image_alt_text,
+            'image_line_md': image_line}
 
+
+def problem_extract(question_body):
+    clean_question_body = str(question_body).replace(' \\', '').replace('\\n', '').replace(problem_body_start_src,
+                                                                                           '').replace('/', '').replace(
+        '<strong>', '').replace('$', '').replace('{', '').replace('}', '').replace('PAR', '').replace('BR', '').replace(
+        'textrm', '').strip()
+
+    return clean_question_body
 
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -287,7 +292,9 @@ for root, dirs, files in os.walk(root_path):
                         'root_dest_folder': root_dest_folder,
                         'dest_file_path': dest_file_path
                     }
-                    image_dic = image_extract(file_contents_dic['question_body'])
+                    question_body = file_contents_dic['question_body']
+                    image_dic = image_extract(question_body)
+                    problem_extract(question_body)
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
