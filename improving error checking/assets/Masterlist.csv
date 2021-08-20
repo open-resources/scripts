@@ -1,0 +1,861 @@
+Topic,Subtopic,Subsubtopic,Learning Outcome,Code
+Math,Topic Outcome,,Paste un-numbered outcome here,1.1.1.0
+Math,Topic Outcome,,Paste un-numbered outcome here,1.1.1.1
+Math,Graphs,,Calculate the total displacement given the position as a function of time.{84},1.2.1.0
+Math,Graphs,,Determine the total distance traveled.{85},1.2.1.1
+Math,Graphs,,Calculate the average velocity given the displacement and elapsed time.{86},1.2.1.2
+Math,Graphs,,Calculate the average acceleration between two points in time.{97},1.2.1.3
+Math,Graphs,,Find instantaneous acceleration at a specified time on a graph of velocity versus time.{101},1.2.1.4
+Math,Graphs,,Create and interpret graphs of potential energy.{279},1.2.1.5
+Math,Graphs,,Analyze elasticity and plasticity on a stress-strain diagram.{439},1.2.1.6
+Math,Graphs,,Qualitatively analyze position vs time graphs,1.2.1.7
+Math,Graphs,,Qualitatively analyze velocity vs time graphs,1.2.1.8
+Math,Graphs,,Qualitatively analyze acceleration vs time graphs,1.2.1.9
+Math,Graphs,,Qualitatively analyze position(x) vs position(y) graphs,1.2.1.10
+Math,Significant Figures,,Determine the correct number of significant figures for the result of a computation.{33},1.3.1.0
+Math,Order of Magnitude,,Calculate the order of magnitude of a quantity.{8},1.4.1.0
+Math,Order of Magnitude,,Estimate the values of physical quantities.{29},1.4.1.1
+Math,Algebra,Subtopic Outcome,Describe how derived units are created from base units.{15},1.5.1.0
+Math,Algebra,Subtopic Outcome,Apply analytical methods of vector algebra to find resultant vectors and to solve vector equations for unknown vectors.{68},1.5.1.1
+Math,Algebra,Subtopic Outcome,Determine the scalar product of two vectors.{75},1.5.1.2
+Math,Algebra,Subtopic Outcome,Determine the vector product of two vectors.{76},1.5.1.3
+Math,Algebra,Dimensional Analysis,Find the dimensions of a mathematical expression involving physical quantities.{24},1.5.2.0
+Math,Algebra,Dimensional Analysis,Determine whether an equation involving physical quantities is dimensionally consistent.{25},1.5.2.1
+Math,Limits,,Paste un-numbered outcome here,1.6.1.0
+Math,Limits,,Paste un-numbered outcome here,1.6.1.1
+Math,Derivatives,Subtopic Outcome,Paste un-numbered outcome here,1.7.1.0
+Math,Derivatives,Subtopic Outcome,Paste un-numbered outcome here,1.7.1.1
+Math,Derivatives,Slope,Calculate the average velocity given the displacement and elapsed time.{86},1.7.2.0
+Math,Derivatives,Slope,Calculate the average acceleration between two points in time.{97},1.7.2.1
+Math,Derivatives,Slope,Calculate the instantaneous acceleration given the functional form of velocity.{98},1.7.2.2
+Math,Derivatives,Slope,Find instantaneous acceleration at a specified time on a graph of velocity versus time.{101},1.7.2.3
+Math,Derivatives,Slope,Calculate the velocity vector given the position vector as a function of time.{128},1.7.2.4
+Math,Derivatives,Slope,Calculate the average velocity in multiple dimensions.{129},1.7.2.5
+Math,Derivatives,Product rule,Paste un-numbered outcome here,1.7.3.0
+Math,Derivatives,Product rule,Paste un-numbered outcome here,1.7.3.1
+Math,Derivatives,Quotient Rule,Paste un-numbered outcome here,1.7.4.0
+Math,Derivatives,Quotient Rule,Paste un-numbered outcome here,1.7.4.1
+Math,Derivatives,Power Rule,Paste un-numbered outcome here,1.7.5.0
+Math,Derivatives,Power Rule,Paste un-numbered outcome here,1.7.5.1
+Math,Derivatives,Chain rule,Paste un-numbered outcome here,1.7.6.0
+Math,Derivatives,Chain rule,Paste un-numbered outcome here,1.7.6.1
+Math,Derivatives,Max/Min,Paste un-numbered outcome here,1.7.7.0
+Math,Derivatives,Max/Min,Paste un-numbered outcome here,1.7.7.1
+Math,Derivatives,Increasing/Decreasing Test,Paste un-numbered outcome here,1.7.8.0
+Math,Derivatives,Increasing/Decreasing Test,Paste un-numbered outcome here,1.7.8.1
+Math,Derivatives,First Derivative Test,Paste un-numbered outcome here,1.7.9.0
+Math,Derivatives,First Derivative Test,Paste un-numbered outcome here,1.7.9.1
+Math,Derivatives,Second Derivative Test,Paste un-numbered outcome here,1.7.10.0
+Math,Derivatives,Second Derivative Test,Paste un-numbered outcome here,1.7.10.1
+Math,Integrals,Subtopic Outcome,Derive the kinematic equations for constant acceleration using integral calculus.{117},1.8.1.0
+Math,Integrals,Subtopic Outcome,Find the functional form of velocity versus time given the acceleration function.{119},1.8.1.1
+Math,Integrals,Subtopic Outcome,Find the functional form of position versus time given the velocity function.{120},1.8.1.2
+Math,Integrals,Area Under Curve,Determine the total distance traveled.{85},1.8.2.0
+Math,Integrals,Area Under Curve,Relate the work done during a time interval to the power delivered.{254},1.8.2.1
+Math,Integrals,Area Between Two Curves,Paste un-numbered outcome here,1.8.3.0
+Math,Integrals,Area Between Two Curves,Paste un-numbered outcome here,1.8.3.1
+Math,Integrals,Substitution Rule,Paste un-numbered outcome here,1.8.4.0
+Math,Integrals,Substitution Rule,Paste un-numbered outcome here,1.8.4.1
+Math,Integrals,Integration by Parts,Paste un-numbered outcome here,1.8.5.0
+Math,Integrals,Integration by Parts,Paste un-numbered outcome here,1.8.5.1
+Math,Integrals,Trigonometric Substitution,Paste un-numbered outcome here,1.8.6.0
+Math,Integrals,Trigonometric Substitution,Paste un-numbered outcome here,1.8.6.1
+Math,Integrals,Partial Fractions,Paste un-numbered outcome here,1.8.7.0
+Math,Integrals,Partial Fractions,Paste un-numbered outcome here,1.8.7.1
+Math,Exponential Functions,Subtopic Outcome,Paste un-numbered outcome here,1.9.1.0
+Math,Exponential Functions,Subtopic Outcome,Paste un-numbered outcome here,1.9.1.1
+Math,Exponential Functions,Derivative,Paste un-numbered outcome here,1.9.2.0
+Math,Exponential Functions,Derivative,Paste un-numbered outcome here,1.9.2.1
+Math,Exponential Functions,Integral,Paste un-numbered outcome here,1.9.3.0
+Math,Exponential Functions,Integral,Paste un-numbered outcome here,1.9.3.1
+Math,Logarithmic Functions,Subtopic Outcome,Paste un-numbered outcome here,1.10.1.0
+Math,Logarithmic Functions,Subtopic Outcome,Paste un-numbered outcome here,1.10.1.1
+Math,Logarithmic Functions,Derivative,Paste un-numbered outcome here,1.10.2.0
+Math,Logarithmic Functions,Derivative,Paste un-numbered outcome here,1.10.2.1
+Math,Logarithmic Functions,Integral,Paste un-numbered outcome here,1.10.3.0
+Math,Logarithmic Functions,Integral,Paste un-numbered outcome here,1.10.3.1
+Math,System of Equations,Subtopic Outcome,Paste un-numbered outcome here,1.11.1.0
+Math,System of Equations,Subtopic Outcome,Paste un-numbered outcome here,1.11.1.1
+Math,System of Equations,Set Up,Paste un-numbered outcome here,1.11.2.0
+Math,System of Equations,Set Up,Paste un-numbered outcome here,1.11.2.1
+Math,System of Equations,Solve,Paste un-numbered outcome here,1.11.3.0
+Math,System of Equations,Solve,Paste un-numbered outcome here,1.11.3.1
+Math,Quadratic formula,Subtopic Outcome,Paste un-numbered outcome here,1.12.1.0
+Math,Quadratic formula,Subtopic Outcome,Paste un-numbered outcome here,1.12.1.1
+Math,Quadratic formula,Non-Physical Roots,Paste un-numbered outcome here,1.12.2.0
+Math,Quadratic formula,Non-Physical Roots,Paste un-numbered outcome here,1.12.2.1
+Math,Polar Coordinates,,Explain the connection between polar coordinates and Cartesian coordinates in a plane.{64},1.13.1.0
+Math,Polar Coordinates,,Express a vector in polar form.,1.13.1.1
+Math,Conics,,Describe the conic sections and how they relate to orbital motion.{469},1.14.1.0
+Physics in General,Topic Outcome,,Describe the scope of physics.{7},2.1.1.0
+Physics in General,Topic Outcome,,"Describe the relationships among models, theories, and laws.{10}",2.1.1.1
+Physics in General,Topic Outcome,,"Compare measurable length, mass, and timescales quantitatively.{9}",2.1.1.2
+Physics in General,Topic Outcome,,Apply physical principles to real world application,2.1.1.3
+Physics in General,Units,,Describe how SI base units are defined.{14},2.2.1.0
+Physics in General,Units,,Describe how derived units are created from base units.{15},2.2.1.1
+Physics in General,Units,,Express quantities given in SI units using metric prefixes.{16},2.2.1.2
+Physics in General,Units,,Use conversion factors to express the value of a given quantity in different units.{20},2.2.1.3
+Physics in General,Units,,Express quantities given in SI units using metric prefixes.{700},2.2.1.4
+Physics in General,Units,,"Convert temperatures between the Celsius, Fahrenheit, and Kelvin scales.{694}",2.2.1.5
+Physics in General,Solving Problems in Physics,,Describe the process for developing a problem-solving strategy.{42},2.3.1.0
+Physics in General,Solving Problems in Physics,,Explain how to find the numerical solution to a problem.{43},2.3.1.1
+Physics in General,Solving Problems in Physics,,Summarize the process for assessing the significance of the numerical solution to a problem.{44},2.3.1.2
+Physics in General,Uncertainty,,"Describe the relationship between the concepts of accuracy, precision, uncertainty, and discrepancy.{34}",2.4.1.0
+Physics in General,Uncertainty,,"Calculate the percent uncertainty of a measurement, given its value and its uncertainty.{36}",2.4.1.1
+Physics in General,Uncertainty,,Determine the uncertainty of the result of a computation involving quantities with given uncertainties.{37},2.4.1.2
+Vectors,Topic Outcome,,Describe the difference between vector and scalar quantities.{50},3.1.1.0
+Vectors,Topic Outcome,,Distinguish between a vector equation and a scalar equation.{55},3.1.1.1
+Vectors,Topic Outcome,,Interpret physical situations in terms of vector expressions.{70},3.1.1.2
+Vectors,Topic Outcome,,Explain the difference between the scalar product and the vector product of two vectors.{74},3.1.1.3
+Vectors,Topic Outcome,,Describe how the products of vectors are used in physics.{77},3.1.1.4
+Vectors,Notation,,"Describe vectors in two and three dimensions in terms of their components, using unit vectors along the axes.{59}",3.2.1.0
+Vectors,Notation,,Paste un-numbered outcome here,3.2.1.1
+Vectors,Scalars,,Distinguish between the vector components of a vector and the scalar components of a vector.{61},3.3.1.0
+Vectors,Scalars,,Paste un-numbered outcome here,3.3.1.1
+Vectors,Properties of Vectors,,Identify the magnitude and direction of a vector.{51},3.4.1.0
+Vectors,Properties of Vectors,,Explain the effect of multiplying a vector quantity by a scalar.{52},3.4.1.1
+Vectors,Properties of Vectors,,Explain how the magnitude of a vector is defined in terms of the components of a vector.{62},3.4.1.2
+Vectors,Coordinate System and Vector Components,,Identify the magnitude and direction of a vector.{51},3.5.1.0
+Vectors,Coordinate System and Vector Components,,Explain the geometric construction for the addition or subtraction of vectors in a plane.{54},3.5.1.1
+Vectors,Coordinate System and Vector Components,,Describe how one-dimensional vector quantities are added or subtracted.{53},3.5.1.2
+Vectors,Coordinate System and Vector Components,,"Describe vectors in two and three dimensions in terms of their components, using unit vectors along the axes.{59}",3.5.1.3
+Vectors,Coordinate System and Vector Components,,Distinguish between the vector components of a vector and the scalar components of a vector.{61},3.5.1.4
+Vectors,Coordinate System and Vector Components,,Explain how the magnitude of a vector is defined in terms of the components of a vector.{62},3.5.1.5
+Vectors,Coordinate System and Vector Components,,Identify the direction angle of a vector in a plane.{63},3.5.1.6
+Vectors,Coordinate System and Vector Components,,Explain the connection between polar coordinates and Cartesian coordinates in a plane.{64},3.5.1.7
+Vectors,Vector Algebra,,Apply analytical methods of vector algebra to find resultant vectors and to solve vector equations for unknown vectors.{68},3.6.1.0
+Vectors,Vector Algebra,,Interpret physical situations in terms of vector expressions.{70},3.6.1.1
+Vectors,Dot Product,,Determine the scalar product of two vectors.{75},3.7.1.0
+Vectors,Dot Product,,Paste un-numbered outcome here,3.7.1.1
+Vectors,Cross Product,,Determine the vector product of two vectors.{76},3.8.1.0
+Vectors,Cross Product,,Paste un-numbered outcome here,3.8.1.1
+Kinematics(1D),Topic Outcome,,"Define position, displacement, and distance traveled.{83}",4.1.1.0
+Kinematics(1D),Topic Outcome,,Identify which equations of motion are to be used to solve for unknowns.{105},4.1.1.1
+Kinematics(1D),Motion Diagrams,,Paste un-numbered outcome here,4.2.1.0
+Kinematics(1D),Motion Diagrams,,Paste un-numbered outcome here,4.2.1.1
+Kinematics(1D),Position,,Find the functional form of position versus time given the velocity function.{120},4.3.1.0
+Kinematics(1D),Position,,Determine the total distance traveled.{85},4.3.1.1
+Kinematics(1D),Position,,Qualitatively analyze position vs time graphs,4.3.1.2
+Kinematics(1D),Position,,Qualitatively analyze position(x) vs position(y) graphs,4.3.1.3
+Kinematics(1D),Position,,Paste un-numbered outcome here,4.3.1.4
+Kinematics(1D),Displacement,,Calculate the total displacement given the position as a function of time.{84},4.4.1.0
+Kinematics(1D),Displacement,,Paste un-numbered outcome here,4.4.1.1
+Kinematics(1D),Speed,,Calculate the speed given the instantaneous velocity.{93},4.5.1.0
+Kinematics(1D),Speed,,Paste un-numbered outcome here,4.5.1.1
+Kinematics(1D),Velocity,Subtopic Outcome,Explain the difference between average velocity and instantaneous velocity.{90},4.6.1.0
+Kinematics(1D),Velocity,Subtopic Outcome,Describe the difference between velocity and speed.{91},4.6.1.1
+Kinematics(1D),Velocity,Subtopic Outcome,Explain the vector nature of instantaneous acceleration and velocity.{99},4.6.1.2
+Kinematics(1D),Velocity,Subtopic Outcome,Find the functional form of velocity versus time given the acceleration function.{119},4.6.1.3
+Kinematics(1D),Velocity,Subtopic Outcome,Qualitatively analyze velocity vs time graphs,4.6.1.4
+Kinematics(1D),Velocity,Average,Calculate the average velocity given the displacement and elapsed time.{86},4.6.2.0
+Kinematics(1D),Velocity,Average,Paste un-numbered outcome here,4.6.2.1
+Kinematics(1D),Velocity,Instantaneous,Calculate the instantaneous velocity given the mathematical equation for the velocity.{92},4.6.3.0
+Kinematics(1D),Velocity,Instantaneous,Paste un-numbered outcome here,4.6.3.1
+Kinematics(1D),Acceleration,Subtopic Outcome,Explain the difference between average acceleration and instantaneous acceleration.{100},4.7.1.0
+Kinematics(1D),Acceleration,Subtopic Outcome,Explain the vector nature of instantaneous acceleration and velocity.{99},4.7.1.1
+Kinematics(1D),Acceleration,Subtopic Outcome,Qualitatively analyze acceleration vs time graphs,4.7.1.2
+Kinematics(1D),Acceleration,Average,Calculate the average acceleration between two points in time.{97},4.7.2.0
+Kinematics(1D),Acceleration,Average,Paste un-numbered outcome here,4.7.2.1
+Kinematics(1D),Acceleration,Instantaneous,Calculate the instantaneous acceleration given the functional form of velocity.{98},4.7.3.0
+Kinematics(1D),Acceleration,Instantaneous,Find instantaneous acceleration at a specified time on a graph of velocity versus time.{101},4.7.3.1
+Kinematics(1D),Uniform Motion,,Paste un-numbered outcome here,4.8.1.0
+Kinematics(1D),Uniform Motion,,Paste un-numbered outcome here,4.8.1.1
+Kinematics(1D),Non-Uniform Motion (Constant Acceleration),,Use appropriate equations of motion to solve a two-body pursuit problem.{106},4.9.1.0
+Kinematics(1D),Non-Uniform Motion (Constant Acceleration),,Derive the kinematic equations for constant acceleration using integral calculus.{117},4.9.1.1
+Kinematics(1D),Non-Uniform Motion (Constant Acceleration),,Use the integral formulation of the kinematic equations in analyzing motion.{118},4.9.1.2
+Kinematics(1D),Free Fall,,Use the kinematic equations with the variables y and g to analyze free-fall motion.{110},4.10.1.0
+Kinematics(1D),Free Fall,,"Describe how the values of the position, velocity, and acceleration change during a free fall.{111}",4.10.1.1
+Kinematics(1D),Free Fall,,"Solve for the position, velocity, and acceleration as functions of time when an object is in a free fall.{112}",4.10.1.2
+Kinematics(2D and 3D),Topic Outcome,,Use the one-dimensional motion equations along perpendicular axes to solve a problem in two or three dimensions with a constant acceleration.{135},5.1.1.0
+Kinematics(2D and 3D),Topic Outcome,,Paste un-numbered outcome here,5.1.1.1
+Kinematics(2D and 3D),Displacement Vector,,Calculate position vectors in a multidimensional displacement problem.{126},5.2.1.0
+Kinematics(2D and 3D),Displacement Vector,,Solve for the displacement in two or three dimensions.{127},5.2.1.1
+Kinematics(2D and 3D),Velocity Vector,,Calculate the velocity vector given the position vector as a function of time.{128},5.3.1.0
+Kinematics(2D and 3D),Velocity Vector,,Calculate the average velocity in multiple dimensions.{129},5.3.1.1
+Kinematics(2D and 3D),Acceleration Vector,,Calculate the acceleration vector given the velocity function in unit vector notation.{133},5.4.1.0
+Kinematics(2D and 3D),Acceleration Vector,,Describe the motion of a particle with a constant acceleration in three dimensions.{134},5.4.1.1
+Kinematics(2D and 3D),Acceleration Vector,,Express the acceleration in unit vector notation.{136},5.4.1.2
+Kinematics(2D and 3D),Projectile Motion,,Use one-dimensional motion in perpendicular directions to analyze projectile motion.{140},5.5.1.0
+Kinematics(2D and 3D),Projectile Motion,,"Calculate the range, time of flight, and maximum height of a projectile that is launched and impacts a flat, horizontal surface.{141}",5.5.1.1
+Kinematics(2D and 3D),Projectile Motion,,Find the time of flight and impact velocity of a projectile that lands at a different height from that of launch.{142},5.5.1.2
+Kinematics(2D and 3D),Projectile Motion,,Calculate the trajectory of a projectile.{143},5.5.1.3
+Kinematics(2D and 3D),Uniform Circular Motion,Subtopic Outcome,"Use the equations of circular motion to find the position, velocity, and acceleration of a particle executing circular motion.{148}",5.6.1.0
+Kinematics(2D and 3D),Uniform Circular Motion,Subtopic Outcome,,5.6.1.1
+Kinematics(2D and 3D),Uniform Circular Motion,Velocity,Explain how angular velocity is related to tangential speed.{339},5.6.2.0
+Kinematics(2D and 3D),Uniform Circular Motion,Velocity,Calculate the instantaneous angular velocity given the angular position function.{340},5.6.2.1
+Kinematics(2D and 3D),Uniform Circular Motion,Acceleration,Solve for the centripetal acceleration of an object moving on a circular path.{147},5.6.3.0
+Kinematics(2D and 3D),Uniform Circular Motion,Acceleration,Paste un-numbered outcome here,5.6.3.1
+Kinematics(2D and 3D),Non-Uniform Circular Motion,Subtopic Outcome,Explain the differences between centripetal acceleration and tangential acceleration resulting from nonuniform circular motion.{149},5.7.1.0
+Kinematics(2D and 3D),Non-Uniform Circular Motion,Subtopic Outcome,"Evaluate centripetal and tangential acceleration in nonuniform circular motion, and find the total acceleration vector.{150}",5.7.1.1
+Kinematics(2D and 3D),Non-Uniform Circular Motion,Subtopic Outcome,Find the angular velocity and angular acceleration in a rotating system.{341},5.7.1.2
+Kinematics(2D and 3D),Non-Uniform Circular Motion,Angular Acceleration,Calculate the average angular acceleration when the angular velocity is changing.{342},5.7.2.0
+Kinematics(2D and 3D),Non-Uniform Circular Motion,Angular Acceleration,Calculate the instantaneous angular acceleration given the angular velocity function.{343},5.7.2.1
+Kinematics(2D and 3D),Relative Motion,,Explain the concept of reference frames.{154},5.8.1.0
+Kinematics(2D and 3D),Relative Motion,,Write the position and velocity vector equations for relative motion.{155},5.8.1.1
+Kinematics(2D and 3D),Relative Motion,,Draw the position and velocity vectors for relative motion.{156},5.8.1.2
+Kinematics(2D and 3D),Relative Motion,,Analyze one-dimensional and two-dimensional relative motion problems using the position and velocity vector equations.{157},5.8.1.3
+Force,Topic Outcome,,Distinguish between kinematics and dynamics.{163},6.1.1.0
+Force,Topic Outcome,,Understand the definition of force.{164},6.1.1.1
+Force,Topic Outcome,,"Define the SI unit of force, the newton.{166}",6.1.1.2
+Force,Topic Outcome,,Describe force as a vector.{167},6.1.1.3
+Force,Topic Outcome,,Apply Newton's laws of motion to solve problems involving a variety of forces.{199},6.1.1.4
+Force,Topic Outcome,,Apply problem-solving techniques to solve for quantities in more complex systems of forces.{210},6.1.1.5
+Force,Topic Outcome,,Use concepts from kinematics to solve problems using Newton's laws of motion.{211},6.1.1.6
+Force,Topic Outcome,,Solve more complex equilibrium problems.{212},6.1.1.7
+Force,Topic Outcome,,Solve more complex acceleration problems.{213},6.1.1.8
+Force,Topic Outcome,,Apply calculus to more advanced dynamics problems.{214},6.1.1.9
+Force,Topic Outcome,,Calculate force given pressure and area.{497},6.1.1.10
+Force,Types of Forces,,Distinguish between external and internal forces.{179},6.2.1.0
+Force,Types of Forces,,Identify the action and reaction forces in different situations.{192},6.2.1.1
+Force,Types of Forces,,Define normal and tension forces.{197},6.2.1.2
+Force,Types of Forces,,Distinguish between real and fictitious forces.{198},6.2.1.3
+Force,Types of Forces,,Define buoyant force.{514},6.2.1.4
+Force,Free Body Diagrams,,Identify simple free-body diagrams.{165},6.3.1.0
+Force,Free Body Diagrams,,Explain the rules for drawing a free-body diagram.{203},6.3.1.1
+Force,Free Body Diagrams,,Construct free-body diagrams for different situations.{204},6.3.1.2
+Force,Free Body Diagrams,,Draw a free-body diagram for a rigid body acted on by forces.{421},6.3.1.3
+Force,Free Body Diagrams,,Set up a free-body diagram for an extended object in static equilibrium.{427},6.3.1.4
+Force,Newton's First Law,,Describe Newton's first law of motion.{171},6.4.1.0
+Force,Newton's First Law,,Recognize friction as an external force.{172},6.4.1.1
+Force,Newton's First Law,,Define inertia.{173},6.4.1.2
+Force,Newton's First Law,,Identify inertial reference frames.{174},6.4.1.3
+Force,Newton's First Law,,Calculate equilibrium for a system.{175},6.4.1.4
+Force,Newton's Second Law,,Distinguish between external and internal forces.{179},6.5.1.0
+Force,Newton's Second Law,,Describe Newton's second law of motion.{180},6.5.1.1
+Force,Newton's Second Law,,Explain the dependence of acceleration on net force and mass.{181},6.5.1.2
+Force,Newton's Second Law,,Apply Newton's second law to develop the equation for centripetal force.{225},6.5.1.3
+Force,Newton's Third Law,Subtopic Outcome,State Newton's third law of motion.{191},6.6.1.0
+Force,Newton's Third Law,Subtopic Outcome,Identify the action and reaction forces in different situations.{192},6.6.1.1
+Force,Newton's Third Law,Subtopic Outcome,Apply Newton's third law to define systems and solve problems of motion.{193},6.6.1.2
+Force,Newton's Third Law,Ropes and Pulleys,Paste un-numbered outcome here,6.6.2.0
+Force,Newton's Third Law,Ropes and Pulleys,Paste un-numbered outcome here,6.6.2.1
+Force,Equilibrium,,Calculate equilibrium for a system.{175},6.7.1.0
+Force,Equilibrium,,Solve more complex equilibrium problems.{212},6.7.1.1
+Force,"Mass, Weight and Gravity",,Explain the difference between mass and weight.{185},6.8.1.0
+Force,"Mass, Weight and Gravity",,Explain why falling objects on Earth are never truly in free fall.{186},6.8.1.1
+Force,"Mass, Weight and Gravity",,Describe the concept of weightlessness.{187},6.8.1.2
+Force,Friction,,Recognize friction as an external force.{172},6.9.1.0
+Force,Friction,,Describe the general characteristics of friction.{218},6.9.1.1
+Force,Friction,,List the various types of friction.{219},6.9.1.2
+Force,Friction,,"Calculate the magnitude of static and kinetic friction, and use these in problems involving Newton's laws of motion.{220}",6.9.1.3
+Force,Friction,,Calculate the static friction force associated with rolling motion without slipping.{395},6.9.1.4
+Force,Drag,Subtopic Outcome,Express the drag force mathematically.{230},6.10.1.0
+Force,Drag,Subtopic Outcome,Describe applications of the drag force.{231},6.10.1.1
+Force,Drag,Terminal Velocity,Define terminal velocity.{232},6.10.2.0
+Force,Drag,Terminal Velocity,Determine an object's terminal velocity given its mass.{233},6.10.2.1
+Force,Drag,Projectile Motion with Drag,Paste un-numbered outcome here,6.10.3.0
+Force,Drag,Projectile Motion with Drag,Paste un-numbered outcome here,6.10.3.1
+Force,Springs,Subtopic Outcome,Paste un-numbered outcome here,6.11.1.0
+Force,Springs,Subtopic Outcome,Paste un-numbered outcome here,6.11.1.1
+Force,Springs,Hooke's Law,Paste un-numbered outcome here,6.11.2.0
+Force,Springs,Hooke's Law,Paste un-numbered outcome here,6.11.2.1
+Force,Dynamics of Circular Motion,Subtopic Outcome,Explain the equation for centripetal acceleration.{224},6.12.1.0
+Force,Dynamics of Circular Motion,Subtopic Outcome,Use circular motion concepts in solving problems involving Newton's laws of motion.{226},6.12.1.1
+Force,Dynamics of Circular Motion,Centripetal Force,Apply Newton's second law to develop the equation for centripetal force.{225},6.12.2.0
+Force,Dynamics of Circular Motion,Centripetal Force,Paste un-numbered outcome here,6.12.2.1
+Force,Dynamics of Circular Motion,Uniform,Paste un-numbered outcome here,6.12.3.0
+Force,Dynamics of Circular Motion,Uniform,Paste un-numbered outcome here,6.12.3.1
+Force,Dynamics of Circular Motion,Non-Uniform,Paste un-numbered outcome here,6.12.4.0
+Force,Dynamics of Circular Motion,Non-Uniform,Paste un-numbered outcome here,6.12.4.1
+Momentum and Impulse,Topic Outcome,,Paste un-numbered outcome here,7.1.1.0
+Momentum and Impulse,Topic Outcome,,Paste un-numbered outcome here,7.1.1.1
+Momentum and Impulse,Momentum,Subtopic Outcome,"Explain what momentum is, physically.{291}",7.2.1.0
+Momentum and Impulse,Momentum,Subtopic Outcome,Calculate the momentum of a moving object.{292},7.2.1.1
+Momentum and Impulse,Momentum,Subtopic Outcome,Express momentum as a two-dimensional vector.{317},7.2.1.2
+Momentum and Impulse,Momentum,Subtopic Outcome,"Calculate momentum in two dimensions, as a vector quantity.{319}",7.2.1.3
+Momentum and Impulse,Momentum,Linear,Paste un-numbered outcome here,7.2.2.0
+Momentum and Impulse,Momentum,Linear,Paste un-numbered outcome here,7.2.2.1
+Momentum and Impulse,Momentum,Angular,Describe the vector nature of angular momentum.{400},7.2.3.0
+Momentum and Impulse,Momentum,Angular,Find the total angular momentum and torque about a designated origin of a system of particles.{401},7.2.3.1
+Momentum and Impulse,Momentum,Angular,Calculate the angular momentum of a rigid body rotating about a fixed axis.{402},7.2.3.2
+Momentum and Impulse,Momentum,Angular,Use conservation of angular momentum in the analysis of objects that change their rotation rate.{404},7.2.3.3
+Momentum and Impulse,Impulse,,"Explain what an impulse is, physically.{296}",7.3.1.0
+Momentum and Impulse,Impulse,,Describe what an impulse does.{297},7.3.1.1
+Momentum and Impulse,Impulse,,Relate impulses to collisions.{298},7.3.1.2
+Momentum and Impulse,Impulse,,Apply the impulse-momentum theorem to solve problems.{299},7.3.1.3
+Momentum and Impulse,Collisions,Subtopic Outcome,Identify the type of collision.{311},7.4.1.0
+Momentum and Impulse,Collisions,Subtopic Outcome,Correctly label a collision as elastic or inelastic.{312},7.4.1.1
+Momentum and Impulse,Collisions,Subtopic Outcome,Use kinetic energy along with momentum and impulse to analyze a collision.{313},7.4.1.2
+Momentum and Impulse,Collisions,Elastic,Solve problems involving the distance and time between a gas molecule’s collisions.{732},7.4.2.0
+Momentum and Impulse,Collisions,Elastic,Paste un-numbered outcome here,7.4.2.1
+Momentum and Impulse,Collisions,Inelastic,Paste un-numbered outcome here,7.4.3.0
+Momentum and Impulse,Collisions,Inelastic,Paste un-numbered outcome here,7.4.3.1
+Momentum and Impulse,Collisions,Explosions,"Describe the application of conservation of momentum when the mass changes with time, as well as the velocity.{330}",7.4.4.0
+Momentum and Impulse,Collisions,Explosions,"Calculate the speed of a rocket in empty space, at some time, given initial conditions.{331}",7.4.4.1
+Momentum and Impulse,Collisions,Explosions,"Calculate the speed of a rocket in Earth's gravity field, at some time, given initial conditions.{332}",7.4.4.2
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,"Explain the meaning of ""conservation of momentum"".{303}",7.5.1.0
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,"Correctly identify if a system is, or is not, closed.{304}",7.5.1.1
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Define a system whose momentum is conserved.{305},7.5.1.2
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Mathematically express conservation of momentum for a given system.{306},7.5.1.3
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Calculate an unknown quantity using conservation of momentum.{307},7.5.1.4
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Write equations for momentum conservation in component form.{318},7.5.1.5
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,"Describe the application of conservation of momentum when the mass changes with time, as well as the velocity.{330}",7.5.1.6
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Use conservation of momentum and conservation of mechanical energy to solve an elastic collision problem.,7.5.1.7
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Use conservation of momentum to solve an elastic collision problem.,7.5.1.8
+Momentum and Impulse,Conservation of Momentum,Subtopic Outcome,Use conservation of momentum to solve a problem.,7.5.1.9
+Momentum and Impulse,Conservation of Momentum,Linear,Paste un-numbered outcome here,7.5.2.0
+Momentum and Impulse,Conservation of Momentum,Linear,Paste un-numbered outcome here,7.5.2.1
+Momentum and Impulse,Conservation of Momentum,Angular,Use conservation of angular momentum in the analysis of objects that change their rotation rate.{404},7.5.3.0
+Momentum and Impulse,Conservation of Momentum,Angular,Apply conservation of angular momentum to determine the angular velocity of a rotating system in which the moment of inertia is changing.{408},7.5.3.1
+Momentum and Impulse,Conservation of Momentum,Angular,Explain how the rotational kinetic energy changes when a system undergoes changes in both moment of inertia and angular velocity.{409},7.5.3.2
+Momentum and Impulse,Conservation of Momentum,Angular,Describe how orbital velocity is related to conservation of angular momentum.{470},7.5.3.3
+Momentum and Impulse,2D Collisions,,Express momentum as a two-dimensional vector.{317},7.6.1.0
+Momentum and Impulse,2D Collisions,,Write equations for momentum conservation in component form.{318},7.6.1.1
+Momentum and Impulse,2D Collisions,,"Calculate momentum in two dimensions, as a vector quantity.{319}",7.6.1.2
+Momentum and Impulse,Precession,,Describe the physical processes underlying the phenomenon of precession.{413},7.7.1.0
+Momentum and Impulse,Precession,,Calculate the precessional angular velocity of a gyroscope.{414},7.7.1.1
+Energy,Topic Outcome,,Describe energy transformations and conversions in general terms.{284},8.1.1.0
+Energy,Topic Outcome,,Explain what it means for an energy source to be renewable or nonrenewable.{285},8.1.1.1
+Energy,Kinetic Energy,,Calculate the kinetic energy of a particle given its mass and its velocity or momentum.{244},8.2.1.0
+Energy,Kinetic Energy,,"Evaluate the kinetic energy of a body, relative to different frames of reference.{245}",8.2.1.1
+Energy,Kinetic Energy,,Describe the differences between rotational and translational kinetic energy.{358},8.2.1.2
+Energy,Kinetic Energy,,Explain how the rotational kinetic energy changes when a system undergoes changes in both moment of inertia and angular velocity.{409},8.2.1.3
+Energy,Potential Energy,Subtopic Outcome,Relate the difference of potential energy to work done on a particle for a system without friction or air drag.{261},8.3.1.0
+Energy,Potential Energy,Subtopic Outcome,Explain the meaning of the zero of the potential energy function for a system.{262},8.3.1.1
+Energy,Potential Energy,Subtopic Outcome,Create and interpret graphs of potential energy.{279},8.3.1.2
+Energy,Potential Energy,Subtopic Outcome,Explain the connection between stability and potential energy.{280},8.3.1.3
+Energy,Potential Energy,Gravitational Potential Energy,Calculate and apply the gravitational potential energy for an object near Earth's surface and the elastic potential energy of a mass-spring system.{263},8.3.2.0
+Energy,Potential Energy,Gravitational Potential Energy,Determine changes in gravitational potential energy over great distances.{457},8.3.2.1
+Energy,Potential Energy,Gravitational Potential Energy,Apply conservation of energy to determine escape velocity.{458},8.3.2.2
+Energy,Potential Energy,Gravitational Potential Energy,Determine whether astronomical bodies are gravitationally bound.{459},8.3.2.3
+Energy,Potential Energy,Elastic Potential Energy,Calculate and apply the gravitational potential energy for an object near Earth's surface and the elastic potential energy of a mass-spring system.{263},8.3.3.0
+Energy,Potential Energy,Elastic Potential Energy,Paste un-numbered outcome here,8.3.3.1
+Energy,Energy Diagrams,,Paste un-numbered outcome here,8.4.1.0
+Energy,Energy Diagrams,,Paste un-numbered outcome here,8.4.1.1
+Energy,Conservation of Energy,Subtopic Outcome,"Formulate the principle of conservation of mechanical energy, with or without the presence of non-conservative forces.{274}",8.5.1.0
+Energy,Conservation of Energy,Subtopic Outcome,Use the conservation of mechanical energy to calculate various properties of simple systems.{275},8.5.1.1
+Energy,Conservation of Energy,Subtopic Outcome,Use conservation of mechanical energy to analyze systems undergoing both rotation and translation.{361},8.5.1.2
+Energy,Conservation of Energy,Subtopic Outcome,Apply conservation of energy to determine escape velocity.{458},8.5.1.3
+Energy,Conservation of Energy,Subtopic Outcome,Explain how Bernoulli's equation is related to the conservation of energy.{528},8.5.1.4
+Energy,Conservation of Energy,Conservative Forces,Characterize a conservative force in several different ways.{267},8.5.2.0
+Energy,Conservation of Energy,Conservative Forces,Specify mathematical conditions that must be satisfied by a conservative force and its components.{268},8.5.2.1
+Energy,Conservation of Energy,Conservative Forces,Relate the conservative force between particles of a system to the potential energy of the system.{269},8.5.2.2
+Energy,Conservation of Energy,Conservative Forces,Calculate the components of a conservative force in various cases.{270},8.5.2.3
+Energy,Conservation of Energy,Non-Conservative Forces,Calculate the angular velocity of a rotating system when there are energy losses due to nonconservative forces.{362},8.5.3.0
+Energy,Conservation of Energy,Non-Conservative Forces,Paste un-numbered outcome here,8.5.3.1
+Work,Topic Outcome,,Represent the work done by any force.{239},9.1.1.0
+Work,Topic Outcome,,Evaluate the work done for various forces.{240},9.1.1.1
+Work,Work-Energy Theorem,,"Apply the work-energy theorem to find information about the motion of a particle, given the forces acting on it.{249}",9.2.1.0
+Work,Work-Energy Theorem,,"Use the work-energy theorem to find information about the forces acting on a particle, given information about its motion.{250}",9.2.1.1
+Work,Work-Energy Theorem,,Use the work-energy theorem to analyze rotation to find the work done on a system when it is rotated about a fixed axis for a finite angular displacement.{383},9.2.1.2
+Work,Work-Energy Theorem,,Solve for the angular velocity of a rotating rigid body using the work-energy theorem.{384},9.2.1.3
+Work,Power,,Relate the work done during a time interval to the power delivered.{254},9.3.1.0
+Work,Power,,Find the power expended by a force acting on a moving body.{255},9.3.1.1
+Work,Work For Rotational Motion,,Use the work-energy theorem to analyze rotation to find the work done on a system when it is rotated about a fixed axis for a finite angular displacement.{383},9.4.1.0
+Work,Work For Rotational Motion,,Paste un-numbered outcome here,9.4.1.1
+Work,Power For Rotational Motion,,Find the power delivered to a rotating rigid body given the applied torque and angular velocity.{385},9.5.1.0
+Work,Power For Rotational Motion,,Paste un-numbered outcome here,9.5.1.1
+Rotational Motion,Topic Outcome,,Derive the kinematic equations for rotational motion with constant angular acceleration.{347},10.1.1.0
+Rotational Motion,Topic Outcome,,Select from the kinematic equations for rotational motion with constant angular acceleration the appropriate equations to solve for unknowns in the analysis of systems undergoing fixed-axis rotation.{348},10.1.1.1
+Rotational Motion,Topic Outcome,,Use solutions found with the kinematic equations to verify the graphical analysis of fixed-axis rotation with constant angular acceleration.{349},10.1.1.2
+Rotational Motion,Relating Rotational to Translational Motion,,"Given the linear kinematic equation, write the corresponding rotational kinematic equation.{353}",10.2.1.0
+Rotational Motion,Relating Rotational to Translational Motion,,"Calculate the linear distances, velocities, and accelerations of points on a rotating system given the angular velocities and accelerations.{354}",10.2.1.1
+Rotational Motion,Relating Rotational to Translational Motion,,Summarize the rotational variables and equations and relate them to their translational counterparts.{386},10.2.1.2
+Rotational Motion,Rolling Motion,Subtopic Outcome,Use energy conservation to analyze rolling motion.{396},10.3.1.0
+Rotational Motion,Rolling Motion,Subtopic Outcome,Paste un-numbered outcome here,10.3.1.1
+Rotational Motion,Rolling Motion,Without Slipping,Describe the physics of rolling motion without slipping.{392},10.3.2.0
+Rotational Motion,Rolling Motion,Without Slipping,Explain how linear variables are related to angular variables for the case of rolling motion without slipping.{393},10.3.2.1
+Rotational Motion,Rolling Motion,Without Slipping,Find the linear and angular accelerations in rolling motion with and without slipping.{394},10.3.2.2
+Rotational Motion,Rolling Motion,Without Slipping,Calculate the static friction force associated with rolling motion without slipping.{395},10.3.2.3
+Rotational Motion,Rolling Motion,With Slipping,Find the linear and angular accelerations in rolling motion with and without slipping.{394},10.3.3.0
+Rotational Motion,Rolling Motion,With Slipping,Paste un-numbered outcome here,10.3.3.1
+Rotational Motion,Center of Mass,,Explain the meaning and usefulness of the concept of center of mass.{323},10.4.1.0
+Rotational Motion,Center of Mass,,Calculate the center of mass of a given system.{324},10.4.1.1
+Rotational Motion,Center of Mass,,Apply the center of mass concept in two and three dimensions.{325},10.4.1.2
+Rotational Motion,Center of Mass,,Calculate the velocity and acceleration of the center of mass.{326},10.4.1.3
+Rotational Motion,Rotational Energy,Subtopic Outcome,Describe the differences between rotational and translational kinetic energy.{358},10.5.1.0
+Rotational Motion,Rotational Energy,Subtopic Outcome,Use conservation of mechanical energy to analyze systems undergoing both rotation and translation.{361},10.5.1.1
+Rotational Motion,Rotational Energy,Subtopic Outcome,Calculate the angular velocity of a rotating system when there are energy losses due to nonconservative forces.{362},10.5.1.2
+Rotational Motion,Rotational Energy,Moment of Inertia,Define the physical concept of moment of inertia in terms of the mass distribution from the rotational axis.{359},10.5.2.0
+Rotational Motion,Rotational Energy,Moment of Inertia,Explain how the moment of inertia of rigid bodies affects their rotational kinetic energy.{360},10.5.2.1
+Rotational Motion,Rotational Energy,Moment of Inertia,"Calculate the moment of inertia for uniformly shaped, rigid bodies.{366}",10.5.2.2
+Rotational Motion,Rotational Energy,Moment of Inertia,Calculate the moment of inertia for compound objects.{368},10.5.2.3
+Rotational Motion,Rotational Energy,Parallel-Axis Theorem,Apply the parallel axis theorem to find the moment of inertia about any axis parallel to one already known.{367},10.5.3.0
+Rotational Motion,Rotational Energy,Parallel-Axis Theorem,Paste un-numbered outcome here,10.5.3.1
+Rotational Dynamics,Topic Outcome,,Paste un-numbered outcome here,11.1.1.0
+Rotational Dynamics,Topic Outcome,,Paste un-numbered outcome here,11.1.1.1
+Rotational Dynamics,Newton's Second Law for Rotational Motion,,Calculate the torques on rotating systems about a fixed axis to find the angular acceleration.{378},11.2.1.0
+Rotational Dynamics,Newton's Second Law for Rotational Motion,,Explain how changes in the moment of inertia of a rotating system affect angular acceleration with a fixed applied torque.{379},11.2.1.1
+Rotational Dynamics,Torque,,Describe how the magnitude of a torque depends on the magnitude of the lever arm and the angle the force vector makes with the lever arm.{372},11.3.1.0
+Rotational Dynamics,Torque,,Determine the sign (positive or negative) of a torque using the right-hand rule.{373},11.3.1.1
+Rotational Dynamics,Torque,,Calculate individual torques about a common axis and sum them to find the net torque.{374},11.3.1.2
+Rotational Dynamics,Torque,,Find the total angular momentum and torque about a designated origin of a system of particles.{401},11.3.1.3
+Rotational Dynamics,Torque,,Calculate the torque on a rigid body rotating about a fixed axis.{403},11.3.1.4
+Rotational Dynamics,Rotation about a Fixed Axis,,Describe the physical meaning of rotational variables as applied to fixed-axis rotation.{338},11.4.1.0
+Rotational Dynamics,Rotation about a Fixed Axis,,Calculate the angular momentum of a rigid body rotating about a fixed axis.{402},11.4.1.1
+Rotational Dynamics,Rotation about a Fixed Axis,,Calculate the torque on a rigid body rotating about a fixed axis.{403},11.4.1.2
+Rotational Dynamics,Static Equilibrium,,Identify the physical conditions of static equilibrium.{420},11.5.1.0
+Rotational Dynamics,Static Equilibrium,,Draw a free-body diagram for a rigid body acted on by forces.{421},11.5.1.1
+Rotational Dynamics,Static Equilibrium,,Explain how the conditions for equilibrium allow us to solve statics problems.{422},11.5.1.2
+Rotational Dynamics,Static Equilibrium,,Identify and analyze static equilibrium situations.{426},11.5.1.3
+Rotational Dynamics,Static Equilibrium,,Set up a free-body diagram for an extended object in static equilibrium.{427},11.5.1.4
+Rotational Dynamics,Static Equilibrium,,Set up and solve static equilibrium conditions for objects in equilibrium in various physical situations.{428},11.5.1.5
+Gravitation,Topic Outcome,,List the significant milestones in the history of gravitation.{445},12.1.1.0
+Gravitation,Topic Outcome,,Determine the mass of an astronomical body from free-fall acceleration at its surface.{452},12.1.1.1
+Gravitation,Topic Outcome,,Describe how the value of g varies due to location and Earth's rotation.{453},12.1.1.2
+Gravitation,Newton's Law of Gravity,,Calculate the gravitational force between two point masses.{446},12.2.1.0
+Gravitation,Newton's Law of Gravity,,Estimate the gravitational force between collections of mass.{447},12.2.1.1
+Gravitation,Newton's Law of Gravity,,Explain the connection between the constants G and g.{451},12.2.1.2
+Gravitation,Orbits,,Describe the mechanism for circular orbits.{463},12.3.1.0
+Gravitation,Orbits,,Find the orbital periods and speeds of satellites.{464},12.3.1.1
+Gravitation,Orbits,,Determine whether objects are gravitationally bound.{465},12.3.1.2
+Gravitation,Kepler's Laws,Subtopic Outcome,Describe the conic sections and how they relate to orbital motion.{469},12.4.1.0
+Gravitation,Kepler's Laws,Subtopic Outcome,Describe how orbital velocity is related to conservation of angular momentum.{470},12.4.1.1
+Gravitation,Kepler's Laws,Subtopic Outcome,Determine the period of an elliptical orbit from its major axis.{471},12.4.1.2
+Gravitation,Kepler's Laws,Kepler's First Law,Paste un-numbered outcome here,12.4.2.0
+Gravitation,Kepler's Laws,Kepler's First Law,Paste un-numbered outcome here,12.4.2.1
+Gravitation,Kepler's Laws,Kepler's Second Law,Paste un-numbered outcome here,12.4.3.0
+Gravitation,Kepler's Laws,Kepler's Second Law,Paste un-numbered outcome here,12.4.3.1
+Gravitation,Kepler's Laws,Kepler's Third Law,Paste un-numbered outcome here,12.4.4.0
+Gravitation,Kepler's Laws,Kepler's Third Law,Paste un-numbered outcome here,12.4.4.1
+Gravitation,Tides,,Explain the origins of Earth's ocean tides.{475},12.5.1.0
+Gravitation,Tides,,Describe how neap and leap tides differ.{476},12.5.1.1
+Gravitation,Tides,,Describe how tidal forces affect binary systems.{477},12.5.1.2
+Gravitation,Einstein's Theory of Gravity,,Describe how the theory of general relativity approaches gravitation.{481},12.6.1.0
+Gravitation,Einstein's Theory of Gravity,,Explain the principle of equivalence.{482},12.6.1.1
+Gravitation,Einstein's Theory of Gravity,,Calculate the Schwarzschild radius of an object.{483},12.6.1.2
+Gravitation,Einstein's Theory of Gravity,,Summarize the evidence for black holes.{484},12.6.1.3
+Fluids,Topic Outcome,,State the different phases of matter.{490},13.1.1.0
+Fluids,Topic Outcome,,Describe the characteristics of the phases of matter at the molecular or atomic level.{491},13.1.1.1
+Fluids,Topic Outcome,,Distinguish between compressible and incompressible materials.{492},13.1.1.2
+Fluids,Density,,Define density and its related SI units.{493},13.2.1.0
+Fluids,Density,,Compare and contrast the densities of various substances.{494},13.2.1.1
+Fluids,Pressure,,Define pressure and its related SI units.{495},13.3.1.0
+Fluids,Pressure,,Explain the relationship between pressure and force.{496},13.3.1.1
+Fluids,Pressure,,Calculate force given pressure and area.{497},13.3.1.2
+Fluids,Pressure,,Define gauge pressure and absolute pressure.{501},13.3.1.3
+Fluids,Pressure,,Explain various methods for measuring pressure.{502},13.3.1.4
+Fluids,Pressure,,Understand the working of open-tube barometers.{503},13.3.1.5
+Fluids,Pressure,,Describe in detail how manometers and barometers operate.{504},13.3.1.6
+Fluids,Pascal's Law,Subtopic Outcome,State Pascal's principle.{508},13.4.1.0
+Fluids,Pascal's Law,Subtopic Outcome,Describe applications of Pascal's principle.{509},13.4.1.1
+Fluids,Pascal's Law,Hydraulics,Derive relationships between forces in a hydraulic system.{510},13.4.2.0
+Fluids,Pascal's Law,Hydraulics,Paste un-numbered outcome here,13.4.2.1
+Fluids,Archimedes' Principle,Subtopic Outcome,State Archimedes' principle.{515},13.5.1.0
+Fluids,Archimedes' Principle,Subtopic Outcome,Describe the relationship between density and Archimedes' principle.{516},13.5.1.1
+Fluids,Archimedes' Principle,Buoyancy,Define buoyant force.{514},13.5.2.0
+Fluids,Archimedes' Principle,Buoyancy,Paste un-numbered outcome here,13.5.2.1
+Fluids,Fluid Dynamics,Subtopic Outcome,Describe the characteristics of flow.{520},13.6.1.0
+Fluids,Fluid Dynamics,Subtopic Outcome,Paste un-numbered outcome here,13.6.1.1
+Fluids,Fluid Dynamics,Flow Rate,Calculate flow rate.{521},13.6.2.0
+Fluids,Fluid Dynamics,Flow Rate,Describe the relationship between flow rate and velocity.{522},13.6.2.1
+Fluids,Fluid Dynamics,Laminar/Turbulent Flow,Calculate flow and resistance with Poiseuille's law.{536},13.6.3.0
+Fluids,Fluid Dynamics,Laminar/Turbulent Flow,Explain how pressure drops due to resistance.{537},13.6.3.1
+Fluids,Fluid Dynamics,Laminar/Turbulent Flow,Calculate the Reynolds number for an object moving through a fluid.{538},13.6.3.2
+Fluids,Fluid Dynamics,Laminar/Turbulent Flow,Use the Reynolds number for a system to determine whether it is laminar or turbulent.{539},13.6.3.3
+Fluids,Fluid Dynamics,Viscosity,Explain what viscosity is.{535},13.6.4.0
+Fluids,Fluid Dynamics,Viscosity,Describe the conditions under which an object has a terminal speed.{540},13.6.4.1
+Fluids,Fluid Dynamics,Equation of Continuity,Explain the consequences of the equation of continuity to the conservation of mass.{523},13.6.5.0
+Fluids,Fluid Dynamics,Equation of Continuity,Paste un-numbered outcome here,13.6.5.1
+Fluids,Fluid Dynamics,Bernoulli's Equation,Explain the terms in Bernoulli's equation.{527},13.6.6.0
+Fluids,Fluid Dynamics,Bernoulli's Equation,Explain how Bernoulli's equation is related to the conservation of energy.{528},13.6.6.1
+Fluids,Fluid Dynamics,Bernoulli's Equation,Describe how to derive Bernoulli's principle from Bernoulli's equation.{529},13.6.6.2
+Fluids,Fluid Dynamics,Bernoulli's Equation,Perform calculations using Bernoulli's principle.{530},13.6.6.3
+Fluids,Fluid Dynamics,Bernoulli's Equation,Describe some applications of Bernoulli's principle.{531},13.6.6.4
+Elasticity,Topic Outcome,,Explain the concepts of stress and strain in describing elastic deformations of materials.{432},14.1.1.0
+Elasticity,Topic Outcome,,Describe the types of elastic deformation of objects and materials.{433},14.1.1.1
+Elasticity,Topic Outcome,,Explain the limit where a deformation of material is elastic.{437},14.1.1.2
+Elasticity,Topic Outcome,,Analyze elasticity and plasticity on a stress-strain diagram.{439},14.1.1.3
+Elasticity,Stress,,Paste un-numbered outcome here,14.2.1.0
+Elasticity,Stress,,Paste un-numbered outcome here,14.2.1.1
+Elasticity,Strain,,Paste un-numbered outcome here,14.3.1.0
+Elasticity,Strain,,Paste un-numbered outcome here,14.3.1.1
+Elasticity,Elastic Modulus,,Paste un-numbered outcome here,14.4.1.0
+Elasticity,Elastic Modulus,,Paste un-numbered outcome here,14.4.1.1
+Elasticity,Plasticity,,Describe the range where materials show plastic behavior.{438},14.5.1.0
+Elasticity,Plasticity,,Paste un-numbered outcome here,14.5.1.1
+Oscillations,Topic Outcome,,Paste un-numbered outcome here,15.1.1.0
+Oscillations,Topic Outcome,,Paste un-numbered outcome here,15.1.1.1
+Oscillations,Simple Harmonic Motion,Subtopic Outcome,Define the terms period and frequency.{549},15.2.1.0
+Oscillations,Simple Harmonic Motion,Subtopic Outcome,List the characteristics of simple harmonic motion.{550},15.2.1.1
+Oscillations,Simple Harmonic Motion,Subtopic Outcome,Explain the concept of phase shift.{551},15.2.1.2
+Oscillations,Simple Harmonic Motion,Subtopic Outcome,Write the equations of motion for the system of a mass and spring undergoing simple harmonic motion.{552},15.2.1.3
+Oscillations,Simple Harmonic Motion,Subtopic Outcome,Describe the motion of a mass oscillating on a vertical spring.{553},15.2.1.4
+Oscillations,Simple Harmonic Motion,Energy in Simple Harmonic Motion,Describe the energy conservation of the system of a mass and a spring.{557},15.2.2.0
+Oscillations,Simple Harmonic Motion,Energy in Simple Harmonic Motion,Explain the concepts of stable and unstable equilibrium points.{558},15.2.2.1
+Oscillations,Simple Harmonic Motion,Comparing Simple Harmonic Motion to Circular Motion,Describe how the sine and cosine functions relate to the concepts of circular motion.{567},15.2.3.0
+Oscillations,Simple Harmonic Motion,Comparing Simple Harmonic Motion to Circular Motion,Describe the connection between simple harmonic motion and circular motion.{568},15.2.3.1
+Oscillations,Vertical Oscillations,,Describe the motion of a mass oscillating on a vertical spring.{553},15.3.1.0
+Oscillations,Vertical Oscillations,,Paste un-numbered outcome here,15.3.1.1
+Oscillations,Pendulum,,State the forces that act on a simple pendulum.{572},15.4.1.0
+Oscillations,Pendulum,,"Determine the angular frequency, frequency, and period of a simple pendulum in terms of the length of the pendulum and the acceleration due to gravity.{573}",15.4.1.1
+Oscillations,Pendulum,,Define the period for a physical pendulum.{574},15.4.1.2
+Oscillations,Pendulum,,Define the period for a torsional pendulum.{575},15.4.1.3
+Oscillations,Damped Oscillations,,Describe the motion of damped harmonic motion.{579},15.5.1.0
+Oscillations,Damped Oscillations,,Write the equations of motion for damped harmonic oscillations.{580},15.5.1.1
+Oscillations,Damped Oscillations,,"Describe the motion of driven, or forced, damped harmonic motion.{581}",15.5.1.2
+Oscillations,Damped Oscillations,,"Write the equations of motion for forced, damped harmonic motion. {582}",15.5.1.3
+Oscillations,Forced Oscillations,,Define forced oscillations.{586},15.6.1.0
+Oscillations,Forced Oscillations,,List the equations of motion associated with forced oscillations.{587},15.6.1.1
+Oscillations,Forced Oscillations,,Explain the concept of resonance and its impact on the amplitude of an oscillator.{588},15.6.1.2
+Oscillations,Forced Oscillations,,List the characteristics of a system oscillating in resonance. {589},15.6.1.3
+Oscillations,Resonance,,Paste un-numbered outcome here,15.7.1.0
+Oscillations,Resonance,,Paste un-numbered outcome here,15.7.1.1
+Waves,Topic Outcome,,Describe the basic characteristics of wave motion.{595},16.1.1.0
+Waves,Topic Outcome,,"Define the terms wavelength, amplitude, period, frequency, and wave speed.{596}",16.1.1.1
+Waves,Topic Outcome,,List the different types of waves.{598},16.1.1.2
+Waves,Topic Outcome,,"Model a wave, moving with a constant wave velocity, with a mathematical expression.{602}",16.1.1.3
+Waves,Topic Outcome,,Calculate the velocity and acceleration of the medium.{603},16.1.1.4
+Waves,Topic Outcome,,Show how the velocity of the medium differs from the wave velocity (propagation velocity).{604},16.1.1.5
+Waves,Topic Outcome,,Determine the factors that affect the speed of a wave on a string.{608},16.1.1.6
+Waves,Topic Outcome,,Write a mathematical expression for the speed of a wave on a string and generalize these concepts for other media.{609},16.1.1.7
+Waves,Traveling Waves,,"Explain the difference between longitudinal and transverse waves, and give examples of each type.{597}",16.2.1.0
+Waves,Traveling Waves,,Paste un-numbered outcome here,16.2.1.1
+Waves,Standing Waves,,Describe standing waves and explain how they are produced.{624},16.3.1.0
+Waves,Standing Waves,,Describe the modes of a standing wave on a string.{625},16.3.1.1
+Waves,Standing Waves,,Provide examples of standing waves beyond the waves on a string.{626},16.3.1.2
+Waves,Standing Waves,,Describe resonance in a tube closed at one end and open at the other end.{653},16.3.1.3
+Waves,Standing Waves,,Describe resonance in a tube open at both ends.{654} .{655},16.3.1.4
+Waves,Energy of a Wave,,Explain how energy travels with a pulse or wave.{613},16.4.1.0
+Waves,Energy of a Wave,,"Describe, using a mathematical expression, how the energy in a wave depends on the amplitude of the wave.{614}",16.4.1.1
+Waves,Power of a Wave,,Paste un-numbered outcome here,16.5.1.0
+Waves,Power of a Wave,,Paste un-numbered outcome here,16.5.1.1
+Waves,Interference,,Explain how mechanical waves are reflected and transmitted at the boundaries of a medium.{618},16.6.1.0
+Waves,Interference,,Define the terms interference and superposition.{619},16.6.1.1
+Waves,Interference,,Find the resultant wave of two identical sinusoidal waves that differ only by a phase shift.{620},16.6.1.2
+Waves,Sound,Subtopic Outcome,Explain the difference between sound and hearing.{632},16.7.1.0
+Waves,Sound,Subtopic Outcome,Describe sound as a wave.{633},16.7.1.1
+Waves,Sound,Subtopic Outcome,List the equations used to model sound waves.{634},16.7.1.2
+Waves,Sound,Subtopic Outcome,Describe compression and rarefactions as they relate to sound. {635},16.7.1.3
+Waves,Sound,Subtopic Outcome,Describe the resonant frequencies in instruments that can be modeled as a tube with symmetrical boundary conditions.{658},16.7.1.4
+Waves,Sound,Subtopic Outcome,Describe the resonant frequencies in instruments that can be modeled as a tube with anti-symmetrical boundary conditions.{659},16.7.1.5
+Waves,Sound,Subtopic Outcome,Explain the mechanism behind sound-reducing headphones.{652},16.7.1.6
+Waves,Sound,Subtopic Outcome,Describe resonance in a tube closed at one end and open at the other end.{653},16.7.1.7
+Waves,Sound,Subtopic Outcome,Describe resonance in a tube open at both ends.{654} .{655},16.7.1.8
+Waves,Sound,Subtopic Outcome,Determine the beat frequency produced by two sound waves that differ in frequency.{663},16.7.1.9
+Waves,Sound,Subtopic Outcome,Describe how beats are produced by musical instruments.{664},16.7.1.10
+Waves,Sound,Subtopic Outcome,Explain the mechanism behind sonic booms.{673},16.7.1.11
+Waves,Sound,Subtopic Outcome,Describe the difference between sonic booms and shock waves.{674},16.7.1.12
+Waves,Sound,Subtopic Outcome,Describe a bow wake.{675},16.7.1.13
+Waves,Sound,Speed of Sound,Explain the relationship between wavelength and frequency of sound.{639},16.7.2.0
+Waves,Sound,Speed of Sound,Determine the speed of sound in different media.{640},16.7.2.1
+Waves,Sound,Speed of Sound,Derive the equation for the speed of sound in air.{641},16.7.2.2
+Waves,Sound,Speed of Sound,Determine the speed of sound in air for a given temperature. {642},16.7.2.3
+Waves,Sound,Sound Intensity(Decibels),Define the term intensity.{646},16.7.3.0
+Waves,Sound,Sound Intensity(Decibels),Explain the concept of sound intensity level.{647},16.7.3.1
+Waves,Sound,Sound Intensity(Decibels),Describe how the human ear translates sound.{648},16.7.3.2
+Waves,The Doppler Effect,,Explain the change in observed frequency as a moving source of sound approaches or departs from a stationary observer.{668},16.8.1.0
+Waves,The Doppler Effect,,Explain the change in observed frequency as an observer moves toward or away from a stationary source of sound.{669},16.8.1.1
+Thermodynamics,Topic Outcome,,"Define a thermodynamic system, its boundary, and its surroundings.{749}",17.1.1.0
+Thermodynamics,Topic Outcome,,Explain the roles of all the components involved in thermodynamics.{750},17.1.1.1
+Thermodynamics,Topic Outcome,,Link an equation of state to a system.{752},17.1.1.2
+Thermodynamics,Topic Outcome,,Define a thermodynamic process.{766},17.1.1.3
+Thermodynamics,Topic Outcome,,Distinguish between quasi-static and non-quasi-static processes.{767},17.1.1.4
+Thermodynamics,Topic Outcome,,"Calculate physical quantities, such as the heat transferred, work done, and internal energy change for isothermal, adiabatic, and cyclical thermodynamic processes.{768}",17.1.1.5
+Thermodynamics,Topic Outcome,,Define reversible and irreversible processes.{786},17.1.1.6
+Thermodynamics,Temperature,Subtopic Outcome,Define temperature and describe it qualitatively.{687},17.2.1.0
+Thermodynamics,Temperature,Subtopic Outcome,Define thermal equilibrium and thermodynamic temperature.{751},17.2.1.1
+Thermodynamics,Temperature,Thermometers,Describe several different types of thermometers.{693},17.2.2.0
+Thermodynamics,Temperature,Thermometers,"Convert temperatures between the Celsius, Fahrenheit, and Kelvin scales.{694}",17.2.2.1
+Thermodynamics,Thermal Equilibrium,,Explain thermal equilibrium.{688},17.3.1.0
+Thermodynamics,Thermal Equilibrium,,Explain the zeroth law of thermodynamics.{689},17.3.1.1
+Thermodynamics,Thermal Equilibrium,,Define thermal equilibrium and thermodynamic temperature.{751},17.3.1.2
+Thermodynamics,Heat Transfer,Subtopic Outcome,Explain phenomena involving heat as a form of energy transfer.{704},17.4.1.0
+Thermodynamics,Heat Transfer,Subtopic Outcome,Solve problems involving heat transfer.{705},17.4.1.1
+Thermodynamics,Heat Transfer,Subtopic Outcome,"Explain some phenomena that involve conductive, convective, and radiative heat transfer.{715}",17.4.1.2
+Thermodynamics,Heat Transfer,Subtopic Outcome,"Solve problems on the relationships between heat transfer, time, and rate of heat transfer.{716}",17.4.1.3
+Thermodynamics,Heat Transfer,Subtopic Outcome,"Explain some phenomena that involve conductive, convective, and radiative heat transfer.{723}",17.4.1.4
+Thermodynamics,Heat Transfer,Subtopic Outcome,Solve problems involving heat transfer to and from ideal monatomic gases whose volumes are held constant.{736},17.4.1.5
+Thermodynamics,Heat Transfer,Convection,Paste un-numbered outcome here,17.4.2.0
+Thermodynamics,Heat Transfer,Convection,Paste un-numbered outcome here,17.4.2.1
+Thermodynamics,Heat Transfer,Conduction,Solve problems using the formulas for conduction and radiation.{717},17.4.3.0
+Thermodynamics,Heat Transfer,Conduction,Paste un-numbered outcome here,17.4.3.1
+Thermodynamics,Heat Transfer,Radiation,Solve problems using the formulas for conduction and radiation.{717},17.4.4.0
+Thermodynamics,Heat Transfer,Radiation,Paste un-numbered outcome here,17.4.4.1
+Thermodynamics,Pressure,,Paste un-numbered outcome here,17.5.1.0
+Thermodynamics,Pressure,,Paste un-numbered outcome here,17.5.1.1
+Thermodynamics,Thermal Expansion,,Answer qualitative questions about the effects of thermal expansion.{698},17.6.1.0
+Thermodynamics,Thermal Expansion,,"Solve problems involving thermal expansion, including those involving thermal stress.{699}",17.6.1.1
+Thermodynamics,Specific Heat,,Calculate the specific heat of an ideal gas for either an isobaric or isochoric process.{773},17.7.1.0
+Thermodynamics,Specific Heat,,Estimate the change in specific heat of a gas over temperature ranges.{775},17.7.1.1
+Thermodynamics,Calorimetry,,Solve calorimetry problems involving phase changes.{711},17.8.1.0
+Thermodynamics,Calorimetry,,Paste un-numbered outcome here,17.8.1.1
+Thermodynamics,Phase Changes,,Describe phase transitions and equilibrium between phases.{709},17.9.1.0
+Thermodynamics,Phase Changes,,Solve problems involving latent heat.{710},17.9.1.1
+Thermodynamics,Phase Changes,,Solve calorimetry problems involving phase changes.{711},17.9.1.2
+Thermodynamics,Ideal Gas,Subtopic Outcome,"Use the unit of moles in relation to numbers of molecules, and molecular and macroscopic masses.{724}",17.10.1.0
+Thermodynamics,Ideal Gas,Subtopic Outcome,Explain the ideal gas law in terms of moles rather than numbers of molecules.{725},17.10.1.1
+Thermodynamics,Ideal Gas,Subtopic Outcome,Apply the van der Waals gas law to situations where the ideal gas law is inadequate.{726},17.10.1.2
+Thermodynamics,Ideal Gas,Subtopic Outcome,Explain the relations between microscopic and macroscopic quantities in a gas.{730},17.10.1.3
+Thermodynamics,Ideal Gas,Subtopic Outcome,Solve problems involving mixtures of gases.{731},17.10.1.4
+Thermodynamics,Ideal Gas,Subtopic Outcome,Solve problems involving the distance and time between a gas molecule’s collisions.{732},17.10.1.5
+Thermodynamics,Ideal Gas,Subtopic Outcome,Describe the distribution of molecular speeds in an ideal gas.{742},17.10.1.6
+Thermodynamics,Ideal Gas,Subtopic Outcome,Find the average and most probable molecular speeds in an ideal gas.{743},17.10.1.7
+Thermodynamics,Ideal Gas,Heat Capacity,Estimate the heat capacities of metals using a model based on degrees of freedom.{738},17.10.2.0
+Thermodynamics,Ideal Gas,Heat Capacity,Define heat capacity of an ideal gas for a specific process.{772},17.10.2.1
+Thermodynamics,Ideal Gas,Heat Capacity,Calculate the specific heat of an ideal gas for either an isobaric or isochoric process.{773},17.10.2.2
+Thermodynamics,Ideal Gas,Heat Capacity,Explain the difference between the heat capacities of an ideal gas and a real gas.{774},17.10.2.3
+Thermodynamics,Ideal Gas,Heat Capacity,Estimate the change in specific heat of a gas over temperature ranges.{775},17.10.2.4
+Thermodynamics,Ideal Gas,Equipartition Theorem,Paste un-numbered outcome here,17.10.3.0
+Thermodynamics,Ideal Gas,Equipartition Theorem,Paste un-numbered outcome here,17.10.3.1
+Thermodynamics,Ideal Gas,Degrees of Freedom,Solve similar problems for non-monatomic ideal gases based on the number of degrees of freedom of a molecule.{737},17.10.4.0
+Thermodynamics,Ideal Gas,Degrees of Freedom,Estimate the heat capacities of metals using a model based on degrees of freedom.{738},17.10.4.1
+Thermodynamics,Ideal Gas,Adiabatic Processes,Define adiabatic expansion of an ideal gas.{779},17.10.5.0
+Thermodynamics,Ideal Gas,Adiabatic Processes,Demonstrate the qualitative difference between adiabatic and isothermal expansions.{780},17.10.5.1
+Thermodynamics,First Law of Thermodynamics,,State the first law of thermodynamics and explain how it is applied.{761},17.11.1.0
+Thermodynamics,First Law of Thermodynamics,,"Explain how heat transfer, work done, and internal energy change are related in any thermodynamic process.{762}",17.11.1.1
+Thermodynamics,First Law of Thermodynamics,,"Describe the work done by a system, heat transfer between objects, and internal energy change of a system.{756}",17.11.1.2
+Thermodynamics,First Law of Thermodynamics,,"Calculate the work, heat transfer, and internal energy change in a simple process.{757}",17.11.1.3
+Thermodynamics,Second Law of Thermodynamics,,State the second law of thermodynamics via an irreversible process.{787},17.12.1.0
+Thermodynamics,Second Law of Thermodynamics,,Contrast the second law of thermodynamics statements according to Kelvin and Clausius formulations.{802},17.12.1.1
+Thermodynamics,Second Law of Thermodynamics,,Interpret the second of thermodynamics via irreversibility.{803},17.12.1.2
+Thermodynamics,Entropy,,Describe the meaning of entropy.{813},17.13.1.0
+Thermodynamics,Entropy,,Calculate the change of entropy for some simple processes.{814},17.13.1.1
+Thermodynamics,Entropy,,Interpret the meaning of entropy at a microscopic scale.{818},17.13.1.2
+Thermodynamics,Entropy,,Calculate a change in entropy for an irreversible process of a system and contrast with the change in entropy of the universe.{819},17.13.1.3
+Thermodynamics,Heat Engines,Subtopic Outcome,Describe the function and components of a heat engine.{791},17.14.1.0
+Thermodynamics,Heat Engines,Subtopic Outcome,Explain the efficiency of an engine.{792},17.14.1.1
+Thermodynamics,Heat Engines,Subtopic Outcome,Calculate the efficiency of an engine for a given cycle of an ideal gas.{793},17.14.1.2
+Thermodynamics,Heat Engines,The Carnot Cycle,Describe the Carnot cycle with the roles of all four processes involved.{807},17.14.2.0
+Thermodynamics,Heat Engines,The Carnot Cycle,Outline the Carnot principle and its implications.{808},17.14.2.1
+Thermodynamics,Heat Engines,The Carnot Cycle,Demonstrate the equivalence of the Carnot principle and the second law of thermodynamics.{809},17.14.2.2
+Thermodynamics,Refrigerators,,Describe a refrigerator and a heat pump and list their differences.{797},17.15.1.0
+Thermodynamics,Refrigerators,,Calculate the performance coefficients of simple refrigerators and heat pumps.{798},17.15.1.1
+Thermodynamics,Third Law of Thermodynamics,,Explain the third law of thermodynamics.{820},17.16.1.0
+Thermodynamics,Third Law of Thermodynamics,,Paste un-numbered outcome here,17.16.1.1
+Electrostatics,Topic Outcome,,"Describe the electric force, both qualitatively and quantitatively.{840}",18.1.1.0
+Electrostatics,Topic Outcome,,Determine the direction of the electric force for different source charges.{842},18.1.1.1
+Electrostatics,Topic Outcome,,"Describe some of the many practical applications of electrostatics, including several printing technologies.{937}",18.1.1.2
+Electrostatics,Topic Outcome,,Relate these applications to Newton’s second law and the electric force.{938},18.1.1.3
+Electrostatics,Electric Charge,,Describe the concept of electric charge.{828},18.2.1.0
+Electrostatics,Electric Charge,,Explain qualitatively the force electric charge creates.{829},18.2.1.1
+Electrostatics,Electric Charge,,Explain what a continuous source charge distribution is and how it is related to the concept of quantization of charge.{853},18.2.1.2
+Electrostatics,Electric Charge,,"Describe line charges, surface charges, and volume charges.{854}",18.2.1.3
+Electrostatics,Conductors and Insulators,,Explain what a conductor is.{833},18.3.1.0
+Electrostatics,Conductors and Insulators,,Explain what an insulator is.{834},18.3.1.1
+Electrostatics,Conductors and Insulators,,List the differences and similarities between conductors and insulators.{835},18.3.1.2
+Electrostatics,Induction,,Describe the process of charging by induction.{836},18.4.1.0
+Electrostatics,Induction,,Paste un-numbered outcome here,18.4.1.1
+Electrostatics,Coulomb's Law,,Calculate the force that charges exert on each other.{841},18.5.1.0
+Electrostatics,Coulomb's Law,,Paste un-numbered outcome here,18.5.1.1
+Electrostatics,Electric Field,Subtopic Outcome,Explain the purpose of the electric field concept.{847},18.6.1.0
+Electrostatics,Electric Field,Subtopic Outcome,Describe the properties of the electric field.{848},18.6.1.1
+Electrostatics,Electric Field,Subtopic Outcome,Correctly describe and apply the superposition principle for multiple source charges.{843},18.6.1.2
+Electrostatics,Electric Field,Subtopic Outcome,Calculate the field of a collection of source charges of either sign.{849},18.6.1.3
+Electrostatics,Electric Field,Subtopic Outcome,Calculate the field of a continuous source charge distribution of either sign.{855},18.6.1.4
+Electrostatics,Electric Field,Electric Field Lines,Explain the purpose of an electric field diagram.{859},18.6.2.0
+Electrostatics,Electric Field,Electric Field Lines,Describe the relationship between a vector diagram and a field line diagram.{860},18.6.2.1
+Electrostatics,Electric Field,Electric Field Lines,Explain the rules for creating a field diagram and why these rules make physical sense.{861},18.6.2.2
+Electrostatics,Electric Field,Electric Field Lines,Sketch the field of an arbitrary source charge.{862},18.6.2.3
+Electrostatics,Electric Dipoles,,Describe an electric dipole.{917},18.7.1.0
+Electrostatics,Electric Dipoles,,Describe a permanent dipole.{866},18.7.1.1
+Electrostatics,Electric Dipoles,,Describe an induced dipole.{867},18.7.1.2
+Electrostatics,Electric Dipoles,,Define dipole moment.{918},18.7.1.3
+Electrostatics,Electric Dipoles,,Define and calculate an electric dipole moment.{868},18.7.1.4
+Electrostatics,Electric Dipoles,,Explain the physical meaning of the dipole moment.{869},18.7.1.5
+Electrostatics,Electric Flux,,Define the concept of flux.{875},18.8.1.0
+Electrostatics,Electric Flux,,Describe electric flux.{876},18.8.1.1
+Electrostatics,Electric Flux,,Calculate electric flux for a given situation.{877},18.8.1.2
+Electrostatics,Gauss's Law,,State Gauss’s law.{881},18.9.1.0
+Electrostatics,Gauss's Law,,Explain the conditions under which Gauss’s law may be used.{882},18.9.1.1
+Electrostatics,Gauss's Law,,Apply Gauss’s law in appropriate systems.{883},18.9.1.2
+Electrostatics,Gauss's Law,,"Explain what spherical, cylindrical, and planar symmetry are.{887}",18.9.1.3
+Electrostatics,Gauss's Law,,Recognize whether or not a given system possesses one of these symmetries.{888},18.9.1.4
+Electrostatics,Gauss's Law,,Apply Gauss’s law to determine the electric field of a system with one of these symmetries.{889},18.9.1.5
+Electrostatics,Conductors in Electrostatics Equilibrium,,Describe the electric field within a conductor at equilibrium.{893},18.10.1.0
+Electrostatics,Conductors in Electrostatics Equilibrium,,Describe the electric field immediately outside the surface of a charged conductor at equilibrium.{894},18.10.1.1
+Electrostatics,Conductors in Electrostatics Equilibrium,,"Explain why if the field is not as described in the first two objectives, the conductor is not at equilibrium.{895}",18.10.1.2
+Electrostatics,Electric Potential,Subtopic Outcome,Define the work done by an electric force.{901},18.11.1.0
+Electrostatics,Electric Potential,Subtopic Outcome,"Define electric potential, voltage, and potential difference.{907}",18.11.1.1
+Electrostatics,Electric Potential,Subtopic Outcome,Define the electron-volt.{908},18.11.1.2
+Electrostatics,Electric Potential,Subtopic Outcome,Describe systems in which the electron-volt is a useful unit.{910},18.11.1.3
+Electrostatics,Electric Potential,Subtopic Outcome,Apply work and potential energy in systems with electric charges.{903},18.11.1.4
+Electrostatics,Electric Potential,Subtopic Outcome,Apply conservation of energy to electric systems.{911},18.11.1.5
+Electrostatics,Electric Potential,Electric Potential Energy,Define electric potential energy.{902},18.11.2.0
+Electrostatics,Electric Potential,Electric Potential Energy,Calculate electric potential and potential difference from potential energy and electric field.{909},18.11.2.1
+Electrostatics,Electric Potential,Electric Potential Energy,Calculate the potential due to a point charge.{915},18.11.2.2
+Electrostatics,Electric Potential,Electric Potential Energy,Calculate the potential of a system of multiple point charges.{916},18.11.2.3
+Electrostatics,Electric Potential,Electric Potential Energy,Calculate the potential of a continuous charge distribution.{919},18.11.2.4
+Electrostatics,Electric Potential,Potential Difference,Calculate electric potential and potential difference from potential energy and electric field.{909},18.11.3.0
+Electrostatics,Electric Potential,Potential Difference,Paste un-numbered outcome here,18.11.3.1
+Electrostatics,Electric Potential,Equipotential Surfaces,Define equipotential surfaces and equipotential lines.{929},18.11.4.0
+Electrostatics,Electric Potential,Equipotential Surfaces,Explain the relationship between equipotential lines and electric field lines.{930},18.11.4.1
+Electrostatics,Electric Potential,Equipotential Surfaces,Map equipotential lines for one or two point charges.{931},18.11.4.2
+Electrostatics,Electric Potential,Equipotential Surfaces,Describe the potential of a conductor.{932},18.11.4.3
+Electrostatics,Electric Potential,Equipotential Surfaces,Compare and contrast equipotential lines and elevation lines on topographic maps.{933},18.11.4.4
+Electrostatics,Electric Potential,Connecting Potential and Field,Explain how to calculate the electric field in a system from the given potential.{923},18.11.5.0
+Electrostatics,Electric Potential,Connecting Potential and Field,Calculate the electric field in a given direction from a given potential.{924},18.11.5.1
+Electrostatics,Electric Potential,Connecting Potential and Field,Calculate the electric field throughout space from a given potential.{925},18.11.5.2
+Magnetism,Topic Outcome,,Explain attraction and repulsion by magnets.{1054},19.1.1.0
+Magnetism,Topic Outcome,,Describe the historical and contemporary applications of magnetism.{1055},19.1.1.1
+Magnetism,Topic Outcome,,Explain how a mass spectrometer works to separate charges.{1086},19.1.1.2
+Magnetism,Topic Outcome,,Explain how a cyclotron works.{1087},19.1.1.3
+Magnetism,Magnetic Field,Subtopic Outcome,Define the magnetic field based on a moving charge experiencing a force.{1059},19.2.1.0
+Magnetism,Magnetic Field,Subtopic Outcome,Solve for the electric field based on a changing magnetic flux in time.{1149},19.2.1.1
+Magnetism,Magnetic Field,Subtopic Outcome,Explain how energy can be stored in a magnetic field.{1187},19.2.1.2
+Magnetism,Magnetic Field,Subtopic Outcome,Derive the equation for energy stored in a coaxial cable given the magnetic energy density.{1188},19.2.1.3
+Magnetism,Magnetic Field,Subtopic Outcome,"Sketch the magnetic field created from a thin, straight wire by using the second right-hand rule.{1100}",19.2.1.4
+Magnetism,Magnetic Field,Magnetic Field Lines,Sketch magnetic field lines to understand which way the magnetic field points and how strong it is in a region of space.{1061},19.2.2.0
+Magnetism,Magnetic Field,Magnetic Field Lines,Paste un-numbered outcome here,19.2.2.1
+Magnetism,Magnetic Field,Motion of Charged Particle in Magnetic Field,Explain how a charged particle in an external magnetic field undergoes circular motion.{1065},19.2.3.0
+Magnetism,Magnetic Field,Motion of Charged Particle in Magnetic Field,Describe how to determine the radius of the circular motion of a charged particle in a magnetic field.{1066},19.2.3.1
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),Explain how Ampère’s law relates the magnetic field produced by a current to the value of the current.{1115},19.2.4.0
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),"Calculate the magnetic field from a long straight wire, either thin or thick, by Ampère’s law.{1116}",19.2.4.1
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),Explain how to derive a magnetic field from an arbitrary current in a line segment.{1093},19.2.4.2
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),"Calculate magnetic field from the Biot-Savart law in specific geometries, such as a current in a line and a current in a circular arc.{1094}",19.2.4.3
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),"Explain how the Biot-Savart law is used to determine the magnetic field due to a thin, straight wire.{1098}",19.2.4.4
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),"Determine the dependence of the magnetic field from a thin, straight wire based on the distance from it and the current flowing in the wire.{1099}",19.2.4.5
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),Explain how the Biot-Savart law is used to determine the magnetic field due to a current in a loop of wire at a point along a line perpendicular to the plane of the loop.{1110},19.2.4.6
+Magnetism,Magnetic Field,Magnetic Field Produced by Electrical Currents(Ampere's Law and Biot-Savart Law),Determine the magnetic field of an arc of current.{1111},19.2.4.7
+Magnetism,Magnetic Force,Subtopic Outcome,Paste un-numbered outcome here,19.3.1.0
+Magnetism,Magnetic Force,Subtopic Outcome,Paste un-numbered outcome here,19.3.1.1
+Magnetism,Magnetic Force,Magnetic Force on Moving Charges,Apply the right-hand rule to determine the direction of a magnetic force based on the motion of a charge in a magnetic field.{1060},19.3.2.0
+Magnetism,Magnetic Force,Magnetic Force on Moving Charges,Paste un-numbered outcome here,19.3.2.1
+Magnetism,Magnetic Force,Magnetic Force on Current-Carrying Wires,Determine the direction in which a current-carrying wire experiences a force in an external magnetic field.{1070},19.3.3.0
+Magnetism,Magnetic Force,Magnetic Force on Current-Carrying Wires,Calculate the force on a current-carrying wire in an external magnetic field.{1071},19.3.3.1
+Magnetism,Magnetic Force,Magnetic Force on Current-Carrying Wires,Explain how parallel wires carrying currents can attract or repel each other.{1104},19.3.3.2
+Magnetism,Magnetic Force,Magnetic Force on Current-Carrying Wires,Define the ampere and describe how it is related to current-carrying wires.{1105},19.3.3.3
+Magnetism,Magnetic Force,Magnetic Force on Current-Carrying Wires,Calculate the force of attraction or repulsion between two current-carrying wires.{1106},19.3.3.4
+Magnetism,Magnetic Force,Magnetic Force and Torque on Current Loops,Evaluate the net force on a current loop in an external magnetic field.{1075},19.3.4.0
+Magnetism,Magnetic Force,Magnetic Force and Torque on Current Loops,Evaluate the net torque on a current loop in an external magnetic field.{1076},19.3.4.1
+Magnetism,Magnetic Force,Magnetic Force and Torque on Current Loops,Define the magnetic dipole moment of a current loop.{1077},19.3.4.2
+Magnetism,Magnetic Properties of Matter,,"Classify magnetic materials as paramagnetic, diamagnetic, or ferromagnetic, based on their response to a magnetic field.{1125}",19.4.1.0
+Magnetism,Magnetic Properties of Matter,,Sketch how magnetic dipoles align with the magnetic field in each type of substance.{1126},19.4.1.1
+Magnetism,Magnetic Properties of Matter,,"Define hysteresis and magnetic susceptibility, which determines the type of magnetic material.{1127}",19.4.1.2
+Magnetism,The Hall Effect,,Explain a scenario where the magnetic and electric fields are crossed and their forces balance each other as a charged particle moves through a velocity selector.{1081},19.5.1.0
+Magnetism,The Hall Effect,,Compare how charge carriers move in a conductive material and explain how this relates to the Hall effect.{1082},19.5.1.1
+Magnetism,Solenoids,,Establish a relationship for how the magnetic field of a solenoid varies with distance and current by using both the Biot-Savart law and Ampère’s law.{1120},19.6.1.0
+Magnetism,Solenoids,,Establish a relationship for how the magnetic field of a toroid varies with distance and current by using Ampère’s law.{1121},19.6.1.1
+Magnetism,Solenoids,,Derive the self-inductance for a cylindrical solenoid.{1182},19.6.1.2
+Magnetism,Solenoids,,Derive the self-inductance for a rectangular toroid.{1183},19.6.1.3
+Magnetism,Magnetic Flux,,"Determine the magnetic flux through a surface, knowing the strength of the magnetic field, the surface area, and the angle between the normal to the surface and the magnetic field.{1133}",19.7.1.0
+Magnetism,Magnetic Flux,,Paste un-numbered outcome here,19.7.1.1
+Magnetism,Electromagnetic Induction,Subtopic Outcome,Use Faraday’s law with Lenz’s law to determine the induced emf in a coil and in a solenoid.{1139},19.8.1.0
+Magnetism,Electromagnetic Induction,Subtopic Outcome,Explain how computer hard drives and graphic tablets operate using magnetic induction.{1164},19.8.1.1
+Magnetism,Electromagnetic Induction,Subtopic Outcome,Explain how hybrid/electric vehicles and transcranial magnetic stimulation use magnetic induction to their advantage.{1165},19.8.1.2
+Magnetism,Electromagnetic Induction,Subtopic Outcome,Explain how an electric generator works.{1158},19.8.1.3
+Magnetism,Electromagnetic Induction,Subtopic Outcome,"Determine the induced emf in a loop at any time interval, rotating at a constant rate in a magnetic field.{1159}",19.8.1.4
+Magnetism,Electromagnetic Induction,Subtopic Outcome,Show that rotating coils have an induced emf; in motors this is called back emf because it opposes the emf input to the motor.{1160},19.8.1.5
+Magnetism,Electromagnetic Induction,Induced Currents,Paste un-numbered outcome here,19.8.2.0
+Magnetism,Electromagnetic Induction,Induced Currents,Paste un-numbered outcome here,19.8.2.1
+Magnetism,Electromagnetic Induction,Induced Fields,Paste un-numbered outcome here,19.8.3.0
+Magnetism,Electromagnetic Induction,Induced Fields,Paste un-numbered outcome here,19.8.3.1
+Magnetism,Electromagnetic Induction,Motional EMF,Determine the magnitude of an induced emf in a wire moving at a constant speed through a magnetic field.{1143},19.8.4.0
+Magnetism,Electromagnetic Induction,Motional EMF,"Discuss examples that use motional emf, such as a rail gun and a tethered satellite.{1144}",19.8.4.1
+Magnetism,Electromagnetic Induction,Eddy Currents,Explain how eddy currents are created in metals.{1153},19.8.5.0
+Magnetism,Electromagnetic Induction,Eddy Currents,Describe situations where eddy currents are beneficial and where they are not helpful.{1154},19.8.5.1
+Magnetism,Electromagnetic Induction,Faraday's Law,Use Faraday’s law to determine the magnitude of induced emf in a closed loop due to changing magnetic flux through the loop.{1134},19.8.6.0
+Magnetism,Electromagnetic Induction,Faraday's Law,"Connect the relationship between an induced emf from Faraday’s law to an electric field, thereby showing that a changing magnetic flux creates an electric field.{1148}",19.8.6.1
+Magnetism,Electromagnetic Induction,Lenz's Law,Use Lenz’s law to determine the direction of induced emf whenever a magnetic flux changes.{1138},19.8.7.0
+Magnetism,Electromagnetic Induction,Lenz's Law,Paste un-numbered outcome here,19.8.7.1
+Electromagnetic Waves,Topic Outcome,,Describe how electromagnetic waves are produced and detected.{1252},20.1.1.0
+Electromagnetic Waves,Topic Outcome,,Calculate the relative magnitude of the electric and magnetic fields in an electromagnetic plane wave.{1251},20.1.1.1
+Electromagnetic Waves,Topic Outcome,,Express the time-averaged energy density of electromagnetic waves in terms of their electric and magnetic field amplitudes.{1256},20.1.1.2
+Electromagnetic Waves,Topic Outcome,,Calculate the Poynting vector and the energy intensity of electromagnetic waves.{1257},20.1.1.3
+Electromagnetic Waves,Topic Outcome,,"Explain how the energy of an electromagnetic wave depends on its amplitude, whereas the energy of a photon is proportional to its frequency.{1258}",20.1.1.4
+Electromagnetic Waves,Topic Outcome,,Describe the relationship of the radiation pressure and the energy density of an electromagnetic wave.{1262},20.1.1.5
+Electromagnetic Waves,Topic Outcome,,"Explain how the radiation pressure of light, while small, can produce observable astronomical effects.{1263}",20.1.1.6
+Electromagnetic Waves,Electromagnetic Spectrum,,"Explain how electromagnetic waves are divided into different ranges, depending on wavelength and corresponding frequency.{1267}",20.2.1.0
+Electromagnetic Waves,Electromagnetic Spectrum,,Describe how electromagnetic waves in different categories are produced.{1268},20.2.1.1
+Electromagnetic Waves,Electromagnetic Spectrum,,Describe some of the many practical everyday applications of electromagnetic waves.{1269},20.2.1.2
+Electromagnetic Waves,Maxwell's Equations,,Explain Maxwell’s correction of Ampère’s law by including the displacement current.{1242},20.3.1.0
+Electromagnetic Waves,Maxwell's Equations,,State and apply Maxwell’s equations in integral form.{1243},20.3.1.1
+Electromagnetic Waves,Maxwell's Equations,,Describe how the symmetry between changing electric and changing magnetic fields explains Maxwell’s prediction of electromagnetic waves.{1244},20.3.1.2
+Electromagnetic Waves,Maxwell's Equations,,Describe how Hertz confirmed Maxwell’s prediction of electromagnetic waves.{1245},20.3.1.3
+Electromagnetic Waves,Maxwell's Equations,,"Describe how Maxwell’s equations predict the relative directions of the electric fields and magnetic fields, and the direction of propagation of plane electromagnetic waves.{1249}",20.3.1.4
+Electromagnetic Waves,Maxwell's Equations,,Explain how Maxwell’s equations predict that the speed of propagation of electromagnetic waves in free space is exactly the speed of light.{1250},20.3.1.5
+Circuits,Topic Outcome,,Define the drift velocity of charges moving through a metal.{984},21.1.1.0
+Circuits,Topic Outcome,,Describe the operation of an incandescent lamp.{986},21.1.1.1
+Circuits,Topic Outcome,,Explain the differences between direct current (dc) and alternating current (ac).{1209},21.1.1.2
+Circuits,Topic Outcome,,List the basic concepts involved in house wiring.{1045},21.1.1.3
+Circuits,Topic Outcome,,Define the terms thermal hazard and shock hazard.{1046},21.1.1.4
+Circuits,Topic Outcome,,Describe the effects of electrical shock on human physiology and their relationship to the amount of current through the body.{1047},21.1.1.5
+Circuits,Topic Outcome,,Explain the function of fuses and circuit breakers.{1048},21.1.1.6
+Circuits,Current,Subtopic Outcome,Describe an electrical current.{978},21.2.1.0
+Circuits,Current,Subtopic Outcome,Define the unit of electrical current.{979},21.2.1.1
+Circuits,Current,Subtopic Outcome,Explain the direction of current flow.{980},21.2.1.2
+Circuits,Current,Subtopic Outcome,Define the drift velocity of charges moving through a metal.{984},21.2.1.3
+Circuits,Current,Subtopic Outcome,Describe the operation of an incandescent lamp.{986},21.2.1.4
+Circuits,Current,Current Density,Define the vector current density.{985},21.2.2.0
+Circuits,Current,Current Density,Paste un-numbered outcome here,21.2.2.1
+Circuits,Resistance,Subtopic Outcome,Differentiate between resistance and resistivity.{990},21.3.1.0
+Circuits,Resistance,Subtopic Outcome,"State the relationship between resistance of a resistor and its length, cross-sectional area, and resistivity.{993}",21.3.1.1
+Circuits,Resistance,Subtopic Outcome,Define the term equivalent resistance.{1021},21.3.1.2
+Circuits,Resistance,Conductivity,Define the term conductivity.{991},21.3.2.0
+Circuits,Resistance,Conductivity,Paste un-numbered outcome here,21.3.2.1
+Circuits,Resistance,Resistivity,State the relationship between resistivity and temperature.{994},21.3.3.0
+Circuits,Resistance,Resistivity,Paste un-numbered outcome here,21.3.3.1
+Circuits,Resistance,Superconductors,Describe the phenomenon of superconductivity.{1009},21.3.4.0
+Circuits,Resistance,Superconductors,List applications of superconductivity.{1010},21.3.4.1
+Circuits,Ohm's Law,,Describe Ohm’s law.{998},21.4.1.0
+Circuits,Ohm's Law,,Recognize when Ohm’s law applies and when it does not.{999},21.4.1.1
+Circuits,Electrical Energy,,Calculate the energy efficiency and cost effectiveness of appliances and equipment.{1005},21.5.1.0
+Circuits,Electrical Energy,,Paste un-numbered outcome here,21.5.1.1
+Circuits,Electrical Power,,Express electrical power in terms of the voltage and the current.{1003},21.6.1.0
+Circuits,Electrical Power,,Describe the power dissipated by a resistor in an electric circuit.{1004},21.6.1.1
+Circuits,Electrical Power,,"Determine the relationship between the phase angle of the current and voltage and the average power, known as the power factor.{1226}",21.6.1.2
+Circuits,Electrical Power,,Explain the width of the average power versus angular frequency curve and its significance using terms like bandwidth and quality factor.{1231},21.6.1.3
+Circuits,Capacitors,Subtopic Outcome,Explain the concepts of a capacitor and its capacitance.{944},21.7.1.0
+Circuits,Capacitors,Subtopic Outcome,Compute the potential difference across the plates and the charge on the plates for a capacitor in a network and determine the net capacitance of a network of capacitors.{950},21.7.1.1
+Circuits,Capacitors,Capacitance,Describe how to evaluate the capacitance of a system of conductors.{945},21.7.2.0
+Circuits,Capacitors,Capacitance,Paste un-numbered outcome here,21.7.2.1
+Circuits,Capacitors,Capacitors in Series,Explain how to determine the equivalent capacitance of capacitors in series and in parallel combinations.{949},21.7.3.0
+Circuits,Capacitors,Capacitors in Series,Paste un-numbered outcome here,21.7.3.1
+Circuits,Capacitors,Capacitors in Parallel,Explain how to determine the equivalent capacitance of capacitors in series and in parallel combinations.{949},21.7.4.0
+Circuits,Capacitors,Capacitors in Parallel,Paste un-numbered outcome here,21.7.4.1
+Circuits,Capacitors,Energy Stored in Capacitor,Explain how energy is stored in a capacitor.{954},21.7.5.0
+Circuits,Capacitors,Energy Stored in Capacitor,Use energy relations to determine the energy stored in a capacitor network.{955},21.7.5.1
+Circuits,Capacitors,Capacitor with a Dielectric,Describe the effects a dielectric in a capacitor has on capacitance and other properties.{959},21.7.6.0
+Circuits,Capacitors,Capacitor with a Dielectric,Calculate the capacitance of a capacitor containing a dielectric.{960},21.7.6.1
+Circuits,Capacitors,Capacitor with a Dielectric,Explain the polarization of a dielectric in a uniform electrical field.{970},21.7.6.2
+Circuits,Capacitors,Capacitor with a Dielectric,Describe the effect of a polarized dielectric on the electrical field between capacitor plates.{971},21.7.6.3
+Circuits,Capacitors,Capacitor with a Dielectric,Explain dielectric breakdown.{972},21.7.6.4
+Circuits,Resistors,Subtopic Outcome,Describe the electrical component known as a resistor.{992},21.8.1.0
+Circuits,Resistors,Subtopic Outcome,Describe the power dissipated by a resistor in an electric circuit.{1004},21.8.1.1
+Circuits,Resistors,Resistors in Series,Calculate the equivalent resistance of resistors connected in series.{1022},21.8.2.0
+Circuits,Resistors,Resistors in Series,Paste un-numbered outcome here,21.8.2.1
+Circuits,Resistors,Resistors in Parallel,Calculate the equivalent resistance of resistors connected in parallel.{1023},21.8.3.0
+Circuits,Resistors,Resistors in Parallel,Paste un-numbered outcome here,21.8.3.1
+Circuits,Batteries,Subtopic Outcome,Explain the basic operation of a battery.{1017},21.9.1.0
+Circuits,Batteries,Subtopic Outcome,Paste un-numbered outcome here,21.9.1.1
+Circuits,Batteries,Real Batteries,Paste un-numbered outcome here,21.9.2.0
+Circuits,Batteries,Real Batteries,Paste un-numbered outcome here,21.9.2.1
+Circuits,Batteries,Ideal Batteries,Paste un-numbered outcome here,21.9.3.0
+Circuits,Batteries,Ideal Batteries,Paste un-numbered outcome here,21.9.3.1
+Circuits,Electromotive Force,,Describe the electromotive force (emf) and the internal resistance of a battery.{1016},21.10.1.0
+Circuits,Electromotive Force,,Paste un-numbered outcome here,21.10.1.1
+Circuits,Electrical Measuring Devices,Subtopic Outcome,Paste un-numbered outcome here,21.11.1.0
+Circuits,Electrical Measuring Devices,Subtopic Outcome,Paste un-numbered outcome here,21.11.1.1
+Circuits,Electrical Measuring Devices,Voltmeters,Describe how to connect a voltmeter in a circuit to measure voltage.{1033},21.11.2.0
+Circuits,Electrical Measuring Devices,Voltmeters,Paste un-numbered outcome here,21.11.2.1
+Circuits,Electrical Measuring Devices,Ammeters,Describe how to connect an ammeter in a circuit to measure current.{1034},21.11.3.0
+Circuits,Electrical Measuring Devices,Ammeters,Paste un-numbered outcome here,21.11.3.1
+Circuits,Electrical Measuring Devices,Ohmmeters,Describe the use of an ohmmeter.{1035},21.11.4.0
+Circuits,Electrical Measuring Devices,Ohmmeters,Paste un-numbered outcome here,21.11.4.1
+Circuits,Kichhoff's Rules,Subtopic Outcome,Analyze complex circuits using Kirchhoff’s rules.{1029},21.12.1.0
+Circuits,Kichhoff's Rules,Subtopic Outcome,Paste un-numbered outcome here,21.12.1.1
+Circuits,Kichhoff's Rules,Loop Rule,State Kirchhoff’s loop rule.{1028},21.12.2.0
+Circuits,Kichhoff's Rules,Loop Rule,Paste un-numbered outcome here,21.12.2.1
+Circuits,Kichhoff's Rules,Junction Rule,State Kirchhoff’s junction rule.{1027},21.12.3.0
+Circuits,Kichhoff's Rules,Junction Rule,Paste un-numbered outcome here,21.12.3.1
+Circuits,RC Circuits,Subtopic Outcome,List some applications of RC circuits.{1041},21.13.1.0
+Circuits,RC Circuits,Subtopic Outcome,Paste un-numbered outcome here,21.13.1.1
+Circuits,RC Circuits,Charging a Capacitor,Describe the charging process of a capacitor.{1039},21.13.2.0
+Circuits,RC Circuits,Charging a Capacitor,Paste un-numbered outcome here,21.13.2.1
+Circuits,RC Circuits,Discharging a Capacitor,Describe the discharging process of a capacitor.{1040},21.13.3.0
+Circuits,RC Circuits,Discharging a Capacitor,Paste un-numbered outcome here,21.13.3.1
+Circuits,Inductors,Subtopic Outcome,Paste un-numbered outcome here,21.14.1.0
+Circuits,Inductors,Subtopic Outcome,Paste un-numbered outcome here,21.14.1.1
+Circuits,Inductors,Inductance,Correlate two nearby circuits that carry time-varying currents with the emf induced in each circuit.{1176},21.14.2.0
+Circuits,Inductors,Inductance,Describe examples in which mutual inductance may or may not be desirable.{1177},21.14.2.1
+Circuits,Inductors,Inductance,Correlate the rate of change of current to the induced emf created by that current in the same circuit.{1181},21.14.2.2
+Circuits,Inductors,Inductance,Derive the self-inductance for a cylindrical solenoid.{1182},21.14.2.3
+Circuits,Inductors,Inductance,Derive the self-inductance for a rectangular toroid.{1183},21.14.2.4
+Circuits,Inductors,RL Circuits,Analyze circuits that have an inductor and resistor in series.{1192},21.14.3.0
+Circuits,Inductors,RL Circuits,Describe how current and voltage exponentially grow or decay based on the initial conditions.{1193},21.14.3.1
+Circuits,Inductors,RLC Series Circuits,"Determine the angular frequency of oscillation for a resistor, inductor, capacitor (𝑅𝐿𝐶) series circuit.{1202}",21.14.4.0
+Circuits,Inductors,RLC Series Circuits,Relate the 𝑅𝐿𝐶 circuit to a damped spring oscillation.{1203},21.14.4.1
+Circuits,Inductors,LC Circuits,Paste un-numbered outcome here,21.14.5.0
+Circuits,Inductors,LC Circuits,Paste un-numbered outcome here,21.14.5.1
+Circuits,Alternating-Current Circuits,Subtopic Outcome,"Define characteristic features of alternating current and voltage, such as the amplitude or peak and the frequency.{1210}",21.15.1.0
+Circuits,Alternating-Current Circuits,Subtopic Outcome,"Interpret phasor diagrams and apply them to ac circuits with resistors, capacitors, and inductors.{1214}",21.15.1.1
+Circuits,Alternating-Current Circuits,Subtopic Outcome,"Define the reactance for a resistor, capacitor, and inductor to help understand how current in the circuit behaves compared to each of these devices.{1215}",21.15.1.2
+Circuits,Alternating-Current Circuits,Subtopic Outcome,"Describe how the current varies in a resistor, a capacitor, and an inductor while in series with an ac power source.{1219}",21.15.1.3
+Circuits,Alternating-Current Circuits,Subtopic Outcome,"Use phasors to understand the phase angle of a resistor, capacitor, and inductor ac circuit and to understand what that phase angle means.{1220}",21.15.1.4
+Circuits,Alternating-Current Circuits,Subtopic Outcome,Calculate the impedance of a circuit.{1221},21.15.1.5
+Circuits,Alternating-Current Circuits,Subtopic Outcome,Describe how average power from an ac circuit can be written in terms of peak current and voltage and of rms current and voltage.{1225},21.15.1.6
+Circuits,Alternating-Current Circuits,Subtopic Outcome,Determine the peak ac resonant angular frequency for a RLC circuit.{1230},21.15.1.7
+Circuits,Alternating-Current Circuits,Alternating-Current Sources,Paste un-numbered outcome here,21.15.2.0
+Circuits,Alternating-Current Circuits,Alternating-Current Sources,Paste un-numbered outcome here,21.15.2.1
+Circuits,Alternating-Current Circuits,Transformers,Paste un-numbered outcome here,21.15.3.0
+Circuits,Alternating-Current Circuits,Transformers,Paste un-numbered outcome here,21.15.3.1
