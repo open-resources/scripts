@@ -13,8 +13,8 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/2.Kinematics'
-root_dest_folder = 'Output/hello'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone'
+root_dest_folder = 'Output'
 
 # variable declaration
 counter = 0
