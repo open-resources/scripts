@@ -188,15 +188,17 @@ def yaml_dump(directory_info, metadata, question_type, server, section, image_di
     yaml_dict['topic'] = metadata['topic']
     yaml_dict['author'] = metadata['author']
     yaml_dict['date'] = metadata['date']
-    yaml_dict['editor'] = metadata['editor']
-    yaml_dict['tags'] = metadata['tags']
     yaml_dict['source'] = source
-    yaml_dict['template_version'] = 1.1
+    yaml_dict['template_version'] = 1.2
+    yaml_dict['editor'] = metadata['editor']
     # yaml_dict['type'] = question_type['question_type']
+    yaml_dict['outcomes'] = ['TBD']
     yaml_dict['difficulty'] = ['TBD']
     yaml_dict['randomization'] = ['TBD']
     yaml_dict['taxonomy'] = ['TBD']
-    yaml_dict['outcomes'] = ['TBD']
+    yaml_dict['span'] = ['TBD']
+    yaml_dict['length'] = ['TBD']
+    yaml_dict['tags'] = metadata['tags']
     yaml_dict['assets'] = image_dic['image_name']
     yaml_dict['server'] = server
     # iterate through # of sections and print question type based on each section
@@ -215,11 +217,15 @@ pl-customizations:
         # create a new .md file using the file path and filename, write data into it
         Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                                                + '---\n\n'
-                                                                                + '## Question Section '
-                                                                                + '\n\n'
+                                                                                + '---\n\n\n'
+                                                                                + '<-- Question Section --> \n\n\n'
                                                                                 + ''.join(f'\n{image}' for image in image_dic['image_line_md'])
-                                                                                + '\n\n')
+                                                                                + '### Answer Section \n\n\n'
+                                                                                + '## pl-submission-panel \n\n\n'
+                                                                                + '## pl-answer-panel \n\n\n'
+                                                                                + '## Rubric \n\n\n'
+                                                                                + '## Solution \n\n\n'
+                                                                                + '## Comments \n\n\n')
                                                                                 # + problem_text
                                                                                 # + '\n\n'
                                                                                 # + ''.join(f'{value}' for key, value in section.items())
