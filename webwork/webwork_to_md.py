@@ -288,24 +288,28 @@ def problem_extract(question_body):
         if len(question_section) > 0:
             # remote all the \n in the section
             section_clean = question_section.replace('\n', '')
-            # if section is NOT the beginning i.e. generic text about hint
-            if not section_clean.startswith(problem_body_start_src) and not section_clean.endswith('</strong>'):
-                # if section contains information about image i.e. image name and tag
-                if section_clean.startswith("\\{ image") and section_clean.endswith(") \\}"):
-                    # determine the alt text of the question (to be used later)
-                    image_alt_text = re.findall('="(.+?)"', section_clean.strip())
-                elif not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
-                    # if section is the end i.e. ans_rule (determines the length of the answer)
-                    if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
-                        # extract the question units using regex
-                        question_units = re.findall('textrm{(.+?)}', section_clean)
-                    if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
-                        # the remainder of the text contains image alt text and the actual question (contains LaTeX)
-                        for image_alt in image_alt_text:
-                            # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
-                            if image_alt not in section_clean:
-                                # append all question sections to variable
-                                question_raw.append(section_clean)
+        # if section is NOT the beginning
+            if not section_clean.startswith(problem_body_start_src):
+                if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
+                    hint = section_clean
+                # if section does NOT include hint
+                if hint not in section_clean:
+                    # if section contains information about image i.e. image name and tag
+                    if section_clean.startswith("\\{ image") and section_clean.endswith(") \\}"):
+                        # determine the alt text of the question (to be used later)
+                        image_alt_text = re.findall('="(.+?)"', section_clean.strip())
+                    elif not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
+                        # if section is the end i.e. ans_rule (determines the length of the answer)
+                        if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
+                            # extract the question units using regex
+                            question_units = re.findall('textrm{(.+?)}', section_clean)
+                        if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
+                            # the remainder of the text contains image alt text and the actual question (contains LaTeX)
+                            for image_alt in image_alt_text:
+                                # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
+                                if image_alt not in section_clean:
+                                    # append all question sections to variable
+                                    question_raw.append(section_clean)
     # for each section of the question
     for question_section in question_no_image:
         # if the section is not empty
@@ -313,14 +317,18 @@ def problem_extract(question_body):
             # remote all the \n in the section
             section_clean = question_section.replace('\n', '')
             # if section is NOT the beginning i.e. generic text about hint
-            if not section_clean.startswith(problem_body_start_src) and not section_clean.endswith('</strong>'):
-                if not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
-                    # if section is the end i.e. ans_rule (determines the length of the answer)
-                    if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
-                        # extract the question units using regex
-                        question_units = re.findall('textrm{(.+?)}', section_clean)
-                    if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
-                        question_raw.append(section_clean)
+            if not section_clean.startswith(problem_body_start_src):
+                if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
+                    hint = section_clean
+                # if section does NOT include hint
+                if hint not in section_clean:
+                    if not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
+                        # if section is the end i.e. ans_rule (determines the length of the answer)
+                        if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
+                            # extract the question units using regex
+                            question_units = re.findall('textrm{(.+?)}', section_clean)
+                        if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
+                            question_raw.append(section_clean)
 
     # DEBUGGING:
     # pprint(question_raw)
