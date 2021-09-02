@@ -169,7 +169,7 @@ def determine_problem_type(question_ans):
         'question_type': question_type}
 
 
-def yaml_dump(directory_info, metadata, question_type, server, section, image_dic):
+def yaml_dump(directory_info, metadata, question_type, server, section, image_dic, question_text):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -215,11 +215,15 @@ pl-customizations:
     except Exception as e:
         pass
         # create a new .md file using the file path and filename, write data into it
+        # pprint(question_text)
         Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n\n'
                                                                                 + '<-- Question Section --> \n\n\n'
                                                                                 + ''.join(f'\n{image}' for image in image_dic['image_line_md'])
+                                                                                + ''.join(f'\n{question}' for question in question_text['question_raw'])
+                                                                                # str(question_text.get('question_raw')) + '\n\n\n'
+                                                                                + '\n\n\n'
                                                                                 + '### Answer Section \n\n\n'
                                                                                 + '## pl-submission-panel \n\n\n'
                                                                                 + '## pl-answer-panel \n\n\n'
@@ -276,6 +280,7 @@ def problem_extract(question_body):
             question_no_image = question.split('$PAR\n')
 
     # DEBUGGING:
+    # pprint("<---------------- START ---------------->")
     # if len(question_with_image) > 0:
     #     pprint(question_with_image)
     # if len(question_no_image) > 0:
@@ -309,7 +314,8 @@ def problem_extract(question_body):
                                 # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
                                 if image_alt not in section_clean:
                                     # append all question sections to variable
-                                    question_raw.append(section_clean)
+                                    if len(section_clean) > 0:
+                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '')..strip())
     # for each section of the question
     for question_section in question_no_image:
         # if the section is not empty
@@ -328,9 +334,11 @@ def problem_extract(question_body):
                             # extract the question units using regex
                             question_units = re.findall('textrm{(.+?)}', section_clean)
                         if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
-                            question_raw.append(section_clean)
+                            if len(section_clean) > 0:
+                                question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').strip())
 
     # DEBUGGING:
+    # pprint("<---------------- DONE ---------------->")
     # pprint(question_raw)
     return {'question_raw': question_raw}
 
@@ -465,7 +473,7 @@ for root, dirs, files in os.walk(root_path):
                         # TODO: handle answer section without hint
                         answer_section = ""
 
-                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic)
+                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic, question_text)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
                     counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
