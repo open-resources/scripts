@@ -315,7 +315,7 @@ def problem_extract(question_body):
                                 if image_alt not in section_clean:
                                     # append all question sections to variable
                                     if len(section_clean) > 0:
-                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '')..strip())
+                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').strip())
     # for each section of the question
     for question_section in question_no_image:
         # if the section is not empty
