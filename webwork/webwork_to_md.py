@@ -358,7 +358,7 @@ for root, dirs, files in os.walk(root_path):
             for source_filepath in source_files:
                 try:
                     file_dir = source_filepath[source_filepath.find("Contrib"):]
-                    filename = file[1:file.find('.')]
+                    filename = file[0:file.find('.')]
                     question_file = open(source_filepath, 'r')
                     file_contents = question_file.read()
                     dest_file_path = root.removeprefix(root_path)
