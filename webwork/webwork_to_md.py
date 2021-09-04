@@ -126,6 +126,8 @@ def metadata_extract(metadata_content):
             author_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
         if metadata + editor_src in item:
             editor_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
+        else:
+            editor_ = 'N/A'
         if keywords_src in item:
             tags_ = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
         if metadata + date_src in item:
@@ -218,8 +220,7 @@ pl-customizations:
         # pprint(question_text)
         Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
-                                                                                + '---\n\n\n'
-                                                                                + '<-- Question Section --> \n\n\n'
+                                                                                + '---\n\n'
                                                                                 + ''.join(f'\n{image}' for image in image_dic['image_line_md'])
                                                                                 + ''.join(f'\n{question}' for question in question_text['question_raw'])
                                                                                 # str(question_text.get('question_raw')) + '\n\n\n'
@@ -266,6 +267,7 @@ def image_extract(question_content):
 
 
 def problem_extract(question_body):
+    hint = ''
     question_units = ''
     question_raw = []
     image_alt_text = []
@@ -315,7 +317,8 @@ def problem_extract(question_body):
                                 if image_alt not in section_clean:
                                     # append all question sections to variable
                                     if len(section_clean) > 0:
-                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').strip())
+                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
+
     # for each section of the question
     for question_section in question_no_image:
         # if the section is not empty
@@ -335,9 +338,7 @@ def problem_extract(question_body):
                             question_units = re.findall('textrm{(.+?)}', section_clean)
                         if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
                             if len(section_clean) > 0:
-                                question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').strip())
-
-    # DEBUGGING:
+                                question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
     # pprint("<---------------- DONE ---------------->")
     # pprint(question_raw)
     return {'question_raw': question_raw}
