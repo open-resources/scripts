@@ -171,7 +171,7 @@ def determine_problem_type(question_ans):
         'question_type': question_type}
 
 
-def yaml_dump(directory_info, metadata, question_type, server, section, image_dic, question_text):
+def yaml_dump(directory_info, metadata, question_type, server, section, image_dic, question_text, question_units):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -217,27 +217,20 @@ pl-customizations:
     except Exception as e:
         pass
         # create a new .md file using the file path and filename, write data into it
-        # pprint(question_text)
         Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
                                                                                 + ''.join(f'\n{image}' for image in image_dic['image_line_md'])
-                                                                                + ''.join(f'\n{question}' for question in question_text['question_raw'])
-                                                                                # str(question_text.get('question_raw')) + '\n\n\n'
+                                                                                + ''.join(f'\n{question}' for question in question_text)
                                                                                 + '\n\n\n'
-                                                                                + '### Answer Section \n\n\n'
+                                                                                + '### Answer Section \n'
+                                                                                + str(question_units) + '\n\n'
                                                                                 + '## pl-submission-panel \n\n\n'
                                                                                 + '## pl-answer-panel \n\n\n'
                                                                                 + '## Rubric \n\n\n'
                                                                                 + '## Solution \n\n\n'
                                                                                 + '## Comments \n\n\n')
-                                                                                # + problem_text
-                                                                                # + '\n\n'
                                                                                 # + ''.join(f'{value}' for key, value in section.items())
-                                                                                # + '\n\n'
-                                                                                # + '## Answer Section'
-                                                                                # + '\n\n'
-                                                                                # + answer_section)
 
 
 def image_extract(question_content):
@@ -288,7 +281,6 @@ def problem_extract(question_body):
     # if len(question_no_image) > 0:
     #     pprint(question_no_image)
 
-
     # for each section of the question
     for question_section in question_with_image:
         # if the section is not empty
@@ -301,23 +293,15 @@ def problem_extract(question_body):
                     hint = section_clean
                 # if section does NOT include hint
                 if hint not in section_clean:
-                    # if section contains information about image i.e. image name and tag
-                    if section_clean.startswith("\\{ image") and section_clean.endswith(") \\}"):
-                        # determine the alt text of the question (to be used later)
-                        image_alt_text = re.findall('="(.+?)"', section_clean.strip())
-                    elif not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
-                        # if section is the end i.e. ans_rule (determines the length of the answer)
-                        if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
-                            # extract the question units using regex
-                            question_units = re.findall('textrm{(.+?)}', section_clean)
-                        if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
-                            # the remainder of the text contains image alt text and the actual question (contains LaTeX)
-                            for image_alt in image_alt_text:
-                                # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
-                                if image_alt not in section_clean:
-                                    # append all question sections to variable
-                                    if len(section_clean) > 0:
-                                        question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
+                    subsection = help_problem_extract_ans_units(section_clean)
+                    subsection_text = subsection['section']
+                    question_units = subsection['final_ans_units']
+                    # the remainder of the text contains image alt text and the actual question (contains LaTeX)
+                    for image_alt in image_alt_text:
+                        # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
+                        if image_alt not in subsection_text:
+                            # append all question sections to variable
+                            question_raw = help_problem_extract_append(subsection_text, question_raw)
 
     # for each section of the question
     for question_section in question_no_image:
@@ -331,17 +315,35 @@ def problem_extract(question_body):
                     hint = section_clean
                 # if section does NOT include hint
                 if hint not in section_clean:
-                    if not section_clean.startswith("\\{ image") and not section_clean.endswith(") \\}"):
-                        # if section is the end i.e. ans_rule (determines the length of the answer)
-                        if section_clean.startswith("\\{ans_rule") and section_clean.endswith("\\)"):
-                            # extract the question units using regex
-                            question_units = re.findall('textrm{(.+?)}', section_clean)
-                        if not section_clean.startswith("\\{ans_rule") and not section_clean.endswith("\\)"):
-                            if len(section_clean) > 0:
-                                question_raw.append(section_clean.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
+                    subsection = help_problem_extract_ans_units(section_clean)
+                    subsection_text = subsection['section']
+                    question_units = subsection['final_ans_units']
+                    question_raw = help_problem_extract_append(subsection_text, question_raw)
     # pprint("<---------------- DONE ---------------->")
     # pprint(question_raw)
-    return {'question_raw': question_raw}
+    return {'question_text': question_raw,
+            'question_units': question_units}
+
+
+def help_problem_extract_ans_units(problem_subsection):
+    final_ans_units = ''
+    section_clean = ''
+    if not problem_subsection.startswith("\\{ image") and not problem_subsection.endswith(") \\}"):
+        # if section is the end i.e. ans_rule (determines the length of the answer)
+        if problem_subsection.startswith("\\{ans_rule") and problem_subsection.endswith("\\)"):
+            # extract the question units using regex
+            final_ans_units = re.findall('textrm{(.+?)}', problem_subsection)
+        if not problem_subsection.startswith("\\{ans_rule") and not problem_subsection.endswith("\\)"):
+            section_clean = problem_subsection
+    return {'section': section_clean,
+            'final_ans_units': final_ans_units}
+
+
+def help_problem_extract_append(problem_subsection, final_dic):
+    if len(problem_subsection) > 0:
+        final_dic.append(problem_subsection.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
+    return final_dic
+
 
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
@@ -374,7 +376,9 @@ for root, dirs, files in os.walk(root_path):
                     }
                     question_body = file_contents_dic['question_body']
                     image_dic = image_extract(question_body)
-                    question_text = problem_extract(question_body)
+                    question_extract = problem_extract(question_body)
+                    question_text = question_extract['question_text']
+                    question_units = question_extract['question_units']
 
                     # ------------------------ Preparing Problem Text ------------------------ #
 
@@ -474,7 +478,7 @@ for root, dirs, files in os.walk(root_path):
                         # TODO: handle answer section without hint
                         answer_section = ""
 
-                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic, question_text)
+                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic, question_text, question_units)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
                     counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
