@@ -94,7 +94,7 @@ def split_file(file_content):
     metadata_content = file_content[:file_content.find(metadata_end_src)]
     macros = file_content[file_content.find(metadata_end_src):file_content.find(marcos_end_src)]
     question_variables = file_content[file_content.find(marcos_end_src):file_content.find(problem_body_start_src)]
-    question_body = [file_content[file_content.find(problem_body_start_src):file_content.find(problem_body_end_src)]]
+    question_body = [file_content[file_content.find(problem_body_start_src):file_content.rfind(problem_body_end_src)]]
     question_ans = re.findall(r"ANS(\(.+?[?<!)]\));", file_content)
     question_hint = [file_content[file_content.find(hint_start_src):file_content.find(hint_end_src)]]
     return {'metadata': metadata_content,
@@ -288,20 +288,25 @@ def problem_extract(question_body):
             # remote all the \n in the section
             section_clean = question_section.replace('\n', '')
         # if section is NOT the beginning
+        #     pprint("<---------------- IN PROGRESS ---------------->")
+        #     pprint(section_clean)
             if not section_clean.startswith(problem_body_start_src):
                 if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
                     hint = section_clean
                 # if section does NOT include hint
                 if hint not in section_clean:
-                    subsection = help_problem_extract_ans_units(section_clean)
-                    subsection_text = subsection['section']
-                    question_units = subsection['final_ans_units']
+                    subsection_dirty = help_problem_extract_ans_units(section_clean)
+                    subsection_text = subsection_dirty['section']
+                    question_units = subsection_dirty['final_ans_units']
+                    subsection_multi_part = help_problem_extract_ans_type(subsection_text)
+                    subsection_multi_part_ans_type = subsection_multi_part['ans_type']
+                    subsection_clean = subsection_multi_part['problem_clean']
                     # the remainder of the text contains image alt text and the actual question (contains LaTeX)
                     for image_alt in image_alt_text:
                         # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
-                        if image_alt not in subsection_text:
+                        if image_alt not in subsection_clean:
                             # append all question sections to variable
-                            question_raw = help_problem_extract_append(subsection_text, question_raw)
+                            question_raw = help_problem_extract_append(subsection_clean, question_raw)
 
     # for each section of the question
     for question_section in question_no_image:
@@ -309,6 +314,9 @@ def problem_extract(question_body):
         if len(question_section) > 0:
             # remote all the \n in the section
             section_clean = question_section.replace('\n', '')
+            # DEBUGGING:
+            # pprint("<---------------- IN PROGRESS ---------------->")
+            # pprint(section_clean)
             # if section is NOT the beginning i.e. generic text about hint
             if not section_clean.startswith(problem_body_start_src):
                 if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
@@ -318,7 +326,11 @@ def problem_extract(question_body):
                     subsection = help_problem_extract_ans_units(section_clean)
                     subsection_text = subsection['section']
                     question_units = subsection['final_ans_units']
-                    question_raw = help_problem_extract_append(subsection_text, question_raw)
+                    subsection_multi_part = help_problem_extract_ans_type(subsection_text)
+                    subsection_multi_part_ans_type = subsection_multi_part['ans_type']
+                    subsection_clean = subsection_multi_part['problem_clean']
+                    question_raw = help_problem_extract_append(subsection_clean, question_raw)
+    # DEBUGGING:
     # pprint("<---------------- DONE ---------------->")
     # pprint(question_raw)
     return {'question_text': question_raw,
@@ -339,9 +351,29 @@ def help_problem_extract_ans_units(problem_subsection):
             'final_ans_units': final_ans_units}
 
 
+def help_problem_extract_ans_type(problem_subsection):
+    ans_type = []
+    problem_ans_type_removed = []
+    if problem_subsection.startswith("END_TEXT"):
+        ans_type = re.search(r"END_TEXT(.*)BEGIN_TEXT", str(problem_subsection))
+        problem_ans_type_removed = re.sub(r"END_TEXT(.*)BEGIN_TEXT", "", str(problem_subsection))
+    else:
+        problem_ans_type_removed = problem_subsection
+
+    return {'ans_type': ans_type,
+            'problem_clean': problem_ans_type_removed}
+
 def help_problem_extract_append(problem_subsection, final_dic):
     if len(problem_subsection) > 0:
-        final_dic.append(problem_subsection.replace('\\', '').replace('textrm', '').replace('{', '').replace('}', '').replace('&middot;', '$\\cdot$').strip())
+        final_dic.append(problem_subsection
+                         .replace('\\', '')
+                         .replace('textrm', '')
+                         .replace('{', '')
+                         .replace('}', '')
+                         .replace('&middot;', '$\\cdot$')
+                         .replace('END_TEXT', '')
+                         .replace('BEGIN_TEXT', '')
+                         .strip())
     return final_dic
 
 
