@@ -3,7 +3,6 @@ from pathlib import Path
 from pprint import pprint
 import yaml
 import re
-from string import ascii_lowercase
 import time
 
 # TODO: unify variable names
@@ -176,7 +175,7 @@ def determine_problem_type(question_ans, filename):
         'filename': filename}
 
 
-def yaml_dump(directory_info, metadata, question_format, server, section, image_dic, question_text, question_units, question_parts):
+def yaml_dump(directory_info, metadata, question_format, server, image_dic, question_text, question_units, question_parts):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -429,105 +428,8 @@ for root, dirs, files in os.walk(root_path):
                     question_parts = question_extract['question_parts']
                     question_units = question_extract['question_units']
                     question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
-                    # ------------------------ Preparing Problem Text ------------------------ #
 
-                    if hint_start_src in file_contents:
-                        problem_full = file_contents[
-                                       file_contents.index(problem_body_start_src):file_contents.index(hint_start_src)]
-                    else:
-                        problem_full = file_contents[
-                                       file_contents.index(problem_body_start_src):file_contents.index(
-                                           problem_body_end_src)]
-                        # print(file_contents)
-                    problem_header = problem_full \
-                        .replace(' \\', '') \
-                        .replace('\\', '') \
-                        .replace('/', '') \
-                        .replace('<strong>', '') \
-                        .replace('$', '') \
-                        .replace('{', '') \
-                        .replace('}', '') \
-                        .replace('PAR', '') \
-                        .replace('BR', '') \
-                        .replace('textrm', '') \
-                        .strip()
-
-                    # find all problem text between
-                    problem_multi_para = problem_header.replace(problem_body_end_src, "").replace(problem_body_start_src,
-                                                                                                "")
-
-                    # remove ans_rule line from problem
-                    if ans_rule_src in problem_multi_para:
-                        problem_clean_up = re.sub(r"ans_rule(.+?[(])(.+?[)])", '', problem_multi_para)
-                    else:
-                        problem_clean_up = ''
-
-                    # remove ANS line from problem
-                    if ans_src in problem_multi_para:
-
-                        problem_no_ans = re.sub(r"ANS(\(.+?[?<!)]\));", '', problem_clean_up)
-                        # remove empty lines from problem
-                        problem_no_empty_lines = os.linesep.join([s for s in problem_no_ans.splitlines() if s])
-                    else:
-                        # remove empty lines from problem
-                        problem_no_empty_lines = os.linesep.join([s for s in problem_multi_para.splitlines() if s])
-
-                    # remove hint lin from beginning of problem
-                    if hint_src in problem_multi_para:
-                        problem_no_hint = re.sub(r".*hint.", "", problem_no_empty_lines).strip()
-                    else:
-                        problem_no_hint = problem_no_empty_lines
-
-                    # Remove image section from problem text
-                    if "image" in problem_no_hint:
-                        # Remove image - height
-                        image_line_1 = re.sub(r"image\( .+", "", problem_no_hint).strip()
-                        # Remove tex - *
-                        image_line_2 = re.sub(r"tex.+", "", image_line_1).strip()
-                        # Remove Figure *
-                        # TODO: can not remove all "figures" since some questions use the word "figure" in the actual question
-                        # image_line_3 = re.sub(r"Figure.+", "", image_line_2).strip()
-                        problem_text = image_line_2
-                    else:
-                        problem_text = problem_no_hint
-
-                    parts_dirty = parts_clean = {}
-                    section = {}
-                    # find multi-part questions and separate each section
-                    for alphabet in ascii_lowercase[:11]:
-                        parts_dirty[alphabet] = re.search(rf"{alphabet}\) .*", problem_text)
-                        if parts_dirty[alphabet]:
-                            section_header = parts_dirty[alphabet].group()[0].capitalize()
-                            parts_clean[alphabet] = re.sub(rf"{alphabet}\) ", "", parts_dirty[alphabet].group())
-                            section[alphabet] = "## " + section_header + "\n" \
-                                                + parts_clean[alphabet] + "\n" \
-                                                + "### Answer Section" + "\n"
-
-                    # ------------------------ Preparing Answer Section ------------------------ #
-                    start_of_answer_src = "showHint"
-                    end_of_answer_src = "BEGIN_TEXT"
-                    context_src = "Context"
-
-                    if start_of_answer_src in file_contents:
-                        answer_with_hint = file_contents[file_contents.index(start_of_answer_src)
-                                                         :file_contents.index(end_of_answer_src)]
-                        # Remove "Context" from end of file
-                        if context_src in answer_with_hint:
-                            answer_no_context = re.sub(rf"{context_src}.+", "", answer_with_hint)
-                        else:
-                            answer_no_context = answer_with_hint
-                        answer_section = re.sub(rf"{start_of_answer_src} =\d+;", '', answer_no_context) \
-                            .replace(end_of_answer_src, '') \
-                            .replace(';', '') \
-                            .replace('$', '').strip()
-                        if "random" in answer_section:
-                            answer_section = "from random import randrange\n" + answer_section.replace('random',
-                                                                                                       'randrange')
-                    else:
-                        # TODO: handle answer section without hint
-                        answer_section = ""
-
-                    yaml_dump(dir_info, metadata_dic, question_formats, server, section, image_dic, question_text,
+                    yaml_dump(dir_info, metadata_dic, question_formats, server, image_dic, question_text,
                               question_units, question_parts)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
