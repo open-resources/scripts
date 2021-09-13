@@ -13,8 +13,8 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone'
-root_dest_folder = 'Output'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/12.Fluid_Dynamics_and_Medical_Applications/'
+root_dest_folder = 'Output/green/'
 
 # variable declaration
 counter = 0
@@ -140,7 +140,7 @@ def metadata_extract(metadata_content):
             'date': date_}
 
 
-def determine_problem_type(question_ans):
+def determine_problem_type(question_ans, filename):
     # determine what type of question is based on the ANS(type)
     numerical_type = "num_cmp"
     functional_type = "fun_cmp"
@@ -165,13 +165,18 @@ def determine_problem_type(question_ans):
             question_type.append("Text")
         else:
             question_type.append("Unknown")
+
+    if not question_type:
+        question_type.append("Unknown")
+
     return {
         'answer_variable': answer_variable,
         'answer_type_raw': answer_type_raw,
-        'question_type': question_type}
+        'question_type': question_type,
+        'filename': filename}
 
 
-def yaml_dump(directory_info, metadata, question_type, server, section, image_dic, question_text, question_units, question_parts):
+def yaml_dump(directory_info, metadata, question_format, server, section, image_dic, question_text, question_units, question_parts):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -203,22 +208,17 @@ def yaml_dump(directory_info, metadata, question_type, server, section, image_di
     yaml_dict['tags'] = metadata['tags']
     yaml_dict['assets'] = image_dic['image_name']
     yaml_dict['server'] = server
-    # iterate through # of sections and print question type based on each section
-    try:
-        # TODO: revisit this section
-        for part_counter in range(0, len(section)):
-            # print(part_counter)
-            yaml_dict['part' + str(part_counter + 1 if part_counter < 2 else part_counter)] = ''.join(f"""
-type:
-    {question_type[part_counter]}
+    for part_number, part_type in zip(question_parts, question_format):
+        yaml_dict['part' + str(part_number+1)] = ''.join(
+f"""
+type: {part_type}
 pl-customizations:
-    weight: 1
+  weight: 1
+  hide-answer-panel: true
+
 """).strip('\n')
-    except Exception as e:
-        pass
-        # create a new .md file using the file path and filename, write data into it
-        question_images = image_dic['image_line_md']
-        Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
+    question_images = image_dic['image_line_md']
+    Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
                                                                                 + ''.join(f'\n{image}' for image in question_images)
@@ -298,9 +298,9 @@ def problem_extract(question_body):
                     hint = section_clean
                 # if section does NOT include hint
                 if hint not in section_clean:
-                    subsection_dirty = help_problem_extract_ans_units(section_clean)
-                    subsection_text = subsection_dirty['section']
-                    question_units = subsection_dirty['final_ans_units']
+                    subsection = help_problem_extract_ans_units(section_clean)
+                    subsection_text = subsection['section']
+                    question_units = subsection['final_ans_units']
                     subsection_multi_part = help_problem_extract_ans_type(subsection_text)
                     subsection_multi_part_ans_type = subsection_multi_part['ans_type']
                     subsection_clean = subsection_multi_part['problem_clean']
@@ -310,7 +310,7 @@ def problem_extract(question_body):
                         if image_alt not in subsection_clean:
                             # append all question sections to variable
                             question_raw = help_problem_extract_append(subsection_clean, question_raw)
-                            question_part = append_part_counter(len(question_raw), part_headers)
+                            question_part = append_part_counter(len(question_raw)-1, part_headers)
 
 # for each section of the question
     for question_section in question_no_image:
@@ -334,7 +334,7 @@ def problem_extract(question_body):
                     subsection_multi_part_ans_type = subsection_multi_part['ans_type']
                     subsection_clean = subsection_multi_part['problem_clean']
                     question_raw = help_problem_extract_append(subsection_clean, question_raw)
-                    question_part = append_part_counter(len(question_raw), part_headers)
+                    question_part = append_part_counter(len(question_raw)-1, part_headers)
 
 # DEBUGGING:
 #     pprint("<---------------- DONE ---------------->")
@@ -348,6 +348,11 @@ def append_part_counter(part_counter, part_headers):
     if part_counter not in part_headers:
         part_headers.append(part_counter)
     return part_headers
+
+
+def extract_problem_type(problem_subsection, filename):
+    question_format_raw = re.findall("(ANS\(.+?\);)", str(problem_subsection))
+    return determine_problem_type(question_format_raw, filename)
 
 
 def help_problem_extract_ans_units(problem_subsection):
@@ -410,9 +415,7 @@ for root, dirs, files in os.walk(root_path):
 
                     split_file(file_contents)
                     file_contents_dic = split_file(file_contents)
-                    # pprint(file_contents_dic['question_ans'])
                     metadata_dic = metadata_extract(file_contents_dic['metadata'])
-                    question_type = determine_problem_type(file_contents_dic['question_ans'])
                     dir_info = {
                         'filename': filename,
                         'file_dir': file_dir,
@@ -425,7 +428,7 @@ for root, dirs, files in os.walk(root_path):
                     question_text = question_extract['question_text']
                     question_parts = question_extract['question_parts']
                     question_units = question_extract['question_units']
-
+                    question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
                     # ------------------------ Preparing Problem Text ------------------------ #
 
                     if hint_start_src in file_contents:
@@ -524,7 +527,7 @@ for root, dirs, files in os.walk(root_path):
                         # TODO: handle answer section without hint
                         answer_section = ""
 
-                    yaml_dump(dir_info, metadata_dic, question_type, server, section, image_dic, question_text,
+                    yaml_dump(dir_info, metadata_dic, question_formats, server, section, image_dic, question_text,
                               question_units, question_parts)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
