@@ -24,47 +24,6 @@ title = topic = author = editor = date = source = template_version = problem_typ
 tags = assets = altText = image_line = []
 total_start_time = time.process_time()
 
-# server variables
-server_imports = """
-imports: |
-  import random
-  import problem_bank_helpers as pbh
-""".strip('\n')
-server_generate_names = "TBD"
-server_generate_phrases = "TBD"
-server_generate_random_var = "TBD"
-server_generate_dic = "TBD"
-server_generate_answers = "TBD"
-server_generate = f"""
-generate: |
-    data2 = pbh.create_data2()
-
-    # define or load names/items/objects from server files
-    {server_generate_names}
-    # store phrases etc
-    {server_generate_phrases}
-    # Randomize Variables
-    {server_generate_random_var}
-    # store the variables in the dictionary "params"
-    {server_generate_dic}
-    # define possible answers
-    {server_generate_answers}
-    # Update the data object with a new dict
-    data.update(data2)
-"""
-server_prepare = """
-prepare: |
-    pass
-""".strip('\n')
-server_parse = """
-parse: |
-    pass
-"""
-server_grade = """
-grade: |
-    pass
-""".strip('\n')
-server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
 
 # Variable declaration for Webwork keywords
 metadata_end_src = "DOCUMENT();"
@@ -78,6 +37,8 @@ ans_rule_src = "ans_rule"
 ans_src = "ANS"
 hint_src = "hint"
 image_src = "image"
+context_src = "Context"
+partial_answer_src = "showPartialCorrectAnswers"
 
 # extract file structure from source directory (handles ALL sub-directories)
 # for loop runs based # of folders in src
@@ -96,11 +57,13 @@ def split_file(file_content):
     question_body = [file_content[file_content.find(problem_body_start_src):file_content.rfind(problem_body_end_src)]]
     question_ans = re.findall(r"ANS(\(.+?[?<!)]\));", file_content)
     question_hint = [file_content[file_content.find(hint_start_src):file_content.find(hint_end_src)]]
+    question_solution = [file_content[file_content.find(marcos_end_src):file_content.find(problem_body_start_src)]]
     return {'metadata': metadata_content,
             'macros': macros,
             'question_variables': question_variables,
             'question_body': question_body,
             'question_ans': question_ans,
+            'question_solution': question_solution,
             'question_hint': question_hint}
 
 
@@ -175,7 +138,51 @@ def determine_problem_type(question_ans, filename):
         'filename': filename}
 
 
-def yaml_dump(directory_info, metadata, question_format, server, image_dic, question_text, question_units, question_parts):
+def server(question_solution):
+    # server variables
+    server_imports = """
+imports: |
+  import random
+  import problem_bank_helpers as pbh
+""".strip('\n')
+    server_generate_names = "TBD"
+    server_generate_phrases = "TBD"
+    server_generate_random_var = ' '.join(f'   {solution.strip()}\n' for solution in question_solution)
+    server_generate_dic = "TBD"
+    server_generate_answers = "TBD"
+    server_generate = f"""
+generate: |
+    data2 = pbh.create_data2()
+
+    # define or load names/items/objects from server files
+    {server_generate_names}
+    # store phrases etc
+    {server_generate_phrases}
+    # Randomize Variables
+ {server_generate_random_var}
+    # store the variables in the dictionary "params"
+    {server_generate_dic}
+    # define possible answers
+    {server_generate_answers}
+    # Update the data object with a new dict
+    data.update(data2)
+    """
+    server_prepare = """
+prepare: |
+    pass
+""".strip('\n')
+    server_parse = """
+parse: |
+    pass
+"""
+    server_grade = """
+grade: |
+    pass
+""".strip('\n')
+    server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
+    return server
+
+def yaml_dump(directory_info, metadata, question_format, image_dic, question_text, question_units, question_parts, question_solution):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -206,7 +213,7 @@ def yaml_dump(directory_info, metadata, question_format, server, image_dic, ques
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
     yaml_dict['assets'] = image_dic['image_name']
-    yaml_dict['server'] = server
+    yaml_dict['server'] = server(question_solution)
     for part_number, part_type in zip(question_parts, question_format):
         yaml_dict['part' + str(part_number+1)] = ''.join(
 f"""
@@ -214,7 +221,6 @@ type: {part_type}
 pl-customizations:
   weight: 1
   hide-answer-panel: true
-
 """).strip('\n')
     question_images = image_dic['image_line_md']
     Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
@@ -394,6 +400,23 @@ def help_problem_extract_append(problem_subsection, final_dic):
     return final_dic
 
 
+def extract_problem_solution(problem_solution):
+    question_solution = []
+
+    for solution in problem_solution:
+        split_solution = solution.split('\n')
+
+        for solution_part in split_solution:
+            if len(solution_part) > 0:
+                # removes lines with showPartialCorrectAnswers and showHint
+                if partial_answer_src not in solution_part and variables_start_src not in solution_part:
+                    # removes lines with Context and TEXT(beginproblem());
+                    if context_src not in solution_part and marcos_end_src not in solution_part:
+                        question_solution.append(solution_part)
+
+    return question_solution
+
+
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
     # create dest file structure based on source directory
@@ -412,7 +435,6 @@ for root, dirs, files in os.walk(root_path):
                     file_contents = question_file.read()
                     dest_file_path = root.removeprefix(root_path)
 
-                    split_file(file_contents)
                     file_contents_dic = split_file(file_contents)
                     metadata_dic = metadata_extract(file_contents_dic['metadata'])
                     dir_info = {
@@ -428,9 +450,10 @@ for root, dirs, files in os.walk(root_path):
                     question_parts = question_extract['question_parts']
                     question_units = question_extract['question_units']
                     question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
+                    question_solution = extract_problem_solution(file_contents_dic['question_solution'])
 
-                    yaml_dump(dir_info, metadata_dic, question_formats, server, image_dic, question_text,
-                              question_units, question_parts)
+                    yaml_dump(dir_info, metadata_dic, question_formats, image_dic, question_text,
+                              question_units, question_parts, question_solution)
                     end_file_time = time.process_time()
                     file_process_time = end_file_time - file_start_time
                     counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
