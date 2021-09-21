@@ -12,8 +12,8 @@ import time
 # TODO: handle answer section without hint
 
 # loop through every file in the dir
-root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/12.Fluid_Dynamics_and_Medical_Applications/'
-root_dest_folder = 'Output/green/'
+root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
+root_dest_folder = 'Output/'
 
 # variable declaration
 counter = 0
@@ -147,7 +147,9 @@ imports: |
 """.strip('\n')
     server_generate_names = "TBD"
     server_generate_phrases = "TBD"
-    server_generate_random_var = ' '.join(f'   {solution.strip()}\n' for solution in question_solution)
+    server_generate_random_var = "   N/A"
+    if len(question_solution) > 0:
+        server_generate_random_var = ' '.join(f'   {solution.strip()}\n' for solution in question_solution)
     server_generate_dic = "TBD"
     server_generate_answers = "TBD"
     server_generate = f"""
@@ -226,8 +228,8 @@ pl-customizations:
     Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
-                                                                                + ''.join(f'\n{image}' for image in question_images)
-                                                                                + ''.join(f'## Part {part} \n {question} \n' for part, question in zip(question_parts, question_text))
+                                                                                + ''.join(f'{image}\n\n' for image in question_images)
+                                                                                + ''.join(f'## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
                                                                                 + '\n\n'
                                                                                 + '### Answer Section \n'
                                                                                 + str(question_units) + '\n\n'
@@ -261,89 +263,44 @@ def image_extract(question_content):
             image_line.append('![](' + image_filename + ')')
 
     return {'image_name': image_name,
-            'image_alt': image_alt_text,
+            'image_alt_text': image_alt_text,
             'image_line_md': image_line}
 
 
-def problem_extract(question_body):
+def problem_extract(question_body, image_alt_text):
     hint = ''
     question_units = ''
     question_raw = []
-    image_alt_text = []
-    question_with_image = ''
-    question_no_image = ''
+    question_split = ''
     part_headers = []
     question_part = []
 
     # split question into sections based on "$PAR"
     for question in question_body:
-        if "image(" in question:
-            question_with_image = question.split('$PAR\n')
-        else:
-            question_no_image = question.split('$PAR\n')
-
-    # DEBUGGING:
-    # pprint("<---------------- START ---------------->")
-    # if len(question_with_image) > 0:
-    #     pprint(question_with_image)
-    # if len(question_no_image) > 0:
-    #     pprint(question_no_image)
+        question_split = question.split('$PAR\n')
 
     # for each section of the question
-    for question_section in question_with_image:
+    for question_section in question_split:
         # if the section is not empty
         if len(question_section) > 0:
             # remote all the \n in the section
             section_clean = question_section.replace('\n', '')
-        # if section is NOT the beginning
-        #     pprint("<---------------- IN PROGRESS ---------------->")
-        #     pprint(section_clean)
-            if not section_clean.startswith(problem_body_start_src):
-                if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
-                    hint = section_clean
-                # if section does NOT include hint
-                if hint not in section_clean:
-                    subsection = help_problem_extract_ans_units(section_clean)
-                    subsection_text = subsection['section']
-                    question_units = subsection['final_ans_units']
-                    subsection_multi_part = help_problem_extract_ans_type(subsection_text)
-                    subsection_multi_part_ans_type = subsection_multi_part['ans_type']
-                    subsection_clean = subsection_multi_part['problem_clean']
-                    # the remainder of the text contains image alt text and the actual question (contains LaTeX)
-                    for image_alt in image_alt_text:
-                        # if text does NOT contain image alt text, then the text is the actual question w/ LaTeX
-                        if image_alt not in subsection_clean:
-                            # append all question sections to variable
-                            question_raw = help_problem_extract_append(subsection_clean, question_raw)
-                            question_part = append_part_counter(len(question_raw)-1, part_headers)
+            # find and assign hint (if it exits)
+            if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
+                hint = section_clean
+            # if hint has not been assigned (no hint exists) OR section does NOT include hint
+            if not hint or hint not in section_clean:
+                subsection = help_problem_extract_ans_units(section_clean)
+                subsection_text = subsection['section']
+                question_units = subsection['final_ans_units']
+                subsection_multi_part = help_problem_extract_ans_type(subsection_text)
+                subsection_multi_part_ans_type = subsection_multi_part['ans_type']
+                subsection_clean = subsection_multi_part['problem_clean']
+                question_raw = help_problem_extract_append(subsection_clean, question_raw)
+                # remove image_alt_text from question_raw and ensure there are no empty questions
+                question_raw = [question for question in question_raw if question not in image_alt_text and question]
+                question_part = append_part_counter(len(question_raw), part_headers)
 
-# for each section of the question
-    for question_section in question_no_image:
-        # if the section is not empty
-        if len(question_section) > 0:
-            # remote all the \n in the section
-            section_clean = question_section.replace('\n', '')
-            # DEBUGGING:
-            # pprint("<---------------- IN PROGRESS ---------------->")
-            # pprint(section_clean)
-            # if section is NOT the beginning i.e. generic text about hint
-            if not section_clean.startswith(problem_body_start_src):
-                if section_clean.endswith('</strong>') or section_clean.endswith('</b>'):
-                    hint = section_clean
-                # if section does NOT include hint
-                if hint not in section_clean:
-                    subsection = help_problem_extract_ans_units(section_clean)
-                    subsection_text = subsection['section']
-                    question_units = subsection['final_ans_units']
-                    subsection_multi_part = help_problem_extract_ans_type(subsection_text)
-                    subsection_multi_part_ans_type = subsection_multi_part['ans_type']
-                    subsection_clean = subsection_multi_part['problem_clean']
-                    question_raw = help_problem_extract_append(subsection_clean, question_raw)
-                    question_part = append_part_counter(len(question_raw)-1, part_headers)
-
-# DEBUGGING:
-#     pprint("<---------------- DONE ---------------->")
-#     pprint(question_raw)
     return {'question_text': question_raw,
             'question_parts': question_part,
             'question_units': question_units}
@@ -445,7 +402,7 @@ for root, dirs, files in os.walk(root_path):
                     }
                     question_body = file_contents_dic['question_body']
                     image_dic = image_extract(question_body)
-                    question_extract = problem_extract(question_body)
+                    question_extract = problem_extract(question_body, image_dic['image_alt_text'])
                     question_text = question_extract['question_text']
                     question_parts = question_extract['question_parts']
                     question_units = question_extract['question_units']
