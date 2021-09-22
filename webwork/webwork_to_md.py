@@ -13,7 +13,7 @@ import time
 
 # loop through every file in the dir
 root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
-root_dest_folder = 'Output/'
+root_dest_folder = 'College_Physics_Urone/'
 
 # variable declaration
 counter = 0
@@ -91,7 +91,7 @@ def metadata_extract(metadata_content):
         else:
             editor_ = 'N/A'
         if keywords_src in item:
-            tags_ = item[item.find("(") + 1:item.find(")")].replace("'", "").replace(",", "").split()
+            tags_ = item[12:-1].replace("'", "").replace('"', '').strip().split(',')
         if metadata + date_src in item:
             date_ = item[item.find("(") + 1:item.find(")")].replace("'", "")
     return {'title': title_,
