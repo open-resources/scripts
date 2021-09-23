@@ -144,13 +144,13 @@ imports: |
   import random
   import problem_bank_helpers as pbh
 """.strip('\n')
-    server_generate_names = "TBD"
-    server_generate_phrases = "TBD"
+    server_generate_names = "# TBD"
+    server_generate_phrases = "# TBD"
     server_generate_random_var = "   N/A"
     if len(question_solution) > 0:
         server_generate_random_var = ' '.join(f'   {solution.strip()}\n' for solution in question_solution)
-    server_generate_dic = "TBD"
-    server_generate_answers = "TBD"
+    server_generate_dic = "# TBD"
+    server_generate_answers = "# TBD"
     server_generate = f"""
 generate: |
     data2 = pbh.create_data2()
@@ -201,10 +201,13 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['title'] = metadata['title']
     yaml_dict['topic'] = metadata['topic']
     yaml_dict['author'] = metadata['author']
-    yaml_dict['date'] = metadata['date']
+    #yaml_dict['date'] = metadata['date']
     yaml_dict['source'] = source
-    yaml_dict['template_version'] = 1.2
-    yaml_dict['editor'] = metadata['editor']
+    yaml_dict['template_version'] = 1.3
+    yaml_dict['attribution'] = 'standard'
+    yaml_dict['partialCredit'] = 'true'
+    yaml_dict['singleVariant'] = 'false'
+    #yaml_dict['editor'] = metadata['editor']
     # yaml_dict['type'] = question_type['question_type']
     yaml_dict['outcomes'] = ['TBD']
     yaml_dict['difficulty'] = ['TBD']
@@ -213,8 +216,10 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['span'] = ['TBD']
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
-    yaml_dict['assets'] = image_dic['image_name']
-    yaml_dict['server'] = server(question_solution)
+    yaml_dict['assets'] = image_dic['image_name'] #TODO (FROM FM): IF THIS IS AN EMPTY LIST, SET TO EMPTY STRING NOT []
+    yaml_dict['server'] = server(question_solution) #TODO (FROM FM): SERVER NEEDS TO BE A NESTED DICTIONARY NOT A BIG LONG STRING
+    
+    # TODO (FROM FM): THIS PART IS PROBABLY WHAT'S MAKING THE PART2 SHOW UP INSTEAD OF PART1
     for part_number, part_type in zip(question_parts, question_format):
         yaml_dict['part' + str(part_number+1)] = ''.join(
 f"""
@@ -228,8 +233,8 @@ pl-customizations:
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
                                                                                 + '# {{ params.vars.title }}'
-                                                                                + ''.join(f'{image}\n\n' for image in question_images)
-                                                                                + ''.join(f'## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
+                                                                                + ''.join(f'{image}\n' for image in question_images)
+                                                                                + ''.join(f'\n## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
                                                                                 + '\n\n'
                                                                                 + '### Answer Section \n'
                                                                                 + str(question_units) + '\n\n'
