@@ -1,50 +1,83 @@
 ---
-title: 8.kappa
+title: 7.sigma
+topic: undefined
 author: edX Physics 100 Team
 source: https://github.com/open-resources/edx_bank
-type: mc
-tags:
-- TBD
-outcomes:
-- TBD
-assets:
-- TBD
-server: |
-  import random
+attribution: standard
+outcomes: undefined
+difficulty: Average
+randomization: undefined
+tags: undefined
+assets: undefined
+server:
+  imports: |-
+    import random
+    import problem_bank_helpers as pbh
+  generate: |-
+    data2 = pbh.create_data2()
 
-  # define or load names/items/objects
 
-  # store phrases etc
+    # store phrases etc
 
-  # define bounds of the variables
 
-  ga = 9.8
-  gb = 0.1*random.randint(40, 80)
-  a = 1.5
-  sol = ga+a-gb
-  c2 = ga+a+gb
-  c3 = ga+a
-  c4 = ga-gb
+    a = 35
+    r = 0.1*random.randint(5, 15)
+    tin = random.randint(18, 22)
+    tout = 5
+    nperson = 2
+    pperson = 80
+    sola = round(a*(tin-tout)/r-nperson*pperson, 2)
+    pheater = 500
+    eff = 0.5
+    hours = random.randint(5, 9)
+    days = 5*random.randint(10, 14)
+    cost = 0.12
+    solb = round(pheater*hours*days*3600/eff/3.6e6*cost, 2)
 
-  # store the variables in the dictionary params
+    # store the variables in the dictionary params
 
-  # define possible answers
 
-  data['params']['ans1'] = sol
-  data['params']['correct_answer'] = sol
-  data['params']['ans2'] = c2
-  data['params']['ans3'] = c3
-  data['params']['ans4'] = c4
+    # Update the data object with a new dict
+    data.update(data2)
+  prepare: pass
+  parse: pass
+  grade: pass
+part1:
+  type: numeric
+  pl-customizations:
+    weight: 1
 ---
 # {{ vars.title }}
 
 ## Question Text
 
-8) During an inter-planetary experiment, a bathroom scale is placed on two elevators located in two different planets. Planet A (Earth) has a constant of gravity g_A = {{ga m/s^2 and planet B has a constant of gravity g_B = {{gb m/s^2. During the experiment, the elevator on Earth starts from rest and is accelerated upwards at a rate of $a m/s^2. If the scale reading for an astronaut during her way up in the elevator is the same in both planets, what is the magnitude of the elevator's acceleration (in m/s^2) on planet B? Note: the elevator on planet B is also accelerating upwards. 
+7a) Consider a room in a house that has composite walls with an R_{tot} = {{ r\text{ }} m}^2\text{K/W}.
+The total cross sectional area of the walls is {{ a }} m^2.
+During winter, the temperature outside the room is T_{out} = {{ tout^\circ\text{C}. }}
+Calculate the power (in W) of a heater that is required to keep the room's temperature constant at {{ tin^oC }} if the room is going to be occupied by {{ nperson }} people.
+Assume that the radiative power emitted by a person is {{ pperson }} W.
+
 
 ## Answer Section
 
-- {{ sol }}
-- {{ c2 }}
-- {{ c3 }}
-- {{ c4 }}
+The answer is: {{ sola }}.The answer is: {{ sola }}.
+
+## pl-submission-panel
+
+Everything here will get inserted directly into the pl-submission-panel element at the end of the `question.html`.
+
+## pl-answer-panel
+
+Everything here will get inserted directly into an pl-answer-panel element at the end of the `question.html`.
+
+## Rubric
+
+This should be hidden from students until after the deadline.
+
+## Solution
+
+This should never be revealed to students.
+
+## Comments
+
+These are random comments associated with this question.Recall the concept of efficiency: If the heater was 100% efficient all of the energy consumed by the heater would go into heating the room. 
