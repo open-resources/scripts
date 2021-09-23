@@ -17,7 +17,6 @@ root_dest_folder = 'College_Physics_Urone/'
 
 # variable declaration
 counter = 0
-output = []
 source_files = []
 src_dirs = []
 title = topic = author = editor = date = source = template_version = problem_type = attribution = outcomes = difficulty = randomization = taxonomy = ""
@@ -228,6 +227,7 @@ pl-customizations:
     Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
+                                                                                + '# {{ params.vars.title }}'
                                                                                 + ''.join(f'{image}\n\n' for image in question_images)
                                                                                 + ''.join(f'## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
                                                                                 + '\n\n'
@@ -373,7 +373,6 @@ def extract_problem_solution(problem_solution):
 
     return question_solution
 
-
 # for loop runs based # of folders in src
 for root, dirs, files in os.walk(root_path):
     # create dest file structure based on source directory
@@ -382,48 +381,47 @@ for root, dirs, files in os.walk(root_path):
     # iterate through each file
     for file in files:
         if file.endswith('.pg'):
-            file_start_time = time.process_time()
             source_files.append(os.path.join(root, file))
-            for source_filepath in source_files:
-                try:
-                    file_dir = source_filepath[source_filepath.find("Contrib"):]
-                    filename = file[0:file.find('.')]
-                    question_file = open(source_filepath, 'r')
-                    file_contents = question_file.read()
-                    dest_file_path = root.removeprefix(root_path)
 
-                    file_contents_dic = split_file(file_contents)
-                    metadata_dic = metadata_extract(file_contents_dic['metadata'])
-                    dir_info = {
-                        'filename': filename,
-                        'file_dir': file_dir,
-                        'root_dest_folder': root_dest_folder,
-                        'dest_file_path': dest_file_path
-                    }
-                    question_body = file_contents_dic['question_body']
-                    image_dic = image_extract(question_body)
-                    question_extract = problem_extract(question_body, image_dic['image_alt_text'])
-                    question_text = question_extract['question_text']
-                    question_parts = question_extract['question_parts']
-                    question_units = question_extract['question_units']
-                    question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
-                    question_solution = extract_problem_solution(file_contents_dic['question_solution'])
 
-                    yaml_dump(dir_info, metadata_dic, question_formats, image_dic, question_text,
-                              question_units, question_parts, question_solution)
-                    end_file_time = time.process_time()
-                    file_process_time = end_file_time - file_start_time
-                    counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
-                    currentFile = root_dest_folder + dest_file_path + "/" + filename
+for source_filepath in source_files:
+    try:
+        dest_file_path = source_filepath[78:source_filepath.rfind('/')]
+        filename = source_filepath[source_filepath.rfind('/')+1:-3]
+        file_start_time = time.process_time()
+        file_dir = source_filepath[source_filepath.find("Contrib"):]
+        question_file = open(source_filepath, 'r')
+        file_contents = question_file.read()
 
-                    if currentFile not in output:
-                        counter = counter + 1
-                        print(counterString + currentFile)
-                        output.append(currentFile)
+        file_contents_dic = split_file(file_contents)
+        metadata_dic = metadata_extract(file_contents_dic['metadata'])
+        dir_info = {
+            'filename': filename,
+            'file_dir': file_dir,
+            'root_dest_folder': root_dest_folder,
+            'dest_file_path': dest_file_path
+        }
+        question_body = file_contents_dic['question_body']
+        image_dic = image_extract(question_body)
+        question_extract = problem_extract(question_body, image_dic['image_alt_text'])
+        question_text = question_extract['question_text']
+        question_parts = question_extract['question_parts']
+        question_units = question_extract['question_units']
+        question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
+        question_solution = extract_problem_solution(file_contents_dic['question_solution'])
 
-                except Exception as e:
-                    print(e)
-                    pass
+        yaml_dump(dir_info, metadata_dic, question_formats, image_dic, question_text,
+                  question_units, question_parts, question_solution)
+        end_file_time = time.process_time()
+        file_process_time = end_file_time - file_start_time
+        counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
+        currentFile = root_dest_folder + dest_file_path + "/" + filename
+        counter += 1
+        print(counterString + currentFile)
+
+    except Exception as e:
+        print(e)
+        pass
 
 # ------------------------ STATS ------------------------ #
 total_end_time = time.process_time()
