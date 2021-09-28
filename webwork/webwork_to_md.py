@@ -226,7 +226,7 @@ pl-customizations:
     Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
-                                                                                + '# {{ params.vars.title }}'
+                                                                                + '# {{ params.vars.title }} \n\n'
                                                                                 + ''.join(f'{image}\n' for image in question_images)
                                                                                 + ''.join(f'\n## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
                                                                                 + '\n\n'
