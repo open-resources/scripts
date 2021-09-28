@@ -210,7 +210,7 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['span'] = ['TBD']
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
-    yaml_dict['assets'] = image_dic['image_name'] #TODO (FROM FM): IF THIS IS AN EMPTY LIST, SET TO EMPTY STRING NOT []
+    yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
     yaml_dict['server'] = server(question_solution) #TODO (FROM FM): SERVER NEEDS TO BE A NESTED DICTIONARY NOT A BIG LONG STRING
     
     # TODO (FROM FM): THIS PART IS PROBABLY WHAT'S MAKING THE PART2 SHOW UP INSTEAD OF PART1
