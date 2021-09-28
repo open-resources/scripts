@@ -142,7 +142,7 @@ imports: |
     server_generate_phrases = "# TBD"
     server_generate_random_var = "   N/A"
     if len(question_solution) > 0:
-        server_generate_random_var = ' '.join(f'   {solution.strip()}\n' for solution in question_solution)
+        server_generate_random_var = ' '.join(f'   {solution.replace("$","").replace("**", "E").strip()}\n' for solution in question_solution)
     server_generate_dic = "# TBD"
     server_generate_answers = "# TBD"
     server_generate = f"""
