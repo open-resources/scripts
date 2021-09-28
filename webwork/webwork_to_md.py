@@ -111,18 +111,18 @@ def determine_problem_type(question_ans, filename):
     # determine answer type based on the raw answer from question
     for answer_type in answer_type_raw:
         if numerical_type in answer_type:
-            question_type.append("Numerical")
+            question_type.append("number-input")
         elif functional_type in answer_type:
-            question_type.append("Functional")
+            question_type.append("functional")
         elif checkbox_type in answer_type:
-            question_type.append("Checkbox")
+            question_type.append("checkbox")
         elif text_type in answer_type:
-            question_type.append("Text")
+            question_type.append("text")
         else:
-            question_type.append("Unknown")
+            question_type.append("unknown")
 
     if not question_type:
-        question_type.append("Unknown")
+        question_type.append("unknown")
 
     return {
         'answer_variable': answer_variable,
