@@ -5,12 +5,6 @@ import yaml
 import re
 import time
 
-# TODO: unify variable names
-# TODO: optimize code to run faster
-# TODO: modularize code w/ functions and/or separate python files
-# TODO: handle exception instead of passing them
-# TODO: handle answer section without hint
-
 # loop through every file in the dir
 root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
 root_dest_folder = 'College_Physics_Urone/'
