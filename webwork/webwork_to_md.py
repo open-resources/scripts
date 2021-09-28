@@ -134,9 +134,8 @@ def determine_problem_type(question_ans, filename):
 def server(question_solution):
     # server variables
     server_imports = """
-imports: |
-  import random
-  import problem_bank_helpers as pbh
+import random
+import problem_bank_helpers as pbh
 """.strip('\n')
     server_generate_names = "# TBD"
     server_generate_phrases = "# TBD"
@@ -146,7 +145,6 @@ imports: |
     server_generate_dic = "# TBD"
     server_generate_answers = "# TBD"
     server_generate = f"""
-generate: |
     data2 = pbh.create_data2()
 
     # define or load names/items/objects from server files
@@ -162,20 +160,18 @@ generate: |
     # Update the data object with a new dict
     data.update(data2)
     """
-    server_prepare = """
-prepare: |
-    pass
-""".strip('\n')
-    server_parse = """
-parse: |
-    pass
+    server_prepare = """pass
 """
-    server_grade = """
-grade: |
-    pass
-""".strip('\n')
-    server = f"""{server_imports}{server_generate}{server_prepare}{server_parse}{server_grade}""".strip('\n')
-    return server
+    server_parse = """pass
+"""
+    server_grade = """pass
+"""
+    return {'imports': server_imports,
+            # TODO: Identify why generate section of the dic does not print as intended
+            # 'generate': server_generate,
+            'prepare': server_prepare,
+            'parse': server_parse,
+            'grade': server_grade}
 
 def yaml_dump(directory_info, metadata, question_format, image_dic, question_text, question_units, question_parts, question_solution):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
