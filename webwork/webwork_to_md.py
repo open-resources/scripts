@@ -141,25 +141,10 @@ import problem_bank_helpers as pbh
     server_generate_phrases = "# TBD"
     server_generate_random_var = "   N/A"
     if len(question_solution) > 0:
-        server_generate_random_var = ' '.join(f'   {solution.replace("$","").replace("**", "E").strip()}\n' for solution in question_solution)
+        server_generate_random_var = ''.join(f'# {solution.replace("$","").replace("**", "E").strip()}\n' for solution in question_solution)
     server_generate_dic = "# TBD"
     server_generate_answers = "# TBD"
-    server_generate = f"""
-    data2 = pbh.create_data2()
-
-    # define or load names/items/objects from server files
-    {server_generate_names}
-    # store phrases etc
-    {server_generate_phrases}
-    # Randomize Variables
- {server_generate_random_var}
-    # store the variables in the dictionary "params"
-    {server_generate_dic}
-    # define possible answers
-    {server_generate_answers}
-    # Update the data object with a new dict
-    data.update(data2)
-    """
+    server_generate = f"""data2 = pbh.create_data2()\n# define or load names/items/objects from server files\n{server_generate_names}\n# store phrases etc\n{server_generate_phrases}\n# Randomize Variables\n{server_generate_random_var}\n# store the variables in the dictionary params\n{server_generate_dic}\n# define possible answers\n{server_generate_answers}\n# Update the data object with a new dict\ndata.update(data2)"""
     server_prepare = """pass
 """
     server_parse = """pass
@@ -167,8 +152,7 @@ import problem_bank_helpers as pbh
     server_grade = """pass
 """
     return {'imports': server_imports,
-            # TODO: Identify why generate section of the dic does not print as intended
-            # 'generate': server_generate,
+            'generate': server_generate,
             'prepare': server_prepare,
             'parse': server_parse,
             'grade': server_grade}
@@ -207,11 +191,10 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
     yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
-    yaml_dict['server'] = server(question_solution) #TODO (FROM FM): SERVER NEEDS TO BE A NESTED DICTIONARY NOT A BIG LONG STRING
-    
-    # TODO (FROM FM): THIS PART IS PROBABLY WHAT'S MAKING THE PART2 SHOW UP INSTEAD OF PART1
+    yaml_dict['server'] = server(question_solution)
+
     for part_number, part_type in zip(question_parts, question_format):
-        yaml_dict['part' + str(part_number+1)] = ''.join(
+        yaml_dict['part' + str(part_number)] = ''.join(
 f"""
 type: {part_type}
 pl-customizations:
