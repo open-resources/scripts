@@ -7,7 +7,7 @@ import time
 
 # loop through every file in the dir
 root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
-root_dest_folder = 'College_Physics_Urone/'
+root_dest_folder = 'source/College_Physics_Urone/'
 
 # variable declaration
 counter = 0
@@ -139,7 +139,7 @@ import problem_bank_helpers as pbh
 """.strip('\n')
     server_generate_names = "# TBD"
     server_generate_phrases = "# TBD"
-    server_generate_random_var = "   N/A"
+    server_generate_random_var = "# N/A"
     if len(question_solution) > 0:
         server_generate_random_var = ''.join(f'# {solution.replace("$","").replace("**", "E").strip()}\n' for solution in question_solution)
     server_generate_dic = "# TBD"
@@ -190,26 +190,23 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['span'] = ['TBD']
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
-    yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
+    # yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
+    yaml_dict['assets'] = ''
     yaml_dict['server'] = server(question_solution)
-
     for part_number, part_type in zip(question_parts, question_format):
-        yaml_dict['part' + str(part_number)] = ''.join(
-f"""
-type: {part_type}
-pl-customizations:
-  weight: 1
-  hide-answer-panel: true
-""").strip('\n')
+        if part_number + 1 == 0:
+            part_number = str(part_number+2)
+        else:
+            part_number = str(part_number+1)
+        yaml_dict['part' + part_number] = get_part_type(part_type)
     question_images = image_dic['image_line_md']
     Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
                                                                                 + '# {{ params.vars.title }} \n\n'
                                                                                 + ''.join(f'{image}\n' for image in question_images)
-                                                                                + ''.join(f'\n## Part {part} \n{question} \n' for part, question in zip(question_parts, question_text))
-                                                                                + '\n\n'
-                                                                                + '### Answer Section \n'
+                                                                                + ''.join(f'\n{question}\n' for part, question in zip(question_parts, question_text) if (part == 0))
+                                                                                + ''.join(f'\n## Part {part} \n{question} \n\n\n ### Answer Section\n' for part, question in zip(question_parts, question_text) if (part > 0))
                                                                                 + str(question_units) + '\n\n'
                                                                                 + '## pl-submission-panel \n\n\n'
                                                                                 + '## pl-answer-panel \n\n\n'
@@ -217,6 +214,14 @@ pl-customizations:
                                                                                 + '## Solution \n\n\n'
                                                                                 + '## Comments \n\n\n')
                                                                                 # + ''.join(f'{value}' for key, value in section.items())
+
+
+def get_part_type(part_type):
+    return {"type": part_type,
+            "pl-customizations":
+            {"weight": "1",
+            "hide-answer-panel": "true"}
+            }
 
 
 def image_extract(question_content):
@@ -277,7 +282,7 @@ def problem_extract(question_body, image_alt_text):
                 question_raw = help_problem_extract_append(subsection_clean, question_raw)
                 # remove image_alt_text from question_raw and ensure there are no empty questions
                 question_raw = [question for question in question_raw if question not in image_alt_text and question]
-                question_part = append_part_counter(len(question_raw), part_headers)
+                question_part = append_part_counter(len(question_raw)-1, part_headers)
 
     return {'question_text': question_raw,
             'question_parts': question_part,
