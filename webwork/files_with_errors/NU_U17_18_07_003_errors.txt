@@ -1,0 +1,11 @@
+There is an error in this problem: 
+	- File path: ../../scripts/webwork/source/College_Physics_Urone/18.Electric_Field/18-07.Conductors_and_Electric_Fields_in_Static_Equilibrium/NU_U17_18_07_003.md
+	- Error: 'part5'
+
+
+Traceback (most recent call last):
+  File "process.py", line 63, in main
+    pbs.process_question_pl(source_filepath)
+  File "/Users/parsaimac/.pyenv/versions/3.8.5/lib/python3.8/site-packages/problem_bank_scripts/problem_bank_scripts.py", line 615, in process_question_pl
+    q_type = parsed_q['header'][part]['type']
+KeyError: 'part5'
