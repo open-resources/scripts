@@ -4,6 +4,7 @@ from pprint import pprint
 import yaml
 import re
 import time
+from shutil import copy2
 
 # loop through every file in the dir
 root_path = '../../webwork-open-problem-library/Contrib/BrockPhysics/College_Physics_Urone/'
@@ -157,7 +158,7 @@ import problem_bank_helpers as pbh
             'parse': server_parse,
             'grade': server_grade}
 
-def yaml_dump(directory_info, metadata, question_format, image_dic, question_text, question_units, question_parts, question_solution):
+def yaml_dump(directory_info, metadata, question_format, image_dic, question_text, question_units, question_parts, question_solution, destination_file_path):
     # This solution is copied from this SO answer: https://stackoverflow.com/a/45004775/2217577
     yaml.SafeDumper.org_represent_str = yaml.SafeDumper.represent_str
 
@@ -190,8 +191,12 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
     yaml_dict['span'] = ['TBD']
     yaml_dict['length'] = ['TBD']
     yaml_dict['tags'] = metadata['tags']
-    # yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
-    yaml_dict['assets'] = ''
+    yaml_dict['assets'] = image_dic['image_name'] if image_dic['image_name'] else ''
+    for image in image_dic['image_name']:
+        image_dir = directory_info['folder_dir'] + "/" + image
+        image_path = Path(directory_info['folder_dir'] + "/" + image)
+        if image_path.is_file():
+            copy2(image_dir, destination_file_path)
     yaml_dict['server'] = server(question_solution)
     for part_number, part_type in zip(question_parts, question_format):
         if part_number + 1 == 0:
@@ -200,7 +205,7 @@ def yaml_dump(directory_info, metadata, question_format, image_dic, question_tex
             part_number = str(part_number+1)
         yaml_dict['part' + part_number] = get_part_type(part_type)
     question_images = image_dic['image_line_md']
-    Path(directory_info['root_dest_folder'] + directory_info['dest_file_path'] + "/" + directory_info['filename'] + ".md").write_text('---\n'
+    Path(destination_file_path + directory_info['filename'] + ".md").write_text('---\n'
                                                                                 + yaml.safe_dump(yaml_dict, sort_keys=False)
                                                                                 + '---\n\n'
                                                                                 + '# {{ params.vars.title }} \n\n'
@@ -371,6 +376,7 @@ for source_filepath in source_files:
     try:
         dest_file_path = source_filepath[78:source_filepath.rfind('/')]
         filename = source_filepath[source_filepath.rfind('/')+1:-3]
+        folder_dir = source_filepath[:source_filepath.rfind('/')]
         file_start_time = time.process_time()
         file_dir = source_filepath[source_filepath.find("Contrib"):]
         question_file = open(source_filepath, 'r')
@@ -381,9 +387,11 @@ for source_filepath in source_files:
         dir_info = {
             'filename': filename,
             'file_dir': file_dir,
+            'folder_dir': folder_dir,
             'root_dest_folder': root_dest_folder,
             'dest_file_path': dest_file_path
         }
+        destination_file_path = root_dest_folder + dest_file_path + "/" + filename + "/"
         question_body = file_contents_dic['question_body']
         image_dic = image_extract(question_body)
         question_extract = problem_extract(question_body, image_dic['image_alt_text'])
@@ -392,9 +400,9 @@ for source_filepath in source_files:
         question_units = question_extract['question_units']
         question_formats = extract_problem_type(file_contents, dir_info['filename'])['question_type']
         question_solution = extract_problem_solution(file_contents_dic['question_solution'])
-
+        Path(destination_file_path).mkdir(parents=True, exist_ok=True)
         yaml_dump(dir_info, metadata_dic, question_formats, image_dic, question_text,
-                  question_units, question_parts, question_solution)
+                  question_units, question_parts, question_solution, destination_file_path)
         end_file_time = time.process_time()
         file_process_time = end_file_time - file_start_time
         counterString = '#' + str(counter + 1) + ' - [' + str(round(file_process_time, 5)) + '] '
